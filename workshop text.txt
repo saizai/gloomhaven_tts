@@ -1,0 +1,106 @@
+[h1]tl;dr?[/h1]
+
+The most complete Gloomhave mod on TTS. Just load this and you're good to go.
+
+All content is based on Gloomhaven's 2nd printing.
+
+[i]Included[/i]
+
+All in-box classes (including unlockables), with minis
+All monsters & bosses, ditto
+All main campaign, Into the Unknown, [i]and[/i] just-released Capital Intrigue scenarios
+Most sealed content
+Full rulebook, terrain, map, map stickers, achievements, etc etc.
+
+
+[i]In the box but not yet included[/i]
+
+The last envelope
+Town Records book (contains story, not gameplay)
+Some minor tokens & graphics that don't affect gameplay
+
+
+[h1]How is this mod different from all other mods?[/h1]
+
+This is a remix and customization of multiple other mods, content from BGG, and custom content.
+
+The intent is to be a 100% complete Gloomhaven mod, focused on quality of life improvements to make the gameplay easier & faster, and making unlockable content unlock naturally (rather than being based on not reading parts of the page or cross-referencing lookup tables).
+
+That end goal is a work in progress, but as is, it includes all available TTS Gloomhaven content - and then some. It's fully playable, and is already set up for starting your first campaign. Just create your characters, set up the first scenario, and go. :-)
+
+[i]New, customized, and/or added content vs other mods[/i]
+
+4-player Kraken table with two hands per player, extended & colored player tables, etc.
+Character & monster envelopes that include minis, sleeves, etc.
+Decoder card
+Envelopes A, B & X
+Gloomhaven visiting board with counting bowl of sanctuary donations
+Monster trackers for Normal / Elite and #
+Re-uploaded imgur etc content to Steam for faster & more reliable loading
+Rule summaries & monster AI flowchart from BGG
+Set of useful tools from across TTS
+Stateful, infinite-bag map & terrain tiles
+Stateful treasure index (to hide when not in use)
+Stateful, locked containers for unlockable content & scenarios
+Tri-color Bar Keep (red / blue / yellow) for HP bars, with wide variant option
+Unlockable scenarios & other content separated from starting content
+Various tweaks to make the stuff you need and help for it Just Work (and help prevent spoilers)
+... and full integration of more or less all other TTS Gloomhaven mods' content.
+
+
+[i]WIP (not yet included)[/i]
+
+Character & party saver / stager (like Sky Tools Stage, but for the non-board player content)
+Improved player mats (based on GabrielM's)
+NPI scenario
+Some post-printing
+Solo scenarios
+Spoiler-free nested scenarios & unlocks
+Updating for post-printing errata
+
+
+[h1]Wanted[/h1]
+
+Clean copies of:
+
+1. Deserve It contents (front & back)
+2. Envelope exteriors (front & back)
+3. Scenario aid tokens
+4. Objective tokens
+5. Town records book (English)
+
+
+[h1]Sources[/h1]
+
+[url=https://drive.google.com/drive/folders/15M89Q1YPi-xfJIS-i32hySEP5mJYmd6E]Complete-ish source files for this mod (including original PDFs, cut-up individual transparent images, Lua code, etc)[/url] ([b]Warning[/b] — spoilerific!)
+
+
+[url=https://drive.google.com/drive/u/0/folders/0B8ppELln5Z0rLXdWYnh3QkZuMU0]Character ability cards[/url]
+[url=https://drive.google.com/drive/folders/0B8ppELln5Z0rdEFIWl9aZl9nLTQ]Scenario & rule books[/url]
+[url=https://drive.google.com/drive/folders/0B8ppELln5Z0rdFhFTVljWXFyTUE]Solo scenarios & items[/url]
+[url=http://www.cephalofair.com/unknown-story-far]Into the Unknown scenarios[/url] ([url=https://boardgamegeek.com/boardgame/226868/gloomhaven-solo-scenarios]BGG[/url])
+[url=https://boardgamegeek.com/filepage/161193/end-world-gloomhaven-digital-adventure]No Pun Included (NPI) promo scenario v1.1[/url]
+[url=https://boardgamegeek.com/thread/1966465/new-community-driven-expedition-begins]Capital Intrigue scenario 1[/url]
+[url=https://boardgamegeek.com/filepage/141843/world-achievement-sticker-sheet]Achievement stickers v2[/url]
+[url=https://boardgamegeek.com/filepage/141841/enhancement-sticker-sheet]Enhancement stickers[/url]
+[url=https://boardgamegeek.com/filepage/141844/map-location-sticker-sheet]Map location stickers v2[/url]
+[url=https://boardgamegeek.com/filepage/159498/frequently-forgotten-rules-reference]Frequently Forgotten Rules reference[/url]
+[url=https://boardgamegeek.com/filepage/159389/visiting-gloomhaven-board]Visiting Gloomhaven board v3[/url]
+[url=https://boardgamegeek.com/filepage/158565/gloomhaven-condensed-rules-reference]Condensed rules reference[/url]
+[url=https://boardgamegeek.com/filepage/159106/complete-monster-ai-flowchart]Monster AI flowchart v1.3[/url]
+[url=https://boardgamegeek.com/thread/1897763/official-faq-game-revs-1-and-2]Official FAQ[/url], [url=https://www.dropbox.com/s/nurvwn59ubawhms/faq_1.2_print.pdf?dl=0]v1.2 (2018-02-16) PDF[/url]
+[url=https://boardgamegeek.com/filepage/157790/gloomhaven-one-sheet]Gloomhaven one-sheet v2[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1301493206]Gloomhaven - Fantasy Setup[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=925837996]Gloomhaven Rulebook[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=899393501]Gloomhaven Starter Character Sheets[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1328200833]Gloomhaven Treasure Checklist[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1316752066]Gloomhaven PvP Variation[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1313054246]Gloomhaven 3D Models Collection[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1229120959]Gloomhaven Into the Unknown Scenario Book[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1222553243]Kraken table[/url]
+[url=http://steamcommunity.com/sharedfiles/filedetails/?id=1342764060]Tri-color Bar Keep[/url]
+[url=http://steamcommunity.com/sharedfiles/filedetails/?id=949489792]Chest tokens (and bags)[/url]
+[url=http://steamcommunity.com/sharedfiles/filedetails/?id=929555878]GRIDLOCK token[/url]
+[url=http://steamcommunity.com/sharedfiles/filedetails/?id=765121977]Weather Effect tokens[/url]
+[url=http://steamcommunity.com/sharedfiles/filedetails/?id=1120090592]Admin Chip[/url]
+[url=http://steamcommunity.com/sharedfiles/filedetails/?id=927084967]Zone Protection Tool[/url]
