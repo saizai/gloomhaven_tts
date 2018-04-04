@@ -1,0 +1,38 @@
+RedCharacter = {'nobody', 'Red'}
+WhiteCharacter = {'nobody', 'White'}
+BlueCharacter = {'nobody', 'Blue'}
+GreenCharacter = {'nobody', 'Green'}
+
+function onLoad()
+	megaFreeze() -- Make objects non-interactive
+end
+
+function megaFreeze()
+    local megaFreezeIT = {'bafa19','f7805a','8bf5e2','dff000','42d2b6','a1ae9dd','59d54d','cf0917','6c1b20','75ab50','2f9ec3','d68151','c44dd8','9118a6','ef095e','17f87d','507d38','9dc275','75f651','20210d','8db51c','f3ffb7','b53fb2','41393b','a75fcd'}
+
+	--megaFreeze ACTIVATE!
+	for i=1, #megaFreezeIT, 1 do
+		obj = getObjectFromGUID(megaFreezeIT[i])
+		if obj ~= nil then
+			obj.interactable = false
+			obj.tooltip = false
+		end
+	end
+end
+startLoopUpdates = false
+objectGuids = {'d308e5', 'b81b9b', '826ec7', 'da3961'}
+
+function onObjectLoopingEffect(loopObject, index)
+  for i = 1, #objectGuids do
+    if loopObject.guid == objectGuids[i] then
+      if not startLoopUpdates then
+        startLoopUpdates = true
+        for j = 1, #objectGuids do
+          getObjectFromGUID(objectGuids[j]).AssetBundle.playLoopingEffect(index)
+        end
+        startLoopUpdates = false
+      end
+      break
+    end
+  end
+end

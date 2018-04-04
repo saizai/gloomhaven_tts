@@ -1,0 +1,407 @@
+--Gloomhaven Inox Brute Character Sheet
+-- Script Write by MrStump
+--Adapted to Gloomhaven Sheet by kensuaga
+
+--[[    Character Sheet Template    by: MrStump
+
+By changing the image of this item and changing information below,
+you can set up you own character sheet.
+
+General Guidance:
+    The table you will be editing (ref_buttonData) has sections:
+        1. checkbox
+        2. number
+        3. textfield
+    You can add additional entries to each of these sections.
+    You can also remove all of its entries so that type isn't used.
+
+Editing Position:
+    I have included a tool to get positions for buttons in {x,y,z} form
+    Place it where you want the center of your element to be
+    Then copy the table from the notes (lower right of screen)
+        You can highlight it and CTRL+C
+    Paste it into the table in the table you will find below
+    If you want to manually tweek the values:
+        {0,0,0} is the center of the character sheet
+        {1,0,0} is right, {-1,0,0} is left
+        {0,0,-1} is up, {0,0,1} is down
+        0.1 for Y is the height off of the page.
+            If it was 0, it would be down inside the model of the sheet
+
+Begin editing below:    ]]
+
+--Set this to true while editing and false when you have finished
+disableSave = false
+
+--Remember to set this to false once you are done making changes
+
+--Color information for button text (r,g,b, values of 0-1)
+buttonFontColor = {0,0,0}
+--Color information for button background
+buttonColor = {1,1,1}
+--Change scale of button (Avoid changing if possible)
+buttonScale = {0.1,0.1,0.1}
+
+--This is the button placement information
+defaultButtonData = {
+    --Add checkboxes
+    checkbox = {
+        --[[
+        pos   = the position (pasted from the helper tool)
+        size  = height/width/font_size for checkbox
+        state = default starting value for checkbox (true=checked, false=not)
+        ]]
+
+        --Perks checkboxes
+        {pos   = {0.163,0.1,-0.799}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.725}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.601}, size  = 135, state = false},
+        {pos   = {0.212,0.1,-0.601}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.527}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.452}, size  = 135, state = false},
+        {pos   = {0.212,0.1,-0.452}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.326}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.252}, size  = 135, state = false},
+        {pos   = {0.212,0.1,-0.252}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.175}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,-0.037}, size  = 135, state = false},
+        {pos   = {0.212,0.1,-0.037}, size  = 135, state = false},
+
+        {pos   = {0.163,0.1,0.086},  size  = 135, state = false},
+
+        {pos   = {0.163,0.1,0.153},  size  = 135, state = false},
+
+        --Notes checkboxes
+        {pos   = {0.211,0.1,0.370},  size  = 135, state = false},
+        {pos   = {0.257,0.1,0.370},  size  = 135, state = false},
+        {pos   = {0.303,0.1,0.370},  size  = 135, state = false},
+
+        {pos   = {0.409,0.1,0.370},  size  = 135, state = false},
+        {pos   = {0.454,0.1,0.370},  size  = 135, state = false},
+        {pos   = {0.499,0.1,0.370},  size  = 135, state = false},
+
+        {pos   = {0.605,0.1,0.370},  size  = 135, state = false},
+        {pos   = {0.651,0.1,0.370},  size  = 135, state = false},
+        {pos   = {0.696,0.1,0.370},  size  = 135, state = false},
+
+        {pos   = {0.211,0.1,0.429},  size  = 135, state = false},
+        {pos   = {0.257,0.1,0.429},  size  = 135, state = false},
+        {pos   = {0.303,0.1,0.429},  size  = 135, state = false},
+
+        {pos   = {0.409,0.1,0.429},  size  = 135, state = false},
+        {pos   = {0.454,0.1,0.429},  size  = 135, state = false},
+        {pos   = {0.499,0.1,0.429},  size  = 135, state = false},
+
+        {pos   = {0.605,0.1,0.429},  size  = 135, state = false},
+        {pos   = {0.651,0.1,0.429},  size  = 135, state = false},
+        {pos   = {0.696,0.1,0.429},  size  = 135, state = false},
+
+
+        --End of checkboxes
+    },
+    --Add counters that have a + and - button
+    counter = {
+        --[[
+        pos    = the position (pasted from the helper tool)
+        size   = height/width/font_size for counter
+        value  = default starting value for counter
+        hideBG = if background of counter is hidden (true=hidden, false=not)
+        ]]
+
+        --{
+        --    pos    = {-0.424,0.15,-0.316},
+        --    size   = 800,
+        --    value  = 0,
+        --    hideBG = true
+        --}
+
+
+
+    },
+    --Add editable text boxes
+    textbox = {
+        --[[
+        pos       = the position (pasted from the helper tool)
+        rows      = how many lines of text you want for this box
+        width     = how wide the text box is
+        font_size = size of text. This and "rows" effect overall height
+        label     = what is shown when there is no text. "" = nothing
+        value     = text entered into box. "" = nothing
+        alignment = Number to indicate how you want text aligned
+                    (1=Automatic, 2=Left, 3=Center, 4=Right, 5=Justified)
+        ]]
+        -- Character name
+        {
+            pos = {-0.275,0.15,-0.725},
+            rows = 1,
+            width = 3000,
+            font_size = 250,
+            label = "Name",
+            value = "",
+            alignment = 3
+        },
+
+        --Level Markers Textboxes
+        {pos = {-0.492,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "1", value = "", alignment = 3 },
+
+        {pos = {-0.428,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "2", value = "", alignment = 3 },
+
+        {pos = {-0.364,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "3", value = "", alignment = 3 },
+
+        {pos = {-0.3,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "4", value = "", alignment = 3 },
+
+        {pos = {-0.235,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "5", value = "", alignment = 3 },
+
+        {pos = {-0.17,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "6", value = "", alignment = 3 },
+
+        {pos = {-0.105,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "7", value = "", alignment = 3 },
+
+        {pos = {-0.042,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "8", value = "", alignment = 3 },
+
+        {pos = {0.023,0.1,-0.647},rows = 1, width = 230, font_size = 200,
+            label = "9", value = "", alignment = 3 },
+
+            --Gold
+        {
+            pos = {-0.35,0.15,-0.354},
+            rows = 1,
+            width = 1250,
+            font_size = 600,
+            label = "--",
+            value = "",
+            alignment = 3            },
+            -- XP Notes
+        {
+            pos = {-0.35,0.15,-0.065},
+            rows = 1,
+            width = 1250,
+            font_size = 600,
+            label = "--",
+            value = "",
+            alignment = 3
+        },
+
+        --Items row one
+        {
+            pos = {-0.533,0.15,0.534},
+            rows = 20,
+            width = 1825,
+            font_size = 175,
+            label = "Empty",
+            value = "",
+            alignment = 2
+        },
+
+        --Iteam row two
+        {
+            pos = {-0.135,0.15,0.534},
+            rows = 20,
+            width = 1825,
+            font_size = 175,
+            label = "Empty",
+            value = "",
+            alignment = 2
+        },
+
+        --Notes textbox
+        {
+            pos = {0.435,0.15,0.690},
+            rows = 11,
+            width = 2800,
+            font_size = 175,
+            label = "Notes",
+            value = "",
+            alignment = 2
+        },
+
+        --End of textboxes
+    }
+}
+
+
+
+--Lua beyond this point, I recommend doing something more fun with your life
+
+
+
+--Save function
+function onSave()
+    saved_data = JSON.encode(ref_buttonData)
+    if disableSave==true then saved_data="" end
+    return saved_data
+end
+
+--Startup procedure
+function onload(saved_data)
+    if disableSave==true then saved_data="" end
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        ref_buttonData = loaded_data
+    else
+        ref_buttonData = defaultButtonData
+    end
+
+    spawnedButtonCount = 0
+    createCheckbox()
+    createCounter()
+    createTextbox()
+end
+
+
+
+--Click functions for buttons
+
+
+
+--Checks or unchecks the given box
+function click_checkbox(tableIndex, buttonIndex)
+    if ref_buttonData.checkbox[tableIndex].state == true then
+        ref_buttonData.checkbox[tableIndex].state = false
+        self.editButton({index=buttonIndex, label=""})
+    else
+        ref_buttonData.checkbox[tableIndex].state = true
+        self.editButton({index=buttonIndex, label=string.char(10008)})
+    end
+end
+
+--Applies value to given counter display
+function click_counter(tableIndex, buttonIndex, amount)
+    ref_buttonData.counter[tableIndex].value = ref_buttonData.counter[tableIndex].value + amount
+    self.editButton({index=buttonIndex, label=ref_buttonData.counter[tableIndex].value})
+end
+
+--Updates saved value for given text box
+function click_textbox(i, value, selected)
+    if selected == false then
+        ref_buttonData.textbox[i].value = value
+    end
+end
+
+--Dud function for if you have a background on a counter
+function click_none() end
+
+
+
+--Button creation
+
+
+
+--Makes checkboxes
+function createCheckbox()
+    for i, data in ipairs(ref_buttonData.checkbox) do
+        --Sets up reference function
+        local buttonNumber = spawnedButtonCount
+        local funcName = "checkbox"..i
+        local func = function() click_checkbox(i, buttonNumber) end
+        self.setVar(funcName, func)
+        --Sets up label
+        local label = ""
+        if data.state==true then label=string.char(10008) end
+        --Creates button and counts it
+        self.createButton({
+            label=label, click_function=funcName, function_owner=self,
+            position=data.pos, height=data.size, width=data.size,
+            font_size=data.size, scale=buttonScale,
+            color=buttonColor, font_color=buttonFontColor
+        })
+        spawnedButtonCount = spawnedButtonCount + 1
+    end
+end
+
+--Makes counters
+function createCounter()
+    for i, data in ipairs(ref_buttonData.counter) do
+        --Sets up display
+        local displayNumber = spawnedButtonCount
+        --Sets up label
+        local label = data.value
+        --Sets height/width for display
+        local size = data.size
+        if data.hideBG == true then size = 0 end
+        --Creates button and counts it
+        self.createButton({
+            label=label, click_function="click_none", function_owner=self,
+            position=data.pos, height=size, width=size,
+            font_size=data.size, scale=buttonScale,
+            color=buttonColor, font_color=buttonFontColor
+        })
+        spawnedButtonCount = spawnedButtonCount + 1
+
+        --Sets up add 1
+        local funcName = "counterAdd"..i
+        local func = function() click_counter(i, displayNumber, 1) end
+        self.setVar(funcName, func)
+        --Sets up label
+        local label = "+"
+        --Sets up position
+        local offsetDistance = (data.size/2 + data.size/4) * (buttonScale[1] * 0.002)
+        local pos = {data.pos[1] + offsetDistance, data.pos[2], data.pos[3]}
+        --Sets up size
+        local size = data.size / 2
+        --Creates button and counts it
+        self.createButton({
+            label=label, click_function=funcName, function_owner=self,
+            position=pos, height=size, width=size,
+            font_size=size, scale=buttonScale,
+            color=buttonColor, font_color=buttonFontColor
+        })
+        spawnedButtonCount = spawnedButtonCount + 1
+
+        --Sets up subtract 1
+        local funcName = "counterSub"..i
+        local func = function() click_counter(i, displayNumber, -1) end
+        self.setVar(funcName, func)
+        --Sets up label
+        local label = "-"
+        --Set up position
+        local pos = {data.pos[1] - offsetDistance, data.pos[2], data.pos[3]}
+        --Creates button and counts it
+        self.createButton({
+            label=label, click_function=funcName, function_owner=self,
+            position=pos, height=size, width=size,
+            font_size=size, scale=buttonScale,
+            color=buttonColor, font_color=buttonFontColor
+        })
+        spawnedButtonCount = spawnedButtonCount + 1
+    end
+end
+
+function createTextbox()
+    for i, data in ipairs(ref_buttonData.textbox) do
+        --Sets up reference function
+        local funcName = "textbox"..i
+        local func = function(_,_,val,sel) click_textbox(i,val,sel) end
+        self.setVar(funcName, func)
+
+        self.createInput({
+            input_function = funcName,
+            function_owner = self,
+            label          = data.label,
+            alignment      = data.alignment,
+            position       = data.pos,
+            scale          = buttonScale,
+            width          = data.width,
+            height         = (data.font_size*data.rows)+24,
+            font_size      = data.font_size,
+            color          = buttonColor,
+            font_color     = buttonFontColor,
+            value          = data.value,
+        })
+    end
+end

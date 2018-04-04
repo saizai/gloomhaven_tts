@@ -1,0 +1,59 @@
+Fix bug causing minis to disappear on state change
+Add back standees & hex versions of minis
+
+Character & party saver / stager (like Sky Tools Stage, but for the non-board player content)
+Componentize FAQ, put bits where they belong, remove from FAQ object
+Element board: button to increment counter and decrement elements
+Fix map tiles that are reversed
+Fully re-imported & spoiler-minimize scenarios - 1 object per scenario, not per page (i.e. you don't see parts of the next scenario that happen to be printed on the same page in the book), & smaller file sizes too
+Mat: kills; character sheet; battle goal; personal quest; summon minis; envelope; draw/shuffle modifier buttons; tap/untap items if present
+Modify items that have errata, mark with a symbol to signify errata'd (e.g. euro? dagger?)
+Tokens with status / ability, eg flying, shield, retaliate, etc
+- re-export PNGs w/ proper transparency
+End of Round button:
+- element board
+- shuffle monster abilities if pile has a shufflable
+- shuffle modifiers if pile has a shufflable
+- flip ID tokens back to number side
+
+Move solo scenarios into nested envelopes to unlock at level 5
+
+Reimport minis
+
+
+Kingdom Death Monster: Scripted v2
+- check out how it handles manual
+
+
+
+
+Changelog:
+
+v5 (2018-04-01)
+
+Added:
+Scenario bags for first few scenarios (including all stuff required for that scenario). Not yet auto-setup.
+Solo (incl. unlockables) & No Pun Included (NPI) scenarios
+Mapmaking Table & Pigneedle's Ultimate Table objects
+Official FAQ (redacted version); unredacted (spoilerific) version in locked chest inside unlockables chest (pending componentization)
+Zone protection tool
+
+Updated:
+Monster trackers v2 - not grid-snapping, for easier placement next to things
+
+
+v6 (2018-04-03)
+
+Re-uploaded imgur etc content to Steam for faster & more reliable loading
+- note: *everything* has been updated for Steam image URLs, so it'd be a better idea to import your saved stuff into a fresh load of this mod than vice versa
+
+Added:
+Special conditions for opening envelopes (form)
+- In unlockables box:
+Deserve It envelope (partial)
+Retirees (form)
+Town records book (back-translated)
+
+v7 (in progress)
+
+Reminder tokens for abilities, statuses, etc (eg shield, retaliate, jump)

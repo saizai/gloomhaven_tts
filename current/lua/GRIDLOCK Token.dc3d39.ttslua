@@ -1,0 +1,8 @@
+function onCollisionEnter(collision_info)
+    if tableEntity == nil then
+        if collision_info.collision_object.tag == "Surface" then
+            tableEntity = collision_info.collision_object
+            tableEntity.grid_projection = false
+        end
+    end
+end

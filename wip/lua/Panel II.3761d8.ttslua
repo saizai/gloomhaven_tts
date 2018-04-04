@@ -1,0 +1,11 @@
+function doPanel(a)
+    local z  local x = 1  local y = 1  local vx =a[1]  local vy =a[2]  mx = 25.99  my = 43.93
+    local sx = (a[3]+mx)/2+vx  if sx > mx then sx = mx end
+    if x < 0 then x = x*(mx-sx) else x = sx  sx = (mx-sx)  end
+    local sy = (a[4]+my)/2-vy  if sy < 0 then sy = 0 end
+    if y < 0 then y = y*(my-sy) else y = sy  sy = (my-sy)  end
+    if sx < 0.1 or sy < 0.1 or a[1] == 99 then sx = 0.1  sy = 0.1  z = -0.5  else z = 0.95  end
+    self.interactable = false  self.lock()
+    self.setScale({sy*0.546, 1, sx*0.546})
+    self.setRotation({0, 0, 0})  self.setPosition({y, z, x})
+end

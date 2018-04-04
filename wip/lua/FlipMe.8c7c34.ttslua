@@ -1,0 +1,46 @@
+id = nil  gd = 20
+
+function onLoad()
+  isSky()  local btn = {}  btn.function_owner = self
+  btn.click_function = "btnStep"  btn.position = {0, 0.09, 0}  btn.width = 500  btn.height = 500  self.createButton(btn)
+  btn.rotation = {180, 0, 0}  btn.position = {0, 0.08, 0}  self.createButton(btn)
+end
+
+function isSky()
+  local aoj = {}  aoj = getAllObjects()  local g = aoj[1]  local n = 1
+  while g do
+    if g.getName() == "_OW_sGriD" then
+      if id then g.destruct() else id = g.guid end
+    end  n = n+1  g = aoj[n]
+  end
+  if id then  getObjectFromGUID(id).setRotation({90, 0, 0})  cbIsSky(getObjectFromGUID(id))  do return end  end
+  local o = {}  local i = {}
+  i.mesh = "https://sites.google.com/site/rolesystemssky/skyhex.obj"
+  i.diffuse = "https://sites.google.com/site/rolesystemssky/hex40.png"
+  i.thickness = 0.1  o.type = "Custom_Model"  o.position = {0, 176, 0}  o.rotation = {90, 0, 0}
+  o.callback_owner = self  o.callback = "cbIsSky"  local v = spawnObject(o)  v.setCustomObject(i)
+end
+function cbIsSky(a)
+  id = a.guid  a.interactable = false  a.lock()  a.setPosition({0, 176, 0})  a.setScale({11, 1, 11})  a.setName("_OW_sGriD")
+end
+
+function btnStep()
+  local r = self.getRotation()  local g = "sqr"  if r[3] > 150 then g = "hex" end
+  local n = 0  gd = gd+20  if gd == 120 then  gd = 20  n = 90  end  getObjectFromGUID(id).setRotation({n, 0, 0})
+  local i = {}  i.diffuse = "https://sites.google.com/site/rolesystemssky/"..g..gd..".png"
+  if gd != 20 then  getObjectFromGUID(id).setCustomObject(i)  getObjectFromGUID(id).reload()  end
+end
+
+function onDestroy()
+  if id then getObjectFromGUID(id).destruct() end
+end
+
+
+
+
+
+
+
+
+
+--tt

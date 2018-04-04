@@ -1,0 +1,35 @@
+function onPickedUp()  uq = 1  end
+
+function onCollisionEnter(c)
+    if not getObjectFromGUID(Global.getVar("i_M")) then seeList() end
+    if uq then
+        uq = nil  local g = "ADDED: "  od = string.char(13)  oa = string.char(10)
+        local o = c.collision_object.name  if o == "Table_Custom" then do return  end  end
+        local a = c.collision_object.guid  local b = ""  if a then b = " ("..a..")" end
+        local s = getObjectFromGUID(Global.getVar("i_M")).getLuaScript()
+        local x = string.sub(s, string.len(s), string.len(s))  if x == od or x == oa then s = string.sub(s, 1, string.len(s)-1) end
+        local x = string.sub(s, string.len(s), string.len(s))  if x == od or x == oa then s = string.sub(s, 1, string.len(s)-1) end
+        s = s..od..oa  local n = string.find(s, a)
+        if n then  g = "REMOVED: "  s = string.sub(s, 1, n-1)..string.sub(s, n+6)
+            else s = s.."X"..a.."@"  end
+        s = string.gsub(s, "-", "X")  s = string.gsub(s, od, "@")  s = string.gsub(s, oa, "@")
+        s = string.gsub(s, "XX", "X")  s = string.gsub(s, "@@", "@")  s = string.gsub(s, "X@", "")
+        s = string.gsub(s, "XX", "X")  s = string.gsub(s, "@@", "@")  s = string.gsub(s, "X@", "")
+        s = string.gsub(s, "X", "--")  s = string.gsub(s, "@", od..oa)
+        getObjectFromGUID(Global.getVar("i_M")).setLuaScript(s)
+        broadcastToAll(g..o..b, {0.943, 0.745, 0.14})
+    end
+end
+
+function seeList()
+    local aoj = {}  aoj = getAllObjects()  local g = aoj[1]  local n = 1  uq = nil
+    while g do
+        if g.getVar("tT_iM") == "IgNor_mE" then Global.setVar("i_M", g.getGUID())  uq = 1  end
+        n = n+1  g = aoj[n]
+    end
+end
+
+
+
+
+--tt

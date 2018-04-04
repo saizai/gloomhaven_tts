@@ -1,0 +1,204 @@
+function onLoad()
+
+    self.createButton({
+        label="Draw", click_function="buttonClick",
+        function_owner=self, position={1.1,0.1,-0.5},
+        height=200, width=300, font_size=50
+    })
+
+
+    self.createButton({
+        label="Shuffle", click_function="buttonClick1",
+        function_owner=self, position={1.1,0.1,0.5},
+        height=200, width=300, font_size=50
+    })
+end
+
+pos = ""
+lift_height = 2
+
+function buttonClick(entity, color)
+
+
+    if busy == nil then
+        busy = "False"
+    end
+
+    if busy == "False" then
+        pos = self.getPosition()
+        pos.y = pos.y + 0.3
+        pos.x = pos.x
+        pos.z = pos.z + 1.2
+
+        zoneSpawn = {position = pos
+               , scale = { 3.85, 0.3, 2.5 }
+               , type = 'ScriptingTrigger'
+               , callback = 'setzone1'
+               , callback_owner = self
+               , rotation = self.getRotation() }
+        spawnObject(zoneSpawn)
+
+        pos.z = pos.z - 2.48
+
+        zoneSpawn2 = {position = pos
+               , scale = { 3.85, 0.3, 2.5 }
+               , type = 'ScriptingTrigger'
+               , callback = 'setzone2'
+               , callback_owner = self
+               , rotation = self.getRotation() }
+        spawnObject(zoneSpawn2)
+
+
+        function setzone1(zone)
+            perm = zone.getGUID()
+            local test = getObjectFromGUID(perm).getObjects()
+            if #test == 0 then
+
+            else
+                startLuaCoroutine(self, 'drawcard')
+            end
+        end
+
+        function setzone2(zone2)
+            perm2 = zone2.getGUID()
+            startLuaCoroutine(self, 'transfer')
+        end
+
+        function drawcard()
+            coroutine.yield(0)
+
+            for _,o in ipairs(getObjectFromGUID(perm).getObjects()) do
+
+                    if o.tag == "Deck" then
+
+                        pos.y = pos.y + lift_height
+                        o.takeObject({position = pos
+                            , flip = "True"})
+
+
+                    end
+            end
+
+            for _, obj in ipairs(getObjectFromGUID(perm).getObjects()) do
+                if obj.tag == "Card" then
+
+                    obj.flip()
+                    local new = getObjectFromGUID(perm2).getPosition()
+                    new.y = new.y + lift_height
+                    obj.setPositionSmooth(new)
+
+                end
+            end
+
+            return 1
+        end
+
+
+        function transfer()
+            coroutine.yield(0)
+            startLuaCoroutine(self, "destroyzones")
+            return 1
+        end
+
+
+    end
+end
+
+function buttonClick1(entity, color)
+    if busy == nil then
+        busy = "False"
+    end
+    if busy == "False" then
+        pos = self.getPosition()
+        pos.y = pos.y + 0.3
+        pos.x = pos.x
+        pos.z = pos.z + 1.2
+
+        zoneSpawn3 = {position = pos
+               , scale = { 3.85, 0.3, 2.5 }
+               , type = 'ScriptingTrigger'
+               , callback = 'setzone3'
+               , callback_owner = self
+               , rotation = self.getRotation() }
+        spawnObject(zoneSpawn3)
+
+        pos.z = pos.z - 2.48
+
+        zoneSpawn4 = {position = pos
+               , scale = { 3.85, 0.3, 2.5 }
+               , type = 'ScriptingTrigger'
+               , callback = 'setzone4'
+               , callback_owner = self
+               , rotation = self.getRotation() }
+        spawnObject(zoneSpawn4)
+
+        function setzone3(zone)
+            perm = zone.getGUID()
+            startLuaCoroutine(self, 'transfer')
+        end
+
+        function setzone4(zone2)
+            perm2 = zone2.getGUID()
+            local test = getObjectFromGUID(perm2).getObjects()
+            if #test == 0 then
+
+            else
+                startLuaCoroutine(self, 'drawcard2')
+            end
+        end
+
+
+
+        function drawcard2()
+            coroutine.yield(0)
+
+            for _,h in ipairs(getObjectFromGUID(perm2).getObjects()) do
+
+                    if h.tag == "Card" or h.tag == "Deck" then
+                        h.flip()
+                        local new = getObjectFromGUID(perm).getPosition()
+                        new.y = new.y + lift_height
+                        h.setPositionSmooth(new)
+                        shuffle = "True"
+
+                    end
+
+
+            end
+
+
+
+            return 1
+        end
+
+
+        function transfer()
+            coroutine.yield(0)
+            startLuaCoroutine(self, "destroyzones")
+            return 1
+        end
+    end
+end
+
+function destroyzones()
+
+    busy = "True"
+    for i=1, 100 do
+       coroutine.yield(0)
+    end
+
+    for _,y in ipairs(getObjectFromGUID(perm).getObjects()) do
+        if y.tag == "Deck" then
+            if shuffle == "True" then
+                y.shuffle()
+                shuffle = "False"
+            end
+        end
+    end
+
+    getObjectFromGUID(perm).destruct()
+    getObjectFromGUID(perm2).destruct()
+    busy = "False"
+
+    return 1
+end

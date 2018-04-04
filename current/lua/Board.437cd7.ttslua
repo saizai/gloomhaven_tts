@@ -1,0 +1,304 @@
+-- Locations are listed in the order of envelope, player mat, character mat,
+-- character sheet, trackers, summons, health tracker, xp tracker, temp deck, combat deck, figurine
+playerOneLocations =
+{
+    {-39.375, 1.763, -65.168},
+    {-36.001, 1.697, -31.700},
+    {-33.829, 1.998, -32.004},
+    {-33.689, 1.689, -65.926},
+    {-28.287, 1.830, -29.501},
+    {-26.545, 1.830, -29.516},
+    {-26.701, 1.970, -36.280},
+    {-26.724, 1.970, -38.083},
+    {-36.310, 1.800, -53.800},
+    {-40.726, 1.932, -28.321},
+    {-36.830, 1.840, -26.490}
+}
+
+playerTwoLocations =
+{
+    {-15.375, 1.763, -65.168},
+    {-12.001, 1.697, -31.700},
+    {-9.829, 1.998, -32.004},
+    {-9.689, 1.689, -65.926},
+    {-4.287, 1.830, -29.501},
+    {-2.545, 1.830, -29.516},
+    {-2.701, 1.970, -36.280},
+    {-2.724, 1.970, -38.083},
+    {-12.310, 1.800, -53.800},
+    {-16.726, 1.932, -28.321},
+    {-12.830, 1.840, -26.490}
+}
+
+playerThreeLocations =
+{
+    {7.725, 1.763, -65.168},
+    {12.001, 1.697, -31.700},
+    {14.179, 1.998, -32.004},
+    {14.039, 1.689, -65.926},
+    {19.750, 1.830, -29.501},
+    {21.450, 1.830, -29.516},
+    {21.320, 1.930, -36.280},
+    {21.320, 1.930, -38.083},
+    {10.660, 1.800, -53.800},
+    {7.275, 1.932, -28.321},
+    {11.180, 1.840, -26.490}
+}
+
+playerFourLocations =
+{
+    {31.725, 1.763, -65.168},
+    {36.001, 1.697, -31.700},
+    {38.179, 1.998, -32.004},
+    {38.039, 1.689, -65.926},
+    {43.750, 1.830, -29.501},
+    {45.450, 1.830, -29.516},
+    {45.320, 1.930, -36.280},
+    {45.320, 1.930, -38.083},
+    {34.660, 1.800, -53.800},
+    {31.275, 1.932, -28.321},
+    {35.180, 1.840, -26.490}
+}
+
+playerModifierGuids = {"bb85b9", "d23231", "74238d", "20d00f"}
+local nameToGuid = {}
+local nameToState = {}
+local nameToHealthTotals = {}
+
+
+function onLoad()
+    self.interactable = false;
+
+if false then
+    self.createButton({
+      label = "CUSTOMIZE BOARD",
+      click_function = "onButtonClick",
+      function_owner = self,
+      width = 750,
+      height = 75,
+      color = {1, 1, 1, 1.0},
+      position = {-15.5, 10, -5},
+      rotation = {180, 270, 80},
+      font_size = 75
+    })
+
+
+
+    self.createButton({
+        label = "START",
+        click_function = "initializeSetup",
+        function_owner = self,
+        width = 1200,
+        height = 500,
+        position = {0, 10.75, 2},
+        rotation = {0, 0, 0},
+        font_size = 150
+    })
+
+    nameToGuid["Cragheart"] = "ec1d2a"
+    nameToGuid["Brute"] = "697f18"
+    nameToGuid["Mindthief"] = "8c1ca4"
+    nameToGuid["Scoundrel"] = "66309d"
+    nameToGuid["Tinkerer"] = "fdef02"
+    nameToGuid["Spellweaver"] = "0507cf"
+
+    nameToState["Brute"] = 2
+    nameToState["Cragheart"] = 3
+    nameToState["Mindthief"] = 4
+    nameToState["Scoundrel"] = 5
+    nameToState["Spellweaver"] = 6
+    nameToState["Tinkerer"] = 7
+
+    nameToHealthTotals["Brute"] = 10
+    nameToHealthTotals["Cragheart"] = 10
+    nameToHealthTotals["Mindthief"] = 6
+    nameToHealthTotals["Scoundrel"] = 8
+    nameToHealthTotals["Spellweaver"] = 6
+    nameToHealthTotals["Tinkerer"] = 8
+
+
+end
+
+end
+
+function onButtonClick()
+    if self.interactable == false then
+        self.interactable = true;
+        self.setColorTint({1, 1, 1})
+        self.editButton({ label = "LOCK BOARD" })
+
+    else
+        self.interactable = false;
+        self.editButton({ label = "CUSTOMIZE BOARD"})
+
+    end
+end
+
+function initializeSetup()
+    local numOfPlayers = 1
+    redData = Global.getTable("RedCharacter")
+    whiteData = Global.getTable("WhiteCharacter")
+    blueData = Global.getTable("BlueCharacter")
+    greenData = Global.getTable("GreenCharacter")
+
+    if redData[1] ~= "nobody" then
+        envelope = getObjectFromGUID(nameToGuid[redData[1]]).takeObject({rotation = {0, 180, 0}, position = playerOneLocations[1], callback = "spawnBagItems", callback_owner = self, params = {1, redData, numOfPlayers}})
+        envelope.setLock(true)
+        numOfPlayers = numOfPlayers + 1
+    end
+
+    if whiteData[1] ~= "nobody" then
+        envelope = getObjectFromGUID(nameToGuid[whiteData[1]]).takeObject({rotation = {0, 180, 0}, position = playerTwoLocations[1], callback = "spawnBagItems", callback_owner = self, params = {2, whiteData, numOfPlayers}})
+        envelope.setLock(true)
+        numOfPlayers = numOfPlayers + 1
+    end
+
+    if blueData[1] ~= "nobody" then
+        envelope = getObjectFromGUID(nameToGuid[blueData[1]]).takeObject({rotation = {0, 180, 0}, position = playerThreeLocations[1], callback = "spawnBagItems", callback_owner = self, params = {3, blueData, numOfPlayers}})
+        envelope.setLock(true)
+        numOfPlayers = numOfPlayers + 1
+    end
+
+    if greenData[1] ~= "nobody" then
+        envelope = getObjectFromGUID(nameToGuid[greenData[1]]).takeObject({rotation = {0, 180, 0}, position = playerFourLocations[1], callback = "spawnBagItems", callback_owner = self, params = {4, greenData, numOfPlayers}})
+        envelope.setLock(true)
+        numOfPlayers = numOfPlayers + 1
+    end
+
+    self.clearButtons()
+
+    -- Remove tiles
+    getObjectFromGUID("27ee55").destruct()
+    getObjectFromGUID("8e7ac1").destruct()
+    getObjectFromGUID("b4fd4d").destruct()
+    getObjectFromGUID("24b959").destruct()
+    getObjectFromGUID("2c9176").destruct()
+    getObjectFromGUID("5246f4").destruct()
+    getObjectFromGUID("c2dce6").destruct()
+
+    for k,v in pairs(getAllObjects()) do
+        if v.getName() == "Red Player" or v.getName() == "White Player" or v.getName() == "Blue Player" or v.getName() == "Green Player" then
+            v.destruct()
+        end
+    end
+
+    if numOfPlayers < 4 then
+        playArea = getObjectFromGUID("5dbaee").setState(1)
+        playArea.setLock(true)
+    else
+        playArea = getObjectFromGUID("5dbaee")
+        if playArea.getStateId() ~= numOfPlayers - 2 then
+          playArea = getObjectFromGUID("5dbaee").setState(numOfPlayers - 2)
+        end
+        playArea.setLock(true)
+    end
+end
+
+function spawnBagItems(envelope, params)
+    locationsToSpawn = {}
+    local dictionaryOfItems = {}
+    local takeObjectTable = {}
+    objectsInBag = envelope.getObjects()
+
+    if params[1] == 1 then
+        locationsToSpawn = playerOneLocations
+    elseif params[1] == 2 then
+        locationsToSpawn = playerTwoLocations
+    elseif params[1] == 3 then
+        locationsToSpawn = playerThreeLocations
+    elseif params[1] == 4 then
+        locationsToSpawn = playerFourLocations
+    end
+
+    for k, v in pairs(objectsInBag) do
+        dictionaryOfItems[v.guid] = v.name
+    end
+
+    for k, v in pairs(dictionaryOfItems) do
+        if v == "Player Mat" then
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[2]
+            takeObjectTable.callback_owner = self
+            takeObjectTable.callback = "updatePlayerMat"
+            takeObjectTable.params = {params[2][1]}
+            spawnedItem = envelope.takeObject(takeObjectTable)
+            spawnedItem.setLock(true)
+        end
+        if v == "Character Mat" then
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[3]
+            spawnedItem = envelope.takeObject(takeObjectTable)
+            spawnedItem.setLock(true)
+        end
+        if v == "Character Sheet" then
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[4]
+            spawnedItem = envelope.takeObject(takeObjectTable)
+            spawnedItem.setLock(true)
+        end
+        if v == "Starting Action Cards" then
+            -- Let's put the starting action cards in the player's hand
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[9]
+            local deck = envelope.takeObject(takeObjectTable)
+            deck.deal(20, params[2][2])
+        end
+        if v == "Summons" then
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[6]
+            spawnedItem = envelope.takeObject(takeObjectTable)
+            spawnedItem.setLock(true)
+        end
+        if v == "Trackers" then
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[5]
+            spawnedItem = envelope.takeObject(takeObjectTable)
+            spawnedItem.setLock(true)
+        end
+        if v == params[2][1] then
+            takeObjectTable.guid = k
+            takeObjectTable.position = locationsToSpawn[11]
+            envelope.takeObject(takeObjectTable)
+        end
+    end
+
+    spawnedItem = getObjectFromGUID("6c775e").takeObject({position = locationsToSpawn[7], rotation = {0, 180, 0}, callback = "updateToken", callback_owner = self, params = {params[2][1], "Health"}})
+    spawnedItem = getObjectFromGUID("0625c4").takeObject({position = locationsToSpawn[8], rotation = {0, 180, 0}, callback = "updateToken", callback_owner = self, params = {params[2][1], "XP"}})
+    getObjectFromGUID(playerModifierGuids[params[3]]).takeObject({position = locationsToSpawn[10], rotation = {0, 180, 0}, callback = "updateDeck", callback_owner = self})
+end
+
+function updatePlayerMat(playerMat, params)
+    newMat = playerMat
+    if playerMat.getStateId ~= nameToState[params[1]] then
+      newMat = playerMat.setState(nameToState[params[1]])
+    end
+
+    Timer.create({
+        identifier = playerMat.guid.."playerMat",
+        function_name = "testLock",
+        function_owner = self,
+        delay = 3,
+        parameters = {newMat}
+    })
+end
+
+function updateDeck(deck)
+    deck.flip()
+end
+
+function updateToken(tile, params)
+    newState = nil
+    if params[2] == "Health" then
+        newState = tile.setState(nameToHealthTotals[params[1]])
+    else
+        newState = tile
+    end
+    newState.setLock(true)
+end
+
+function testLock(params)
+    if params[1] == nil then
+    else
+        params[1].setLock(true)
+    end
+end

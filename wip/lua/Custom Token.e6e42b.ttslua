@@ -1,0 +1,15 @@
+function onPickedUp()
+    if self.held_by_color != "Black" then do return  end  end
+    local p = getSeatedPlayers()  n = 1
+    local x = self.getName()
+    if x == "ON" then x = ""  self.setColorTint({1, 1, 1}) else x = "ON"  self.setColorTint({0, 0, 0})  end
+    self.setName(x)
+    while p[n] do
+        if x == "ON" then Player[p[n]].blind()
+            else Player[p[n]].unblind() end
+        n = n+1
+    end
+end
+
+
+--tt

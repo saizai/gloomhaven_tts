@@ -1,0 +1,304 @@
+--
+ObjectTag = {Board=false, Dice=false, Tileset=false, Tile=false, Token=false,-- tokens and stuff
+             objGeneric=false, objFigurine=false, objDice=false, objCoin=false, objBoard=false, objChip=false,
+             objBag=false, objInfinite=false   -- custom meshes
+             }
+
+template = nil
+URLtextImport_One = '24a063'
+URLtextImport_Two = '0cd7c5'
+importBagGUID = 'a71245'
+importZoneGUID = 'dd43e1'
+
+button_MakeStuff = {
+        click_function = 'MakeCopies',
+        function_owner = self,
+        label = 'Clone From URLs',
+        position = {0, 1, 1.32},
+        rotation = {0, 0, 0},
+        width = 1250,
+        height = 300,
+        font_size = 150}
+
+function onLoad()
+    self.createButton(button_MakeStuff)
+end
+
+function MakeCopies()
+    if template ~= nil then
+        if ObjectTag['Board'] or ObjectTag['Dice'] or ObjectTag['Token'] then -- Can only ever have ONE image (default TTS Objects)
+            --print('DeBug: Default TTS Board, Dice or Token')
+            spawnSingle()
+        elseif ObjectTag['Tile'] or ObjectTag['Tileset'] then
+            --print('DeBug: Tile or Tileset')
+            spawnDouble_Test()
+        elseif ObjectTag['objGeneric'] or ObjectTag['objFigurine'] or ObjectTag['objDice'] or ObjectTag['objCoin'] or ObjectTag['objBoard'] or ObjectTag['objChip'] or ObjectTag['objBag'] or ObjectTag['objInfinite'] then
+            --print('DeBug: Mesh')
+            spawnDouble_Test()
+        end
+    else broadcastToAll('NOTHING ON THE TOOL!', stringColorToRGB('Orange')) end
+end
+
+function spawnSingle()
+    print('Spawn Single')
+    local importBag = getObjectFromGUID(importBagGUID)
+    local textimport_One = getObjectFromGUID(URLtextImport_One).getValue()
+    local urls_One = {}
+
+    for w in (textimport_One .. "\n"):gmatch("([^\n]*)\n") do
+        table.insert(urls_One, convertURLs(w))
+    end
+
+    for i=1, #urls_One, 1 do
+        local objPram = {}
+        if ObjectTag['Board'] or ObjectTag['Dice'] or ObjectTag['Token'] or ObjectTag['Tileset'] or ObjectTag['Tile'] then
+            --print('DEBUG : Default TTS Object')
+            objPram.image=string.gsub(urls_One[i], '\r', '')
+        elseif ObjectTag['objGeneric'] or ObjectTag['objFigurine'] or ObjectTag['objDice'] or ObjectTag['objCoin'] or ObjectTag['objBoard'] or ObjectTag['objChip'] or ObjectTag['objBag'] or ObjectTag['objInfinite'] then
+            --('DEBUG : Custom Mesh')
+            objPram.diffuse=string.gsub(urls_One[i], '\r', '')
+        end
+        local cl = template.clone()
+        cl.setPosition({0,0,0})
+        cl.setCustomObject(objPram)
+        getObjectFromGUID(importBagGUID).putObject(cl)
+    end
+end
+
+function spawnDouble()
+    --URLtextImport_One = 'fb739f'
+    --URLtextImport_Two = '21d4de'
+    print('Spawn Double')
+    local importBag = getObjectFromGUID(importBagGUID)
+    local textimport_One = getObjectFromGUID(URLtextImport_One).getValue()
+    local textimport_Two = getObjectFromGUID(URLtextImport_Two).getValue()
+    local urls_One = {}
+    local urls_Two = {}
+
+    for w in (textimport_One .. "\n"):gmatch("([^\n]*)\n") do
+        table.insert(urls_One, convertURLs(w))
+    end
+    for w in (textimport_Two .. "\n"):gmatch("([^\n]*)\n") do
+        table.insert(urls_Two, convertURLs(w))
+    end
+    --print(#urls_One,#urls_Two)
+    for i=1, #urls_One, 1 do
+        local objPram = {}
+        if ObjectTag['Tile'] then
+            objPram.image = string.gsub(urls_One[i], '\r', '')
+            objPram.image_bottom = string.gsub(urls_Two[i], '\r', '')
+
+        elseif ObjectTag['Tileset'] then
+            objPram.image = string.gsub(urls_One[i], '\r', '')
+            objPram.image_secondary = string.gsub(urls_Two[i], '\r', '')
+            
+        elseif ObjectTag['objGeneric'] or ObjectTag['objFigurine'] or ObjectTag['objDice'] or ObjectTag['objCoin'] or ObjectTag['objBoard'] or ObjectTag['objChip'] or ObjectTag['objBag'] or ObjectTag['objInfinite'] then
+            objPram.diffuse = string.gsub(urls_One[i], '\r', '')
+            objPram.normal = string.gsub(urls_Two[i], '\r', '')
+        end
+        local cl = template.clone()
+        cl.setPosition({0,0,0})
+        cl.setCustomObject(objPram)
+        getObjectFromGUID(importBagGUID).putObject(cl)
+    end
+end
+
+function spawnDouble_Test()
+    local textimport_One = getObjectFromGUID(URLtextImport_One).getValue()
+    local textimport_Two = getObjectFromGUID(URLtextImport_Two).getValue()
+ -- Test if Only using ONE url list
+    local singleImage = false
+    if #textimport_Two == 9 then
+        singleImage=true
+        spawnSingle()
+    end
+    if singleImage == false then
+        -- Test if the URL lists are the same length
+        local urls_One = {}
+        local urls_Two = {}
+        for w in (textimport_One .. "\n"):gmatch("([^\n]*)\n") do
+            table.insert(urls_One, convertURLs(w))
+        end
+        for w in (textimport_Two .. "\n"):gmatch("([^\n]*)\n") do
+            table.insert(urls_Two, convertURLs(w))
+        end
+        if #urls_One == #urls_Two then
+            --broadcastToAll('Equal', stringColorToRGB('Yellow'))
+            spawnDouble()
+        else broadcastToAll('To use two URL Lists, they need to be the SAME ammount on LINES', stringColorToRGB('Orange'))  end
+    end
+end
+
+
+function convertURLs(urls)
+    local link = urls
+    link = link:gsub('file/d/', 'uc?export=download&id=') -- replace the stuff from before ID directly with what you want
+    link = link:gsub('/view%?usp=sharing', '') -- cut out the unneded ending, escape '?' char
+    link = link:gsub('%?dl=0', '?dl=1')
+    return link
+end
+
+function printTagsTest()
+    local found = false
+    for k, v in ipairs(ObjectTag) do
+        if v == true then
+            print(k..': '..tostring(v))
+            found = true
+        end
+    end
+    if found == false then print('No Truth') end
+    found = false
+end
+
+function onObjectEnterScriptingZone(zone, enter_object)
+        if zone == getObjectFromGUID(importZoneGUID) then
+            template = getObjectFromGUID(enter_object.getGUID())
+            --print('DEBUG: '..template.tag)
+        ------------- CHECK UNIQUE CUSTOM MESHE OBJECT NAMES -------------
+             -- Mesh Object : GENERIC
+            if template.tag == 'Generic' then
+                ObjectTag['objGeneric'] = true
+                broadcastToAll('Custom Mesh Object (Generic) : PLACED', stringColorToRGB('Yellow'))
+            end
+            -- Mesh Object : INFINATE  BAG
+            if template.tag == 'Figurine' then
+                ObjectTag['objFigurine'] = true
+                broadcastToAll('Custom Mesh Object (Standee) : PLACED', stringColorToRGB('Yellow'))
+            end
+            -- Mesh Object : COIN
+            if template.tag == 'Coin' then
+                ObjectTag['objCoin'] = true
+                broadcastToAll('Custom Mesh Object (Coin) : PLACED', stringColorToRGB('Yellow'))
+            end
+            -- Mesh Object : CHIP
+            if template.tag == 'Chip' then
+                ObjectTag['objChip'] = true
+                broadcastToAll('Custom Mesh Object (Chip) : PLACED', stringColorToRGB('Yellow'))
+            end
+            -- Mesh Object : BAG
+            if template.tag == 'Bag' then
+                ObjectTag['objBag'] = true
+                broadcastToAll('Custom Mesh Object (Bag) : PLACED', stringColorToRGB('Yellow'))
+            end
+            -- Mesh Object : INFINATE  BAG
+            if template.tag == 'Infinite' then
+                ObjectTag['objInfinite'] = true
+                broadcastToAll('Custom Mesh Object (Infinate Bag) : PLACED', stringColorToRGB('Yellow'))
+            end
+
+        ------------- CHECK UNIQUE TTS DEFAULT OBJECTS NAMES -------------
+            if template.tag == 'Tileset' then
+                ObjectTag['Tileset'] = true
+                broadcastToAll('Custom Standee : PLACED', stringColorToRGB('Orange'))
+            end
+
+        ------------- CHECK OBJECTS WITH NON-UNIQUE OBJECT NAMES -------------
+             -- Game Boards or Object Mesh (Game Board)
+             if template.tag == 'Board' then
+                 if template.getCustomObject().diffuse == nil then -- test if it is NOT able ot take a 2nd image
+                     ObjectTag['Board'] = true
+                     broadcastToAll('Custom Game Board : PLACED', stringColorToRGB('Orange'))
+                 else
+                     ObjectTag['objBoard'] = true
+                     broadcastToAll('Custom Object Mesh (Game Board) : PLACED', stringColorToRGB('Yellow'))
+                 end
+             end
+             -- Die or Object Mesh (Die)
+             if template.tag == 'Dice' then
+                 if template.getCustomObject().diffuse == nil then -- test if it is NOT able ot take a 2nd image
+                     ObjectTag['Dice'] = true
+                     broadcastToAll('Custom Die : PLACED', stringColorToRGB('Orange'))
+                 else
+                     ObjectTag['objDice'] = true
+                     broadcastToAll('Custom Object Mesh (Die) : PLACED', stringColorToRGB('Yellow'))
+                 end
+             end
+             -- TILE or TOKEN
+             if template.tag == 'Tile' then
+                 if template.getCustomObject().type == nil then -- test if it is NOT able ot take a 2nd image
+                     ObjectTag['Token'] = true
+                     broadcastToAll('Custom Token : PLACED', stringColorToRGB('Orange'))
+                 else
+                     ObjectTag['Tile'] = true
+                     --print(template.getCustomObject().image_bottom)
+                     broadcastToAll('Custom Tile : PLACED', stringColorToRGB('Orange'))
+                 end
+             end
+        end -- END ZONE TEST
+end
+
+function onObjectLeaveScriptingZone(zone, enter_object)
+        if zone == getObjectFromGUID(importZoneGUID) then
+            template = getObjectFromGUID(enter_object.getGUID())
+            --print('DEBUG: '..template.tag)
+        ------------- CHECK UNIQUE CUSTOM MESHE OBJECT NAMES -------------
+             -- Mesh Object : GENERIC
+            if template.tag == 'Generic' then
+                ObjectTag['objGeneric'] = false
+                broadcastToAll('Custom Mesh Object (Generic) : REMOVED', stringColorToRGB('Red'))
+            end
+            -- Mesh Object : INFINATE  BAG
+            if template.tag == 'Figurine' then
+                ObjectTag['objFigurine'] = false
+                broadcastToAll('Custom Mesh Object (Standee) : REMOVED', stringColorToRGB('Red'))
+            end
+            -- Mesh Object : COIN
+            if template.tag == 'Coin' then
+                ObjectTag['objCoin'] = false
+                broadcastToAll('Custom Mesh Object (Coin) : REMOVED', stringColorToRGB('Red'))
+            end
+            -- Mesh Object : CHIP
+            if template.tag == 'Chip' then
+                ObjectTag['objChip'] = false
+                broadcastToAll('Custom Mesh Object (Chip) : REMOVED', stringColorToRGB('Red'))
+            end
+            -- Mesh Object : BAG
+            if template.tag == 'Bag' then
+                ObjectTag['objBag'] = false
+                broadcastToAll('Custom Mesh Object (Bag) : REMOVED', stringColorToRGB('Red'))
+            end
+            -- Mesh Object : INFINATE  BAG
+            if template.tag == 'Infinite' then
+                ObjectTag['objInfinite'] = false
+                broadcastToAll('Custom Mesh Object (Infinate Bag) : REMOVED', stringColorToRGB('Red'))
+            end
+
+        ------------- CHECK UNIQUE TTS DEFAULT OBJECTS NAMES -------------
+            if template.tag == 'Tileset' then
+                ObjectTag['Tileset'] = false
+                broadcastToAll('Custom Standee : REMOVED', stringColorToRGB('Red'))
+            end
+
+        ------------- CHECK OBJECTS WITH NON-UNIQUE OBJECT NAMES -------------
+             -- Game Boards or Object Mesh (Game Board)
+             if template.tag == 'Board' then
+                 if template.getCustomObject().diffuse == nil then -- test if it is NOT able ot take a 2nd image
+                     ObjectTag['Board'] = false
+                     broadcastToAll('Custom Game Board : REMOVED', stringColorToRGB('Red'))
+                 else
+                     ObjectTag['objBoard'] = false
+                     broadcastToAll('Custom Object Mesh (Game Board) : REMOVED', stringColorToRGB('Red'))
+                 end
+             end
+             -- Die or Object Mesh (Die)
+             if template.tag == 'Dice' then
+                 if template.getCustomObject().diffuse == nil then -- test if it is NOT able ot take a 2nd image
+                     ObjectTag['Dice'] = false
+                     broadcastToAll('Custom Die : REMOVED', stringColorToRGB('Red'))
+                 else
+                     ObjectTag['objDice'] = false
+                     broadcastToAll('Custom Object Mesh (Die) : REMOVED', stringColorToRGB('Red'))
+                 end
+             end
+             -- TILE or TOKEN
+             if template.tag == 'Tile' then
+                 if template.getCustomObject().type == nil then -- test if it is NOT able ot take a 2nd image
+                     ObjectTag['Token'] = false
+                     broadcastToAll('Custom Token : REMOVED', stringColorToRGB('Red'))
+                 else
+                     ObjectTag['Tile'] = false
+                     broadcastToAll('Custom Tile : REMOVED', stringColorToRGB('Red'))
+                 end
+             end
+        end -- END ZONE TEST
+end

@@ -39,3 +39,4 @@ pkg
 Gemfile.lock
 
 google_drive_config.json # private key for google drive api
+desktop.ini
