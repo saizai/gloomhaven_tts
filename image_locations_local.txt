@@ -1,0 +1,348 @@
+
+
+file:///E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Attack Hex.png
+
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Attack Modifier - Back.jpg
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Attack Modifier - Blank.jpg
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Double Damage - Bless.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Double Damage.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Minus 1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Minus 2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Neutral.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/No Damage - Curse.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/No Damage.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Plus 1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Attack Modifiers/Plus 2.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/10.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/3.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/4.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/5.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/6.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/7.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/8.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/9.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/A.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/B.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/C.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/E.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/F.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/G.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/H.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/I.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/J.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/K.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/L.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/M.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/N.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/O.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/P.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/Q.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/R.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/S.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/T.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/V.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/W.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/X.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/Y.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Glyphs/Glyphs/Z.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/1 Brute.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/10 Eclipse.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/11 Cthulhu.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/12 Lightning.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/13 Music Note - on red circle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/13 Music Note.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/14 Face Mask - on cyan circle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/14 Face Mask.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/15 Saw.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/16 Triangle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/17 Two-Minis - on brown-red circle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/17 Two-Minis.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/2 Tinkerer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/3 Spellweaver.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/4 Scoundrel.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/5 Cragheart.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/6 Mindthief - on dark blue circle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/6 Mindthief.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/7 Sun.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/8 Triple Arrow.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Class Icons and Augments/9 Circles.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Any Element.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Dark.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Earth.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Fire.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Ice.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Light.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Use Element overlay.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Element Icons/Wind.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Equip Slots/Armor.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Equip Slots/Feet.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Equip Slots/Head.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Equip Slots/Item.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Equip Slots/One Hand.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Equip Slots/Two Hands.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Event Card Icons/Refresh card - white.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Event Card Icons/Refresh card.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Event Card Icons/Rip card - white.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Event Card Icons/Rip card.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Attack Hex.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Attack.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Fly.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Heal.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Item -1 modifier.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Jump.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Large black check.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Large red X over right side.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Loot.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Move.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Persistent bonus.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Player Hex.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Range.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Refresh Item.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Retaliate.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Round bonus.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Shield.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Shuffle - white.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Shuffle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Small red checkmark over card outline.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Small red X over white card recover.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Spend Item.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Target.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Use slot - gain XP.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/Use slot.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/General Icons/XP.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Add Target.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Bless.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Curse.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Disarm.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Immobilize.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Invisible.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Muddle.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Pierce.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Poison.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Push.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Rolling Modifier.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Strengthen.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Stun.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Icon Pack/Status Effect Icons/Wound.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-3.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-4.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-5.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-6.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-7.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-8.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Horiz-9.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-3.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-4.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-5.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-6.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-7.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-8.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Monster Type - Vert-9.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Rule with Number Slot.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Starting Location-1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Icons/Starting Location-2.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Ancient Artillery.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Bandit Archer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Bandit Guard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Black Imp.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Cave Bear.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-City Archer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-City Guard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Cultist.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Deep Terror.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Earth Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Flame Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Forest Imp.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Frost Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Giant Viper.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Harrower Infester.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Hound.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Inox Archer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Inox Bodyguard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Inox Guard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Inox Shaman.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Living Bones.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Living Dead.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Living Spirit.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Lurker.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Night Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Ooze.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Rending Drake.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Savaas Icestorm.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Savaas Lavaflow.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Spitting Drake.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Stone Golem.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Sun Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Vermling Scout.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Vermling Shaman.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Horz-Wind Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Ancient Artillery.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Bandit Archer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Bandit Guard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Black Imp.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Cave Bear.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-City Archer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-City Guard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Cultist.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Deep Terror.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Earth Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Flame Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Forest Imp.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Frost Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Giant Viper.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Harrower Infester.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Hound.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Inox Archer.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Inox Bodyguard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Inox Guard.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Inox Shaman.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Living Bones.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Living Dead.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Living Spirit.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Lurker.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Night Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Ooze.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Rending Drake.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Savaas Icestorm.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Savaas Lavaflow.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Spitting Drake.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Stone Golem.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Sun Demon.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Vermling Scout.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Vermling Shaman.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Monsters/Vert-Wind Demon.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A1a-Man-Made Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A1b-Man-Made Wood - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A2a-Man-Made Stone - U2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A2b-Natural Stone - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A3a-Natural Stone - U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A3b-Man-Made Stone - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A4a-Earth - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/A4b-Man-Made Stone - D2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B1a-Man-Made Wood - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B1b-Earth - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B2a-Man-Made Wood - U2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B2b-Man-Made Stone - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B3a-Man-Made Wood - U3.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B3b-Man-Made Stone - D2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B4a-Man-Made Wood - U4.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/B4b-Natural Stone - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/C1a-Man-Made Stone - U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/C1b-Man-Made Wood - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/C2a-Earth - U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/C2b-Man Made Stone - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/D1a-Man-Made Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/D1b-Earth - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/D2a-Man-Made Stone - U2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/D2b-Natural Stone - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/E1a-Man-Made Stone.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/E1b-Natural Stone.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/F1a-Man-Made Stone.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/F1b-Earth.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/G1a-Earth - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/G1b-Man-Made Stone - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/G2a-Natural Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/G2b-Man-Made Wood - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/H1a-Natural Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/H1b-Man-Made Stone D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/H2a-Natural Stone - U2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/H2b-Earth - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/H3a-Man-Made Wood U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/H3b-Man-Made Stone D2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/I1a-Man-Made Wood - U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/I1b-Man-Made Stone - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/I2a-Natural Stone - U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/I2b-Man-Made Wood - D.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/J1a-Man-Made Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/J1b-Natural Stone - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/J2a-Man-Made Stone - U2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/J2b-Natural Stone - D2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/K1a-Man-Made Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/K1b-Natural Stone - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/K2a-Natural Stone - U1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/K2b-Man-Made Stone - D1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/L1a-Man-Made Stone 1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/L1b-Earth 2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/L2a-Natural Stone 1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/L2b-Man-Made Stone 2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/L3a-Earth 1.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/L3b-Natural Stone 2.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/M1a-Man-Made Stone.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/M1b-Earth.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/N1a-Natural Stone - U.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Scenario Tiles/N1b-Man-Made Stone - D.png
+
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Altar 1h - Horizontal.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Altar 1h - Vert.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Barrel 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Bear Trap 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Bookcase 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Boulder 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Boulder 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Boulder 3h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Bush 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Cabinet 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Coin.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Earth 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Earth 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Man Made Stone 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Man Made Stone 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Natural Stone 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Natural Stone 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Wood 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Corridor - Wood 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Crate B 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Crystal 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Dark Fog 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Dark Pit 2h copy.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Fountain 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Hot Coals 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Light Fog 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Log 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Nest 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Poison Gas Trap 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Pressure Plate 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Rock Column 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Rubble 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Sarcophagus A 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Shelf 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Spike Trap 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stairs Horiz 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stairs Vert 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stalagmites 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stone Door Closed 1h - Horizontal.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stone Door Closed 1h - Vertical.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stone Pillar 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Stump 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Table 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Thorns 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Totem 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Treasure Tile 1h - Horiz.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Treasure Tile 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Tree 3h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Wall Section - Dungeon 2h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Water 1h.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Wood Door Closed 1h - Horizontal.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Wood Door Closed 1h - Vertical.png
+file://E:/Google Drive/games/Gloomhaven/Gloomhaven - Complete Setup mod/Creator Pack V2/Scenario Book/Tokens/Wood Door Open 1h - Horizontal.png
