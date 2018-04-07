@@ -1,3 +1,0 @@
-function onload()
-self.shuffle()
-end 
