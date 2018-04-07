@@ -37,12 +37,13 @@ These are categorized roughly in order of skill / tool levels required.
       * ID: A2b
       * Type: ice
       * Orientation: vertical
-      * Contents: ```
-      W-  W-  W-  ]W-  W-
-       [W| .   .   .   .   ]W|
-          .   .   .   .   .
-       W|- [w- w-  w-  w-  W|-
-      ```
+      * Contents:
+```
+   W-  W-  W-  ]W-  W-
+[W| .   .   .   .   ]W|
+   .   .   .   .   .
+W|- [w- w-  w-  w-  W|-
+```
 * Scenario maps, using coding system below
 * Mapmaking key:  (**** = TBD)
   * Meta:
