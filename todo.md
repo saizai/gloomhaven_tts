@@ -38,13 +38,13 @@ These are categorized roughly in order of skill / tool levels required.
     * Type: ice
     * Orientation: vertical
     * Contents:
-```
-(leading space for readability)
-   W-  W-  W-  ]W-  W-
-[W| .   .   .   .   ]W|
-   .   .   .   .   .
-W|- [w- w-  w-  w-  W|-
-```
+      ```
+      (leading space for readability)
+         W-  W-  W-  ]W-  W-
+      [W| .   .   .   .   ]W|
+         .   .   .   .   .
+      W|- [w- w-  w-  w-  W|-
+      ```
 * Scenario maps, using coding system below
 * Mapmaking key:
   * Meta:
@@ -82,11 +82,11 @@ W|- [w- w-  w-  w-  W|-
     * `TBD` cabinet / chest (treasure [lootable])
     * `TBD` coin (stewn coins, purses; token-type coin [lootable])
     * `TBD` coals (hot coals [hazardous])
-    * @ barrel
+    * `@` barrel
     * `TBD` column (rock column [type: cave])
-    * + crate ([obstacle])
+    * `+` crate ([obstacle])
     * `TBD` crystal ([obstacle])
-    * = drain
+    * `=` drain
     * `TBD` fountain ([obstacle])
     * `TBD` gas cloud (poison gas [trap])
     * ! light (lantern, torch)
@@ -102,7 +102,7 @@ W|- [w- w-  w-  w-  W|-
     * `TBD` table
     * `TBD` totem
     * `TBD` tree (wood pile; stump [size 1 obstacle], full-size tree [adjacent obstacles)
-    * % vegetation (planter; bush [obstacle], log [difficult], thorns [hazardous])
+    * `%` vegetation (planter; bush [obstacle], log [difficult], thorns [hazardous])
     * `TBD` water ([difficult])
     * `TBD` weapon (mace, dagger, sword)
     * ? other
