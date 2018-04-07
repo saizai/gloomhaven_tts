@@ -1,0 +1,156 @@
+__belonging__ = "531691"
+
+--[[
+   moving marker
+   created by Rodney
+]]
+
+-- customize variables
+markerScale = 1
+markerColor = {1, 1, 1}
+markerRemainingTime = 1
+
+frameInterval = 0.01
+rotationDegreePerFrame = 1
+
+-- global variables
+markerObject = nil
+rotationTimerId = nil
+fadeOutTimerId = nil
+
+lastBottomLevel = 1.5
+
+movingMarkerVersion = "2016092000"
+
+-- constants
+hidePosition = {0, -300, 0}
+hideScale = {0.1, 0.1, 0.1}
+
+-- events
+function onLoad()
+   initializeTimer()
+   createObjects()
+end
+
+function onDestroy()
+   removeTimers()
+   deleteObjects()
+end
+
+function onCollisionEnter(info)
+   updateBottomLevel(info.contact_points)
+end
+
+function onPickedUp(color)
+   removeTimers()
+   setMarker()
+end
+
+function onDropped()
+   fadeOutMarker()
+end
+
+-- internal functions
+
+function createObjects()
+   markerObject = spawnObject({
+         type = "Custom_Model",
+         position = hidePosition,
+         rotation = {0, 0, 0},
+         scale = hideScale
+   })
+
+   markerObject.setCustomObject({
+         type = "Generic",
+         mesh = "http://pastebin.com/raw/RBUFj0HE",
+         collider = "http://pastebin.com/raw/bUwzJeWz"
+   })
+   
+   markerObject.setColorTint(markerColor)
+   markerObject.interactable = false
+   markerObject.lock()
+end
+
+function deleteObjects()
+   markerObject.destruct()
+end
+
+function updateBottomLevel(points)
+   local updated = false
+   local currentBottomLevel = self.getPosition().y
+
+   for i, v in ipairs(points) do
+      if v[2] < currentBottomLevel then
+         updated = true
+         currentBottomLevel = v[2]
+      end
+   end
+
+   if updated then
+      lastBottomLevel = currentBottomLevel
+   end
+end   
+
+function setMarker()
+   local pos = self.getPosition()
+   local scale = self.getScale()
+
+   markerObject.setPosition({pos.x, lastBottomLevel + 0.2, pos.z})
+   markerObject.setScale({scale.x * markerScale, 10, scale.z * markerScale})
+   
+   if frameInterval <= 0 then
+      frameInterval = 0.1
+   end
+
+   Timer.create({
+         identifier = rotationTimerId,
+         function_name = "rotateMarker",
+         function_owner = self,
+         parameters = {
+            degree = rotationDegreePerFrame
+         },
+         delay = frameInterval,
+         repetitions = 0
+   })
+end
+
+function rotateMarker(param)
+   markerObject.setRotation({0, markerObject.getRotation().y + param.degree, 0})
+end
+
+function fadeOutMarker()
+   if markerRemainingTime <= 0 then
+      markerRemainingTime = 0.1
+   end
+
+   Timer.create({
+         identifier = fadeOutTimerId,
+         function_name = "hideMarker",
+         function_owner = self,
+         delay = markerRemainingTime,
+   })
+end
+
+function hideMarker()
+   Timer.destroy(rotationTimerId)
+   markerObject.setPosition(hidePosition)
+   markerObject.setScale(hideScale)
+end
+
+function initializeTimer()
+   -- workaround for guid/copy&paste bug.
+   -- join random id to guid.
+   rotationTimerId = self.guid .. "_" .. getUniqueID() ..  "__fadeOut__"
+   fadeOutTimerId = self.guid .. "_" .. getUniqueID() ..  "__rotation__"
+
+   removeTimers()
+end   
+
+function getUniqueID()
+   return string.format("%s-%s", os.date("%Y%m%d%H%M%S"), math.random(100))
+end
+
+function removeTimers()
+   Timer.destroy(rotationTimerId)
+   Timer.destroy(fadeOutTimerId)
+end
