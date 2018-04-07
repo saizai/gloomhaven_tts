@@ -37,7 +37,9 @@ These are categorized roughly in order of skill / tool levels required.
     * ID: A2b
     * Type: ice
     * Orientation: vertical
-    * ```Contents:
+    * Contents:
+```
+(leading space for readability)
    W-  W-  W-  ]W-  W-
 [W| .   .   .   .   ]W|
    .   .   .   .   .
