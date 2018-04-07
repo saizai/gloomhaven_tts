@@ -34,95 +34,94 @@ These are categorized roughly in order of skill / tool levels required.
   * orientation - *horizontal* (bottom of hex is flat) or *vertical* (side of hex is flat)
   * contents, starting from top left corner, using coding system below
   * Example: A2b
-      * ID: A2b
-      * Type: ice
-      * Orientation: vertical
-      * Contents:
-```
+    * ID: A2b
+    * Type: ice
+    * Orientation: vertical
+    * ```Contents:
    W-  W-  W-  ]W-  W-
 [W| .   .   .   .   ]W|
    .   .   .   .   .
 W|- [w- w-  w-  w-  W|-
 ```
 * Scenario maps, using coding system below
-* Mapmaking key:  (**** = TBD)
+* Mapmaking key:
   * Meta:
-    * **(space)** hex separator
-    * number of spaces and beginning / end of line spaces are non-semantic, use as desired to make easier to read in fixed width font
-    * order within a given hex is non-semantic, e.g. ]# == [#
-      * **(newline)** row separator
-      * **[** outie tab
-      * **]** innie tab
-      * **-** half-hex high
-      * **|** half-hex wide
-        * **|-** quarter tile
-      * **.** zero-hex high (for placing features between hex edges)
-      * **:** zero-hex wide
+    * `(space)` hex separator
+      * number of spaces and beginning / end of line spaces are non-semantic, use as desired to make easier to read in fixed width font
+      * order within a given hex is non-semantic, e.g. ]# == [#
+    * `(newline)` row separator
+    * `[` outie tab
+    * `]` innie tab
+    * `-` half-hex high
+    * `|` half-hex wide
+      * `|-` quarter tile
+    * `.` zero-hex high (for placing features between hex edges)
+    * `:` zero-hex wide
   * Terrain type:
     * everything assumed to be passable floor unless designated otherwise
     * obstructions (blocks walking and LoS/ranged):
-    * **W** wall (total)
-    * **w** wall-floor combo (e.g. where straight walls bisect a tile)
+    * `W` wall (total)
+    * `w` wall-floor combo (e.g. where straight walls bisect a tile)
       * includes all hexes with any wall in them
-    * **** obstacle (blocks walking but not LoS/ranged)
-    * **** difficult (2 movement)
-    * **** hazardous (permanent half-trap)
-    * **$** lootable
-    * **^** trap
-    * **/** door (including fog)
-    * **>** trigger (e.g. pressure plate)
+    * `TBD` obstacle (blocks walking but not LoS/ranged)
+    * `TBD` difficult (2 movement)
+    * `TBD` hazardous (permanent half-trap)
+    * `$` lootable
+    * `^` trap
+    * `/` door (including fog)
+    * `>` trigger (e.g. pressure plate)
   * Features (variants; combinations w/ stuff above)
-    * **** altar
-    * **** armor (helmet, goggles)
-    * **** book(s) (bookcase [obstacle])
-    * **** bottle(s)
-    * **** boulder
-    * **** bones (skeleton, skull)
-    * **** cabinet / chest (treasure [lootable])
-    * **** coin (stewn coins, purses; token-type coin [lootable])
-    * **** coals (hot coals [hazardous])
+    * `TBD` altar
+    * `TBD` armor (helmet, goggles)
+    * `TBD` book(s) (bookcase [obstacle])
+    * `TBD` bottle(s)
+    * `TBD` boulder
+    * `TBD` bones (skeleton, skull)
+    * `TBD` cabinet / chest (treasure [lootable])
+    * `TBD` coin (stewn coins, purses; token-type coin [lootable])
+    * `TBD` coals (hot coals [hazardous])
     * @ barrel
-    * **** column (rock column [type: cave])
+    * `TBD` column (rock column [type: cave])
     * + crate ([obstacle])
-    * **** crystal ([obstacle])
+    * `TBD` crystal ([obstacle])
     * = drain
-    * **** fountain ([obstacle])
-    * **** gas cloud (poison gas [trap])
+    * `TBD` fountain ([obstacle])
+    * `TBD` gas cloud (poison gas [trap])
     * ! light (lantern, torch)
-    * **** nest
-    * **** pit (dark pit [obstacle], spike pit [trap])
-    * **** pressure plate (bear trap [trap], pressure plate [trigger])
-    * **** rubble
-    * **** sarcophagus
-    * **** shelf ([obstacle])
-    * **** spikes
-    * **** stairs (ladder [0-width])
-    * **** stalagmite
-    * **** table
-    * **** totem
-    * **** tree (wood pile; stump [size 1 obstacle], full-size tree [adjacent obstacles)
+    * `TBD` nest
+    * `TBD` pit (dark pit [obstacle], spike pit [trap])
+    * `TBD` pressure plate (bear trap [trap], pressure plate [trigger])
+    * `TBD` rubble
+    * `TBD` sarcophagus
+    * `TBD` shelf ([obstacle])
+    * `TBD` spikes
+    * `TBD` stairs (ladder [0-width])
+    * `TBD` stalagmite
+    * `TBD` table
+    * `TBD` totem
+    * `TBD` tree (wood pile; stump [size 1 obstacle], full-size tree [adjacent obstacles)
     * % vegetation (planter; bush [obstacle], log [difficult], thorns [hazardous])
-    * **** water ([difficult])
-    * **** weapon (mace, dagger, sword)
+    * `TBD` water ([difficult])
+    * `TBD` weapon (mace, dagger, sword)
     * ? other
       * e.g.: C1a ??? spotted thing; C2a net; C2b chain
   * Scenario coding:
-    * **P** player starting point (door symbol)
-    * **a** **A** **b** **B** **c** **C** monster spawn points. a, b, c = 2p, 3p, 4p; lower = regular, caps = elite
-    * **(numbers 0-9)** progressive unlock codes.
-      * **0** is the initially revealed state. **9** is the scenario (successful) conclusion state.
-    * **(multiple numbers)** unlock states in which this is visible. When entered / triggered, any states not yet revealed become revealed.
-      * E.g. all sections of map that are revealed if door 1 is opened should be labeled with 1. Door 1 itself should be labeled **/01** (since it's visible by default and triggers visibility of section 1).
-      * This can also be on triggers, e.g. label a sub-goal card as **>01** to indicate that that sub-goal is visible by default, and triggering it spawns / makes visible all stuff labeled **1**. Or on a pressure plate, or whatever else...
+    * `P` player starting point (door symbol)
+    * `a` `A` `b` `B` `c` `C` monster spawn points. a, b, c = 2p, 3p, 4p; lower = regular, caps = elite
+    * `(numbers 0-9)` progressive unlock codes.
+      * `0` is the initially revealed state. `9` is the scenario (successful) conclusion state.
+    * `(multiple numbers)` unlock states in which this is visible. When entered / triggered, any states not yet revealed become revealed.
+      * E.g. all sections of map that are revealed if door 1 is opened should be labeled with 1. Door 1 itself should be labeled `/01` (since it's visible by default and triggers visibility of section 1).
+      * This can also be on triggers, e.g. label a sub-goal card as `>01` to indicate that that sub-goal is visible by default, and triggering it spawns / makes visible all stuff labeled `1`. Or on a pressure plate, or whatever else...
       * Note: these numbers are for coding purposes, and won't always line up exactly with the scenario description.
     * Monsters:
-      * **** ...
+      * `TBD` ...
 
 ### Unlock coding example - ItU scenario 3
 
-There are 4 different zones due to doors, which should be coded 0-3. Two doors are labeled "1" in the scenario document, and scenario text. Those two doors, and the tile with the "1"-labeled scenario text, should all be additionally coded **5**. So clockwise from top left, the doors would be coded as **/015**, **/02**, **/235**, and **/13**.
+There are 4 different zones due to doors, which should be coded 0-3. Two doors are labeled "1" in the scenario document, and scenario text. Those two doors, and the tile with the "1"-labeled scenario text, should all be additionally coded `5`. So clockwise from top left, the doors would be coded as `/015`, `/02`, `/235`, and `/13`.
 
-The scenario goal can't readily be map-coded, so label the scenario goal tile **>09**, and the conclusion, reward, & transition tiles **9**. The scenario goal tile will automatically get a button attached to it (to trigger when complete) that will reveal the scenario completion content when triggered.
+The scenario goal can't readily be map-coded, so label the scenario goal tile `>09`, and the conclusion, reward, & transition tiles `9`. The scenario goal tile will automatically get a button attached to it (to trigger when complete) that will reveal the scenario completion content when triggered.
 
 
 ### Full scenario coding example - Main Campaign Scenario 1
