@@ -1,5 +1,3 @@
-! = slated for next version
-
 These are categorized roughly in order of skill / tool levels required.
 
 # Research
@@ -89,7 +87,7 @@ These are categorized roughly in order of skill / tool levels required.
     * `=` drain
     * `TBD` fountain ([obstacle])
     * `TBD` gas cloud (poison gas [trap])
-    * ! light (lantern, torch)
+    * `!` light (lantern, torch)
     * `TBD` nest
     * `TBD` pit (dark pit [obstacle], spike pit [trap])
     * `TBD` pressure plate (bear trap [trap], pressure plate [trigger])
@@ -168,7 +166,7 @@ Assets:
 * Reminder tokens for abilities, statuses, etc (eg shield, retaliate, jump)
 * Token background for 'immunity to X'
 * Split map/tokens & tools sidebar into 2 pieces
-  * hide tools into zone visible to color-black (mod) player only (& provide button for mod player to toggle that invisibility)
+ * provide button for mod player to toggle tool zone invisibility
 * Mat:
   * battle goal
   * character sheet
