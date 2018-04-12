@@ -142,6 +142,7 @@ Assets:
 
 ## Layout
 
+* Add modifier decks to each class
 * Items & city board:
   * put all city-type items into a lockable holder on the city board, separated out to individual cards (for easy search)
   * have a separate unlockable holder for reward etc items, again searchable
@@ -171,7 +172,9 @@ Assets:
   * battle goal
   * character sheet
   * class envelope
+  * more item slots (level 9 = 4 + more-item gear)
   * equipped item slots - char level requirement (max items = ceil(L/2))
+  * clarify 2 handed / 1 handed slots (can have 1 2h xor 2 1h)
   * non-equipped item deck
   * personal quest
   * scenario kill credits
@@ -181,6 +184,7 @@ Assets:
 
 ## Basic
 
+* Slider for board darkness
 * Button to replace spawn point & type-per-level tokens with monster of correct type
 * Element board: end-of-round button to increment counter and decrement elements
 * City board: add toggle buttons to the board to

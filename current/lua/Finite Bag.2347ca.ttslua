@@ -1,0 +1,104 @@
+MaximumObjects = 5
+deal_wait_time = 5
+CheckFrequency = 10 --Skip this many frames and then check if the back is full.
+isActive = false -- This just checks that the coroutine has been started.  Mostly just for debugging
+isRunning = false --its a redundant declaration but here is our routine isRunning var.  Far more useful than isActive
+
+RejectionBaseDistance = 3 --Change this to make things reject further from the container
+RejectionBaseElevation = 3 -- Change this to make them reject higher up so they physics spasm less
+RejectionBaseAngle = 0 -- Change this(in degrees) to redefine the "front" direction if your container has a poorly oriented mesh
+
+--Keep this line around for easy copy pasta table printing
+--for i, v in ipairs(RejectionPosition) do print(i.." ".. v) end
+function onload()
+    --print ("I SHOULD BE LOADED")
+    if not isActive then
+        isActive = true
+        startLuaCoroutine(self, "updateBag")
+    end
+end
+
+function onDropped(player_color)
+    --if not isActive then
+    --    isActive = true
+    --    startLuaCoroutine(self, "updateBag")
+    --end
+end
+
+
+--Kick off an update() like coroutine
+function updateBag()
+    isRunning = true
+    --print("UpdateBag")
+    while isRunning do
+        updateCapacity() --I wish there was an OnBagContentsChange type method so I could do this only when its interacted with.
+        CheckIfFull()
+        waitFrames(CheckFrequency)
+    end
+    --print("killing coroutine")
+    coroutine.yield(1)
+end
+
+
+function updateCapacity()
+    description = self.getDescription()
+    --If the description is a number, lets update bag capacity to match
+    if description != '' and type(tonumber(description)) == 'number' then
+        MaximumObjects = tonumber(description)
+    end
+end
+
+--Slow it down a bit
+function waitFrames(frames)
+    --print("WaitFrames")
+    while frames > 0 do
+        coroutine.yield(0)
+        frames = frames - 1
+    end
+end
+
+--is this bag full?
+function CheckIfFull()
+    --print("CheckIfFull")
+    objectcount = #self.getObjects()
+    if  objectcount > MaximumObjects then
+        DiscardExtra(objectcount - MaximumObjects)
+    end
+end
+
+--Where are the objects getting dumped to?
+--Sets position to in front of the container
+function CalculateDestination()
+    rotation = math.rad(self.getRotation().y + RejectionBaseAngle) -- get facing... in radians
+    positionX = self.getPosition().x -- get container position
+    positionY = self.getPosition().y
+    positionZ = self.getPosition().z
+    xshift = math.sin(rotation) * RejectionBaseDistance
+    zshift = math.cos(rotation) * RejectionBaseDistance
+
+    RejectionPositionX = positionX + xshift
+    RejectionPositionY = positionY + RejectionBaseElevation
+    RejectionPositionZ = positionZ + zshift
+    RejectionPosition = {RejectionPositionX, RejectionPositionY, RejectionPositionZ}
+    return RejectionPosition
+end
+
+--Lets get down to the max.  Throw all the excess in front of the bag.
+function DiscardExtra(amount)
+    local bagObject = {}
+    velocity = {0, 50, 0} -- gives it a little kick upward when the object is rejected so its more noticeable
+    bagObject.rotation = self.getRotation()
+    bagObject.position = CalculateDestination()
+    bagObject.addForce = (velocity)
+    for i=1, amount do
+        drawnobject = self.takeObject(bagObject)
+        if (drawnobject ~= nil) then
+            waitFrames(deal_wait_time)
+            drawnobject.addForce(velocity)  --This gives the object a little upward arc
+        end
+    end
+end
+
+function onDestroy()
+    isRunning = false --Tell the coroutine its allowed to die
+end

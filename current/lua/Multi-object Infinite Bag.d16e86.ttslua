@@ -1,0 +1,104 @@
+--[[ Multiple objects infinite bag script by Skor --]]
+
+--[[ Customizable variables --]]
+distance = 2 -- the distance between the layers of objects
+objectsperlayer = 6 -- how many objects in first layer around the baseobject
+--[[ End of customizable variables --]]
+
+objects = {} -- A table of the objects pulled from the container
+baseobject = nil -- The first object pulled out, which is what the other ones will follow
+
+function onObjectLeaveContainer(container, object)
+    if container ~= self then return 1 end
+	if baseobject ~= nil and baseobject ~= null then return 1 end
+
+	self.interactable = false  -- Make the container non-interactable to prevent other players from removing objects while a player is holding the objects from the container. Note that objects can still be put into the container even while non-interactive.
+    baseobject = object
+    startLuaCoroutine(self, 'objectTaken')
+end
+
+--[[ This coroutine is necessary because the object pulled from the container is not immediately registered as being held by a player --]]
+function objectTaken()
+
+    coroutine.yield(0)
+
+	--[[ Abort function if object not held by player (for example, dropping an object out with alt + rightclick, or pulling from the search function) --]]
+    if not baseobject.held_by_color then
+		self.interactable = true
+		baseobject = nil
+		objects = {}
+		return 1
+	end
+
+    objects = {baseobject}
+	local p = baseobject.getPosition()
+	local r = baseobject.getRotation()
+
+	--[[ Take out remaining objects and add them to the table --]]
+    for i, v in ipairs (self.getObjects()) do
+        objects[#objects+1] = self.takeObject({['position'] = baseobject.getPosition(), ['rotation'] = baseobject.getRotation()})
+    end
+
+    for i, v in ipairs (objects) do
+		--[[ Clone the objects and place into the bag --]]
+        self.putObject(v.clone({['position'] = {self.getPosition().x, self.getPosition().y + 2, self.getPosition().z}}))
+
+		--[[ The objects not held by the player are picking up falling speed from gravity, even though they are kept in the same position by the script. Gravity is turned off here and restored later to prevent them from slamming into the table when dropped. --]]
+		v.use_gravity = false
+    end
+
+    startLuaCoroutine(self, 'updateObjects')
+
+    return 1
+end
+
+--[[ Update positions of objects as long as the baseobject is held by a player --]]
+function updateObjects()
+    while baseobject.held_by_color and baseobject ~= null do
+		local p = baseobject.getPosition()
+		local r = baseobject.getRotation()
+		local layercounter = 0
+		local layer = 1
+        for i, v in ipairs(objects) do
+            if i > 1 and v ~= null then
+                v.setPosition({p.x + (math.cos(math.rad(r.y + ((360/(objectsperlayer * layer)) * i))) * (layer * distance)), p.y, p.z - (math.sin(math.rad(r.y + ((360/(objectsperlayer * layer)) * i))) * (layer * distance))})
+				v.setRotation(r)
+				layercounter = layercounter + 1
+            end
+
+			if layercounter >= (objectsperlayer * layer) then
+				layer = layer + 1
+				layercounter = 0
+			end
+        end
+
+        coroutine.yield(0)
+    end
+
+	--[[ Restore gravity to objects --]]
+	for i, v in ipairs (objects) do
+		v.use_gravity = true
+	end
+
+	--[[ Wait and reset variables and make interactable again --]]
+
+	for i = 1, 60 do coroutine.yield(0) end
+
+	self.interactable = true
+    baseobject = nil
+    objects = {}
+    return 1
+end
+
+--[[ If baseobject is destroyed, make interactable and restore gravity to other objects --]]
+function onObjectDestroyed(o)
+	if o == baseobject then
+		for i, v in ipairs (objects) do
+			if v~= null then
+				v.use_gravity = true
+			end
+		end
+		self.interactable = true
+		objects = {}
+	end
+end
