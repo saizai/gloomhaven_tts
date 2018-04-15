@@ -1,0 +1,34 @@
+local Character = 'Scoundrel'
+playerColor = {'Red', 'White', 'Blue', 'Green'}
+
+function onCollisionEnter(info)
+
+    if info['collision_object'].getName() == 'Red Player'  then
+        printToAll(playerColor[1] .. " player chooses " .. Character, {0.856, 0.1, 0.094})
+        redData = Global.getTable("RedCharacter")
+        redData[1] = Character
+        Global.setTable("RedCharacter", redData)
+    end
+
+    if info['collision_object'].getName() == 'White Player'  then
+        printToAll(playerColor[2] .. " player chooses " .. Character, {1, 1, 1})
+        whiteData = Global.getTable("WhiteCharacter")
+        whiteData[1] = Character
+        Global.setTable("WhiteCharacter", whiteData)
+    end
+
+    if info['collision_object'].getName() == 'Blue Player'  then
+        printToAll(playerColor[3] .. " player chooses " .. Character, {0.118, 0.53,1})
+        blueData = Global.getTable("BlueCharacter")
+        blueData[1] = Character
+        Global.setTable("BlueCharacter", blueData)
+    end
+
+    if info['collision_object'].getName() == 'Green Player'  then
+        printToAll(playerColor[4] .. " player chooses " .. Character, {0.192, 0.701, 0.168})
+        greenData = Global.getTable("GreenCharacter")
+        greenData[1] = Character
+        Global.setTable("GreenCharacter", greenData)
+    end
+
+end

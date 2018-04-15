@@ -1,0 +1,195 @@
+-- Counting bag by Sai (saizai)
+
+-- Based on:
+--- MrStump's Counting Bowl  https://steamcommunity.com/sharedfiles/filedetails/?id=946300090
+--- Peerless's Finite Bags https://steamcommunity.com/sharedfiles/filedetails/?id=775629532
+--- MrStump's Memory Bag 2.0 https://steamcommunity.com/sharedfiles/filedetails/?id=953770080
+
+-- This bag will automatically fix GUIDs of all items added to ensure they're unique. This means that if a non-unique GUID object is added, it'll be spit back out briefly so that TTS assigns it a new GUID and has it fall back in.
+
+-- Item values are checked in the following strict order of precedence:
+--- 1. value variable
+--- 2. value tag
+--- 3. explicit item name
+--- 4. expression based item name
+-- The first one that returns a value will get used, and anything later in the list ignored.
+
+-- Any object with e.g. "value = 123" in its local variables (e.g. its script) will be counted
+valueVariable = "value"
+
+-- Any object with e.g. "Value: 123" on a separate line in its description will be counted.
+-- Must be entered as a Lua pattern with capture on the number, i.e. (%d+), and no other captures.
+valueDescription = "Value[%p%s]+(%d+)[^%d%a]*"
+
+--Table of items which can be counted in this Bag
+--Each entry has 2 things to enter
+  --a name (what is in the name field of that object)
+  --a value (how much it is worth)
+--A number in the items description will override the number entry in this table
+itemValues = {
+  ["Coin 1"] = 1,
+  ["Coin 5"] = 5,
+  --["Name3"] = 2,
+  --["Name4"] = 31,
+  --Add more entries as needed
+  --Remove the -- from before a line for the script to use it
+}
+
+-- Items with matching names will be counted
+-- Must be entered as a Lua pattern with capture on the number, i.e. (%d+), and no other captures.
+valueName = "Coin[%p%s]+(%d+)[^%d%a]*"
+
+
+---- End of code to edit
+value = 0 -- this should make it work with nested bags of itself
+containedObjectValues = { }
+
+checkFrequency = 1 -- In seconds, wait this long before checking the value again.
+isActive = false -- This just checks that the coroutine has been started.  Mostly just for debugging
+isRunning = false --it's a redundant declaration but here is our routine isRunning var.  Far more useful than isActive
+isCounting = false
+isLockedBeforeCounting = false
+isLockedUntil = false
+
+function updateSave()
+  local data_to_save = {["containedObjectValues"] = containedObjectValues}
+  saved_data = JSON.encode(data_to_save)
+  self.script_state = saved_data
+  return saved_data
+end
+
+function onSave()
+  saved_data = updateSave()
+  return saved_data
+end
+
+function onload(saved_data)
+  if saved_data ~= "" then
+    local loaded_data = JSON.decode(saved_data)
+    containedObjectValues = loaded_data.containedObjectValues
+  else
+    containedObjectValues = {}
+  end
+
+  -- Sets position/color for the value display, spawns it
+  self.createButton({
+    label="", click_function="none", function_owner=self,
+    position={0,0.4,-2.5}, rotation={0,180,0}, height=00, width=0,
+    font_color={1,1,1}, font_size=500
+  })
+  updateValue()
+  if not isActive then
+    isActive = true
+    startLuaCoroutine(self, "updateBag")
+  end
+end
+
+--Kick off an update() like coroutine
+function updateBag()
+  isRunning = true
+  while isRunning do
+    countItems()
+    if isLockedUntil ~= false and os.time() > isLockedUntil then
+      self.setLock(isLockedBeforeCounting)
+      isLockedBeforeCounting = false
+    end
+    wait(checkFrequency)
+  end
+  coroutine.yield(1)
+end
+
+function onDestroy()
+  isRunning = false --Tell the coroutine it's allowed to die
+end
+
+function getValue(object)
+  -- note: pcall returns first value as *true* if function succeeds w/out errors
+  local v = 0
+  local varerr, var = pcall(object.getVar, valueVariable)
+  local descerr, i, j, descVal = pcall(string.find, object.getDescription(), valueDescription)
+  local tableEntry = itemValues[object.getName()]
+  local nameerr, i, j, nameVal = pcall(string.find, object.getName(), valueName)
+  if varerr and var ~= nil and tonumber(var) ~= nil then
+    v = tonumber(var)
+  elseif descerr and descVal ~= nil then
+    v = descVal
+  elseif tableEntry ~= nil and tonumber(tableEntry) ~= nil then
+    v = tonumber(tableEntry)
+  elseif nameerr and nameVal ~= nil then
+    v = nameVal
+  end
+
+  local stack = 1
+  local stackerr, q = pcall(object.getQuantity)
+  if stackerr and object.tag ~= "Bag" then
+    stack = math.abs(q)
+  end
+  return v * stack
+end
+
+function onObjectLeaveContainer(container, leave_object)
+  if container == self then
+    containedObjectValues[leave_object.guid] = nil
+    updateValue()
+  end
+end
+
+function onCollisionEnter(c)
+  if self.resting then
+    v = getValue(c.collision_object)
+    containedObjectValues[c.collision_object.getGUID()] = v
+    updateValue()
+  end
+end
+
+function updateValue()
+  local totalValue = 0
+  for id, val in pairs(containedObjectValues) do
+    totalValue = totalValue + val
+  end
+  if totalValue == nil then totalValue = 0 end
+  value = totalValue -- for nested bags
+  self.editButton({index=0, label=value})
+end
+
+ -- Counts total value of items in bag
+function countItems()
+    if isCounting == true then return end
+    isCounting = true
+    if isLockedUntil == false then
+      isLockedBeforeCounting = self.getLock()
+    end
+    local itemsInBag = self.getObjects()
+    local seenGUIDs = {}
+    --Returns a Table with the keys “name”, “guid”, and “index”, not actual objects
+    for index, obj in ipairs(itemsInBag) do
+      -- this object might have entered without triggering collision, e.g. dragging in multiple objects. spit it out above so it falls back in and triggers that.
+      -- GUIDs aren't unique. If taken from an infinite bag, then we can easily have multiple contained objects with the same GUID. So we spit the duplicate out, which makes it gain a real GUID.
+
+      -- realobj = getObjectFromGUID(obj.guid) -- can't get this because it's not in the world yet
+      if containedObjectValues[obj.guid] == nil or seenGUIDs[obj.guid] == true then
+        self.setLock(true)
+        isLockedUntil = os.time() + 2
+        self.takeObject({
+          ['guid'] = obj.guid,  -- there might be multiple, and it won't re-GUID unless there's a conflict on the table, so just spit out the conflict
+          -- ['index'] = index - 1,
+          ['position'] =  {self.getPosition().x, self.getPosition().y + 4, self.getPosition().z}
+        })
+      end
+      seenGUIDs[obj.guid] = true
+    end
+
+    for id, val in pairs(containedObjectValues) do
+      if seenGUIDs[id] ~= true then
+        containedObjectValues[id] = nil
+      end
+    end
+    updateValue()
+    isCounting = false
+end
+
+ -- Coroutine delay, in seconds
+ function wait(time)
+   local start = os.time()
+   repeat coroutine.yield(0) until os.time() > start + time
+ end

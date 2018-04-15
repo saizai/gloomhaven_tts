@@ -1,0 +1,13 @@
+function onLoad(save_state)
+  self.createButton({
+    click_function = "change",
+    function_owner = self,
+    width          = 600,
+    height         = 600,
+    color          = {0,0,0,0}
+  })
+end
+
+function change()
+  self.setState(2)
+end

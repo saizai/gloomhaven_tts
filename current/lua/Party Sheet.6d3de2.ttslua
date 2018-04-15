@@ -1,0 +1,225 @@
+buttons = {count = 0}
+inputs = {}
+hideButtonBack = true
+
+function onload(saved_data)
+
+  loaded_data = JSON.decode(saved_data)
+	if loaded_data ~= nil then
+    if loaded_data.buttons ~= nil then
+      for i,v in pairs(loaded_data.buttons) do
+  			buttons[i] = {label = v}
+  		end
+    end
+    if loaded_data.inputs ~= nil then
+  		for i,v in pairs(loaded_data.inputs) do
+			     inputs[i] = v
+  		end
+    end
+	end
+
+  createTextField("name", - 2.8, - 5, 700, 5700, 500)
+  createTextField("location", - 2.5, - 3.35, 700, 5000, 500)
+  createTextField("notes", - 0, 0, 3300, 13500)
+  createTextField("achievements", 0, 4.2, 3300, 13500)
+  createTextField("playerone", - 3.9, 6.45, 400, 4300)
+  createTextField("playertwo", - 3.9, 6.95, 400, 4300)
+  createTextField("playerthree", 2.6, 6.45, 400, 4300)
+  createTextField("playerfour", 2.6, 6.95, 400, 4300)
+  setupButton("reputation", 5.15, - 5, 0, 0, "counter", 700, 1.15, 0, 500, 500)
+  setupButton("shopprice", 5.15, - 3.55, 0, 0, "number", 700)
+  setupButton("playeronelvl", - 1.2, 6.4, 0, 0, "counter", 300, 0.2, 0, 500, 400)
+  setupButton("playertwolvl", - 1.2, 6.9, 0, 0, "counter", 300, 0.2, 0, 500, 400)
+  setupButton("playerthreelvl", 5.3, 6.4, 0, 0, "counter", 300, 0.2, 0, 500, 400)
+  setupButton("playerfourlvl", 5.3, 6.9, 0, 0, "counter", 300, 0.2, 0, 500, 400)
+  setupButton("averagelvl", - 2.5, 7.47, 0, 0, "number", 300)
+  setupButton("normallvl", 4.5, 7.47, 0, 0, "number", 300)
+  setupButton("difficulty", 1.2, 7.47, 400, 1500, "button", 300, "[u]Normal[/u]")
+end
+
+function onSave()
+	local data_to_save = {buttons = {}, inputs = {}}
+	for i, v in pairs(buttons) do
+		if i ~= "count" then
+				data_to_save.buttons[i] = v.label
+		end
+	end
+	local inputs = self.getInputs()
+	for _, v in pairs(inputs) do
+		data_to_save.inputs[v.input_function] = v.value
+	end
+	saved_data = JSON.encode_pretty(data_to_save)
+	-- saved_data = ""
+	return saved_data
+end
+
+function createTextField(name, x, z, height, width, font)
+	local input_parameters = {}
+	input_parameters.height = height
+	input_parameters.width = width
+	input_parameters.font_size = font or 300
+	input_parameters.alignment = 3
+
+  self.setVar("input_" .. name, function () end)
+	input_parameters.input_function = "input_" .. name
+	input_parameters.function_owner = self
+	-- input_parameters.label = name
+	input_parameters.label = ""
+	input_parameters.scale = {0.5, 0.5, 0.5}
+	input_parameters.position = {x, 0.6, z}
+	if hideButtonBack then
+		input_parameters.color = {1, 1, 1, 0}
+		input_parameters.font_color = {0, 0, 0, 100}
+	end
+
+	if inputs["input_" .. name] ~= nil then
+		input_parameters.value = inputs["input_" .. name]
+	end
+	-- input_parameters.tooltip = string tooltip \u{2013}Optional
+	-- input_parameters.value = string input_value \u{2013}Optional
+	-- input_parameters.validation = int (1 = None, 2 = Integer, 3 = Float, 4 = Alphanumeric, 5 = Username, 6 = Name) \u{2013}Optional
+	self.createInput(input_parameters)
+end
+
+function setupButton(name, x, z, height, width, type, font, ox, oz, oh, ow)
+  local button_parameters = {}
+  button_parameters.index = buttons.count
+  if type == "counter" then
+    button_parameters.click_function = "dud"
+    button_parameters.label = "0"
+    createpm(name, x, z, ox, oz, oh, ow, font)
+    button_parameters.index = buttons.count
+  elseif type == "button" then
+    button_parameters.label = ox
+    if name == "difficulty" then
+      button_parameters.click_function = "changeDifficulty"
+      button_parameters.value = 0
+    else
+      button_parameters.click_function = "dud"
+    end
+  else
+    button_parameters.click_function = "dud"
+    button_parameters.label = "0"
+  end
+
+  button_parameters.function_owner = self
+  button_parameters.height = height
+  button_parameters.width = width
+  button_parameters.scale = {0.5, 0.5, 0.5}
+  button_parameters.font_size = font
+  if hideButtonBack then
+		button_parameters.color = {1, 1, 1, 0}
+		button_parameters.font_color = {0, 0, 0, 100}
+	end
+  button_parameters.position = {x, 0.6, z}
+  if buttons[name] ~= nil then
+    button_parameters.label = buttons[name].label
+  end
+  self.createButton(button_parameters)
+  buttons[name] = button_parameters
+  buttons.count = buttons.count + 1
+end
+
+function createpm(name, x, z, ox, oz, oh, ow, font)
+  local button_parameters = {}
+  button_parameters.index = buttons.count
+  self.setVar("add_" .. name, function () add({name, 1}) end)
+  button_parameters.click_function = "add_" .. name
+  button_parameters.label = "+"
+  button_parameters.function_owner = self
+  button_parameters.height = oh
+  button_parameters.width = ow
+  button_parameters.scale = {0.5, 0.5, 0.5}
+  button_parameters.font_size = font
+  button_parameters.color = {1, 1, 1, 0}
+  button_parameters.font_color = {0, 0, 0, 255}
+  button_parameters.position = {x + ox, 0.6, z + oz}
+  self.createButton(button_parameters)
+  buttons["p_" .. name] = button_parameters
+  buttons.count = buttons.count + 1
+
+  button_parameters.index = buttons.count
+  self.setVar("sub_" .. name, function () add({name, - 1}) end)
+  button_parameters.click_function = "sub_" .. name
+  button_parameters.label = "-"
+  button_parameters.position = {x - ox, 0.6, z - oz}
+  self.createButton(button_parameters)
+  buttons["m_" .. name] = button_parameters
+  buttons.count = buttons.count + 1
+end
+
+function add(param)
+  local name = param[1]
+  local amount = param[2]
+  buttons[name].label = tostring(tonumber(buttons[name].label) + amount)
+  if name == "reputation" then
+    if tonumber(buttons[name].label) > 20 then buttons[name].label = 20
+    elseif tonumber(buttons[name].label) < -20 then buttons[name].label = -20 end
+    local rep = tonumber(buttons[name].label)
+    if ((rep >= 19) and (rep <= 20)) then buttons["shopprice"].label = -5
+    elseif ((rep >= 15) and (rep <= 18)) then buttons["shopprice"].label = -4
+    elseif ((rep >= 11) and (rep <= 14)) then buttons["shopprice"].label = -3
+    elseif ((rep >= 7) and (rep <= 10)) then buttons["shopprice"].label = -2
+    elseif ((rep >= 3) and (rep <= 6)) then buttons["shopprice"].label = -1
+    elseif ((rep >= -2) and (rep <= 2)) then buttons["shopprice"].label = 0
+    elseif ((rep >= -6) and (rep <= -3)) then buttons["shopprice"].label = 1
+    elseif ((rep >= -10) and (rep <= -7)) then buttons["shopprice"].label = 2
+    elseif ((rep >= -14) and (rep <= -11)) then buttons["shopprice"].label = 3
+    elseif ((rep >= -18) and (rep <= -15)) then buttons["shopprice"].label = 4
+    elseif ((rep >= -20) and (rep <= -19)) then buttons["shopprice"].label = 5
+    end
+    self.editButton(buttons["shopprice"])
+  elseif name == "playeronelvl" or name == "playertwolvl" or name == "playerthreelvl" or name == "playerfourlvl" then
+    if tonumber(buttons[name].label) > 9 then buttons[name].label = 9
+    elseif tonumber(buttons[name].label) < 0 then buttons[name].label = 0 end
+    local count = 0
+    local sum = 0
+    if buttons["playeronelvl"].label ~= "0" then count = count + 1; sum = sum + tonumber(buttons["playeronelvl"].label) end
+    if buttons["playertwolvl"].label ~= "0" then count = count + 1; sum = sum + tonumber(buttons["playertwolvl"].label) end
+    if buttons["playerthreelvl"].label ~= "0" then count = count + 1; sum = sum + tonumber(buttons["playerthreelvl"].label) end
+    if buttons["playerfourlvl"].label ~= "0" then count = count + 1; sum = sum + tonumber(buttons["playerfourlvl"].label) end
+    buttons["averagelvl"].label = tonumber(string.format("%.2f", sum / count))
+    self.editButton(buttons["averagelvl"])
+    editLevel()
+  end
+  self.editButton(buttons[name])
+end
+
+function editLevel()
+  buttons["normallvl"].label = math.ceil(tonumber(buttons["averagelvl"].label)/2)  + buttons["difficulty"].value
+  self.editButton(buttons["normallvl"])
+end
+
+function getPlayer()
+  local count = 0
+  if buttons["playeronelvl"].label ~= "0" then count = count + 1 end
+  if buttons["playertwolvl"].label ~= "0" then count = count + 1 end
+  if buttons["playerthreelvl"].label ~= "0" then count = count + 1 end
+  if buttons["playerfourlvl"].label ~= "0" then count = count + 1 end
+  return count
+end
+
+function getLevel()
+  return tonumber(buttons["normallvl"].label) + buttons["difficulty"].value
+end
+
+function changeDifficulty()
+  if buttons["difficulty"].label == "[u]Easy[/u]" then
+    buttons["difficulty"].value = 0
+    buttons["difficulty"].label = "[u]Normal[/u]"
+  elseif buttons["difficulty"].label == "[u]Normal[/u]" then
+    buttons["difficulty"].value = 1
+    buttons["difficulty"].label = "[u]Hard[/u]"
+  elseif buttons["difficulty"].label == "[u]Hard[/u]" then
+    buttons["difficulty"].value = 2
+    buttons["difficulty"].label = "[u]Vey Hard[/u]"
+  elseif buttons["difficulty"].label == "[u]Vey Hard[/u]" then
+    buttons["difficulty"].value = -1
+    buttons["difficulty"].label = "[u]Easy[/u]"
+  end
+  self.editButton(buttons["difficulty"])
+  editLevel()
+end
+
+function dud()
+end

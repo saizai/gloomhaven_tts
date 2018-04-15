@@ -1,0 +1,341 @@
+---
+local bookGuids = {'a1a9dd'} -- 1:1 scale book
+local offSet_Left = {4.1,0.65,0}
+local offSet_Right = {-4.1,0.65,0}
+
+local guidIndex = 1
+local isLeft = 0
+local isRight = 0
+local guidsDel = {}
+
+function onSave()
+    if isRight == 0 and isLeft == 0 then
+        saved_data = ''
+    else
+        local saveTable = {}
+        table.insert(saveTable, isLeft)
+        table.insert(saveTable, isRight)
+        table.insert(saveTable, guidsDel[1])
+        table.insert(saveTable, guidsDel[2])
+        table.insert(saveTable, guidIndex)
+
+        local data_to_save = { d=saveTable }
+        --DO NOT COMMENT THIS OUT!!!
+        saved_data = JSON.encode(data_to_save)
+    end
+    --saved_data = '' --Remove -- at start + save to clear save data
+    return saved_data
+end
+
+function onLoad(saved_data)
+    if saved_data ~= '' then
+        --print('*** DATA TO LOAD ***')
+        local loaded_data = JSON.decode(saved_data)
+        loadedTable = loaded_data.d
+        isLeft = loadedTable[1]
+        isRight = loadedTable[2]
+        guidsDel[1] = loadedTable[3]
+        guidsDel[2] = loadedTable[4]
+        guidIndex = loadedTable[5]
+        --[[
+        if #guidsDel == 2 then print('GUIDS: '..#guidsDel..', '..guidsDel[1]..', '..guidsDel[2])
+        print('isLEFT: '..isLeft..', RIGHT: '..isRight) end]]
+    else
+        --print('NO SAVE ----- isLEFT: '..isLeft..', RIGHT: '..isRight..'\n')
+        isLeft = 0
+        isRight = 0
+        guidIndex = 1
+    end
+
+    if isLeft == 0 and isRight == 0 then fetchPage(1)
+    else fetchPage(isLeft) end
+    makeButtons()
+end
+
+function delPages()
+    --if guidsDel[1] ~= nil then print(guidsDel[1]) end
+    --if guidsDel[2] ~= nil then print(guidsDel[2]) end
+    if getObjectFromGUID(guidsDel[1]) ~= nil and getObjectFromGUID(guidsDel[1]) ~= nil then
+        --print('\nDEL PAGES (inside if)')
+        getObjectFromGUID(guidsDel[1]).destruct()
+        getObjectFromGUID(guidsDel[2]).destruct()
+    end
+end
+
+function closeBook()
+    delPages()
+    guidsDel = {}
+    isLeft = 0
+    isRight = 0
+    onSave()
+    self.setState(1)
+end
+
+function fetchPage(p)
+    delPages()
+ -- LEFT PAGE
+    setOrientation('Left', p)
+    isLeft = p
+ -- RIGHT PAGE
+    setOrientation('Right', p)
+    isRight = p+1
+end
+
+function setOrientation(o, p)
+    local side = o
+    local num = p
+    function setOrientation_CORE()
+        if side == 'Left' then
+            local cb = getObjectFromGUID(bookGuids[guidIndex]).clone() cb.setLock(true) cb.setPosition({0,-30,0})
+            local prams = {guid=findPage(num), position={5,-30,0}}
+            local c = cb.takeObject(prams)
+            cb.destruct()
+            c.setLock(true)
+            guidsDel[1] = c.getGUID()
+            wait(0.1)
+            c.setPosition(self.positionToWorld(offSet_Left))
+            local b_orintation = self.getRotation()
+            local b_scale = self.getScale()
+            c.setRotation(b_orintation)
+            local cOldScale = c.getScale()
+            c.setScale({cOldScale.x * b_scale.x, cOldScale.y * b_scale.y, cOldScale.z * b_scale.x})
+        elseif side == 'Right' then
+            local cb = getObjectFromGUID(bookGuids[guidIndex]).clone() cb.setLock(true) cb.setPosition({0,-30,0})
+            local prams = {guid=findPage(num+1), position={-5,-30,0}}
+            local c = cb.takeObject(prams)
+            cb.destruct()
+            c.setLock(true)
+            guidsDel[2] = c.getGUID()
+            wait(0.1)
+            c.setPosition(self.positionToWorld(offSet_Right))
+            local b_orintation = self.getRotation()
+            local b_scale = self.getScale()
+            c.setRotation(b_orintation)
+            local cOldScale = c.getScale()
+            c.setScale({cOldScale.x * b_scale.x, cOldScale.y * b_scale.y, cOldScale.z * b_scale.x})
+        end
+    return 1
+    end
+    startLuaCoroutine(self, 'setOrientation_CORE')
+end
+
+function findPage(p)
+    --print(bookGuids[b])
+    --print(bookGuids[b])
+    -- Decks use NICKNAME and Bags use NAME
+    if getObjectFromGUID(bookGuids[guidIndex]).tag == 'Deck' then
+
+        for _, page in pairs(getObjectFromGUID(bookGuids[guidIndex]).getObjects()) do
+            if page.nickname == tostring(p) then
+                --print ('From DECK: Page: '..page.nickname..', GUID: '..page.guid)
+                return page.guid
+            end
+        end
+
+    elseif getObjectFromGUID(bookGuids[guidIndex]).tag == 'Bag' then
+        for _, page in pairs(getObjectFromGUID(bookGuids[guidIndex]).getObjects()) do
+            if page.name == tostring(p) then
+                --print ('From BAG: Page: '..page.name..', GUID: '..page.guid)
+                return page.guid
+            end
+        end
+    end
+end
+
+function nextPage_right()
+    local pg = isLeft+1
+    local b = #getObjectFromGUID(bookGuids[guidIndex]).getObjects()
+    if pg > b-1 then pg=b-1 isLeft=b-1
+    else fetchPage(pg)
+        --isLeft = isLeft+1
+        button_selectPage = {label=pg, index=bIndex('selectPage_GET')}
+        self.editButton(button_selectPage)
+    end
+end
+
+function lastPage_left()
+    local pg = isLeft-1
+    if pg < 1 then pg=1 isLeft=1
+    else fetchPage(pg)
+        --isLeft = isLeft-1
+        button_selectPage = {label=pg, index=bIndex('selectPage_GET')}
+        self.editButton(button_selectPage)
+    end
+end
+
+function page1()
+    fetchPage(1)
+    button_selectPage = {label=1, index=bIndex('selectPage_GET')}
+    self.editButton(button_selectPage)
+end
+
+function selectPage_NEXT()
+    local pg = isLeft+1
+    local b = #getObjectFromGUID(bookGuids[guidIndex]).getObjects()
+    if pg > b-1 then pg=b-1 isLeft=b-1
+    else
+        isLeft = isLeft+1
+        button_selectPage = {label=pg, index=bIndex('selectPage_GET')}
+        self.editButton(button_selectPage)
+    end
+end
+
+function selectPage_GET()
+    fetchPage(isLeft)
+end
+
+function  selectPage_LAST()
+    local pg = isLeft-1
+    if pg < 1 then pg=1 isLeft=1
+    else
+        isLeft = isLeft-1
+        button_selectPage = {label=pg, index=bIndex('selectPage_GET')}
+        self.editButton(button_selectPage)
+    end
+end
+
+function bIndex(label)
+    local aButtons = self.getButtons()
+    for _, B in pairs(aButtons) do
+        --print(tostring(but.click_function))
+        if B.click_function == label then
+            return B.index
+        end
+    end
+end
+
+--string.char(toggleON),
+function makeButtons(set)
+    local buttons = {}
+
+ -- DEFAULT START BUTTONS
+    if set == nil then
+        b_next_PageArrow = {
+                click_function = 'noButton',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '➜',
+                position = {1.36, 0.2, 5.47},
+                rotation = {0, 0, 0},
+                width = 0,
+                height = 0,
+                font_size = 200}
+        table.insert(buttons, b_next_PageArrow)
+        b_next_PageButton = {
+                click_function = 'nextPage_right',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '',
+                position = {1.36, 0.2, 5.44},
+                rotation = {0, 0, 0},
+                width = 350,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, b_next_PageButton)
+
+        b_left_PageArrow = {
+                click_function = 'noButton',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '➜',
+                position = {-1.36, 0.2, 5.47},
+                rotation = {0, 0, 180},
+                width = 0,
+                height = 0,
+                font_size = 200}
+        table.insert(buttons, b_left_PageArrow)
+        b_left_PageButton = {
+                click_function = 'lastPage_left',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '',
+                position = {-1.36, 0.2, 5.44},
+                rotation = {0, 180, 0},
+                width = 350,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, b_left_PageButton)
+
+        button_close = {
+                click_function = 'closeBook',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = 'Close',
+                position = {0, 0.9, -4.6},
+                rotation = {0, 0, 0},
+                width = 550,
+                height = 250,
+                font_size = 180}
+        table.insert(buttons, button_close)
+
+        button_p1_DOT = {
+                click_function = 'nothing',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = string.char(9673),
+                position = {0, 0.2, 6.06},
+                rotation = {0, 0, 0},
+                width = 0,
+                height = 0,
+                font_size = 350}
+        table.insert(buttons, button_p1_DOT)
+        button_p1 = {
+                click_function = 'page1',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '',
+                position = {0, 0.2, 6},
+                rotation = {0, 0, 0},
+                width = 250,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, button_p1)
+
+        -- SELECT SPESIFIC PAGE
+        button_selectNext = {
+                click_function = 'selectPage_NEXT',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '>',
+                position = {0.67, 0.2, 5.44},
+                rotation = {0, 0, 0},
+                width = 250,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, button_selectNext)
+        button_selectPage = {
+                click_function = 'selectPage_GET',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = isLeft,
+                position = {0, 0.2, 5.44},
+                rotation = {0, 0, 0},
+                width = 350,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, button_selectPage)
+        button_selectLast = {
+                click_function = 'selectPage_LAST',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = '<',
+                position = {-0.67, 0.2, 5.44},
+                rotation = {0, 0, 0},
+                width = 250,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, button_selectLast)
+end
+
+ -- Create Buttons
+    for _, button in ipairs(buttons) do
+        self.createButton(button)
+    end
+end
+
+function noButton()end
+
+function wait(time)
+    local start = os.time()
+    repeat coroutine.yield(0) until os.time() > start + time
+end

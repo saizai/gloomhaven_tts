@@ -1,0 +1,17 @@
+function playerPromote(o, color)
+  local objName = self.getName()
+  local objDesc = self.getDescription()
+  print (objName)
+  if Player[color].steam_id==objDesc then
+    Player[color].promote()
+  end
+end
+
+function onPlayerChangedColor(color)
+  if color =="White" or color =="Brown" or color=="Red" or color=="Orange" or color=="Yellow" or color=="Green" or color=="Teal" or color=="Blue" or color=="Purple" or color=="Pink" then
+    playerPromote(o, color)
+  elseif color =="Grey" then
+    -- do nothing
+  else
+  end
+end

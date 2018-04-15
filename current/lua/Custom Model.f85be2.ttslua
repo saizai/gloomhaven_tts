@@ -1,0 +1,375 @@
+
+itemProsp = {
+  {min = 1, max = 14},
+  {min = 15, max = 21},
+  {min = 22, max = 28},
+  {min = 29, max = 35},
+  {min = 36, max = 42},
+  {min = 43, max = 49},
+  {min = 50, max = 56},
+  {min = 57, max = 63},
+  {min = 64, max = 70}
+}
+
+
+function onLoad(save_state)
+  createBuy()
+  createGetter()
+end
+
+function createBuy()
+  self.createButton({
+    click_function = "returnItems",
+    function_owner = self,
+    label = "Return Items",
+    position = { - 11, 0.9, 49},
+    rotation = {0, 90, 0},
+    scale = {0.5, 0.5, 0.5},
+    width = 3400,
+    height = 600,
+    font_size = 600,
+    color = {0, 0, 0, 0},
+    font_color = {1, 1, 1, 100},
+    -- tooltip        = -- string,
+  })
+  function buyActual() buyItems(-1) end
+  local btn = {
+    click_function = "buyActual",
+    function_owner = self,
+    label = "[u]Buy Items[/u]",
+    position = { - 8, 0.9, 49},
+    rotation = {0, 90, 0},
+    scale = {0.5, 0.5, 0.5},
+    width = 0,
+    height = 0,
+    font_size = 600,
+    font_color = {1, 1, 1},
+  }
+  self.createButton(btn)
+  btn.color = {0, 0, 0, 0}
+  btn.font_color = {1, 1, 1, 100}
+  btn.width = 4000
+  btn.height = 600
+  btn.label = "current Prosperity Level"
+  btn.position = {-9, 0.9, 49}
+  self.createButton(btn)
+  btn.width = 600
+  for i=1,9 do
+    self.setVar("buy_" .. i, function () buyItems(i) end)
+    btn.click_function = "buy_" .. i
+    btn.position = {-10, 0.9, 44 + i}
+    btn.label = i
+    self.createButton(btn)
+  end
+end
+
+function buyItems(p)
+  local maxItem = 0
+  local minItem = 1
+  local cardGuids = {}
+  local newCards = {}
+  local shop = Global.getTable("bags").shopDeck
+  local itemDeck = Global.getTable("bags").itemDeck
+  if p == -1 then
+    maxItem = itemProsp[getObjectFromGUID(Global.getTable("boards").map).call("getProsLevel")].max
+  else
+    maxItem = itemProsp[p].max
+    minItem = itemProsp[p].min
+  end
+
+  for i, v in pairs(getObjectFromGUID(shop).getObjects()) do
+    if cardGuids[v.description] == nil then
+      cardGuids[v.description] = {v.guid}
+    else
+      table.insert(cardGuids[v.description], v.guid)
+    end
+  end
+  for i, v in pairs(getObjectFromGUID(itemDeck).getObjects()) do
+    if newCards[v.description] == nil then
+      newCards[v.description] = {v.guid}
+    else
+      table.insert(newCards[v.description], v.guid)
+    end
+  end
+
+  for x=1,300 do
+    getCard(cardGuids, x, shop)
+  end
+  for x=minItem,maxItem do
+    getCard(newCards, x, itemDeck)
+  end
+
+end
+
+function getCard(cardGuids, x, deck)
+  if cardGuids[tostring(x)] ~= nil then
+    for i, v in pairs(cardGuids[tostring(x)]) do
+      getObjectFromGUID(deck).takeObject({
+        position = getNextPlacementPos(),
+        rotation = {0, 180, 0},
+        guid = v,
+        smooth = false
+      })
+    end
+  end
+end
+
+function returnItems()
+  local deck = getObjectFromGUID(Global.getTable("bags").shopDeck)
+  deck.unlock()
+  for _, v in pairs(getObjectFromGUID(Global.getTable("zones").buying).getObjects()) do
+    if v.tag == "Card" or v.tag == "Deck" then
+      deck.putObject(v)
+    end
+  end
+  deck.lock()
+end
+
+function getNextPlacementPos()
+  local i, v = 0, 0
+  local wasObjFound = false
+  local posToCheck = {}
+  repeat
+    posToCheck = { - 52.3 + i * 3, 0.94, 59.3 - v * 4}
+    local wasObjFound = checkPosition(posToCheck)
+    if wasObjFound == false then
+      return posToCheck
+    end
+    i = i + 1
+    if i > 35 then
+      i = 0
+      v = v + 1
+    end
+  until v > 4
+  return nil
+end
+
+function checkPosition(pos)
+  local hitList = Physics.cast({
+    origin = pos, direction = {0, 1, 0}, type = 2,
+    size = {1, 1, 1}, max_distance = 0, debug = false
+  })
+  for _, entry in ipairs(hitList) do
+    if entry.hit_object.getGUID() ~= Global.getTable("boards").buying then
+      return true
+    end
+  end
+  return false
+end
+
+function createGetter()
+  local btn = {
+    click_function = "getTreasure",
+    function_owner = self,
+    label = "Get\nTreasure",
+    position = { - 17, 1, 49.9},
+    rotation = {0, 90, 0},
+    scale = {0.5, 0.5, 0.5},
+    width = 2500,
+    height = 1200,
+    font_size = 600,
+    color = {0, 0, 0, 0},
+    font_color = {1, 1, 1, 100}
+  }
+  local inp = {
+    input_function = "counter",
+    function_owner = self,
+    alignment      = 3,
+    position       = { - 15.5, 1, 49.9},
+    rotation       = {0, 90, 0},
+    scale          = {0.5, 0.5, 0.5},
+    width          = 1200,
+    height         = 800,
+    font_size      = 800,
+    color          = {0, 0, 0, 0},
+    font_color     = {1, 1, 1, 100},
+    value          = 1,
+    validation     = 2
+  }
+
+  self.createButton(btn)
+  self.createInput(inp)
+
+  inp.input_function = "counterItem"
+  inp.position = { - 23, 1, 49.9}
+  self.createInput(inp)
+
+  inp.input_function = "counterCity"
+  inp.position = { - 27.5, 1, 49.9}
+  self.createInput(inp)
+
+  inp.input_function = "counterRoad"
+  inp.position = { - 32, 1, 49.9}
+  self.createInput(inp)
+
+  btn.click_function = "add"
+  btn.label = "+"
+  btn.position = { - 15.5, 1, 50.8}
+  btn.width = 600
+  btn.height = 600
+  btn.font_size = 800
+  self.createButton(btn)
+
+  btn.click_function = "addItem"
+  btn.position = { - 23, 1, 50.8}
+  self.createButton(btn)
+
+  btn.click_function = "addCity"
+  btn.position = { - 27.5, 1, 50.8}
+  self.createButton(btn)
+
+  btn.click_function = "addRoad"
+  btn.position = { - 32, 1, 50.8}
+  self.createButton(btn)
+
+  btn.click_function = "sub"
+  btn.label = "-"
+  btn.position = { - 15.5, 1, 49}
+  self.createButton(btn)
+
+  btn.click_function = "subItem"
+  btn.position = { - 23, 1, 49}
+  self.createButton(btn)
+
+  btn.click_function = "subCity"
+  btn.position = { - 27.5, 1, 49}
+  self.createButton(btn)
+
+  btn.click_function = "subRoad"
+  btn.position = { - 32, 1, 49}
+  self.createButton(btn)
+
+  btn.click_function = "getItem"
+  btn.label = "Get\nItem"
+  btn.position = { - 24.5, 1, 49.9}
+  btn.width = 2500
+  btn.height = 1200
+  btn.font_size = 600
+  self.createButton(btn)
+
+  btn.click_function = "getRandom"
+  btn.label = "Get\nRandom\nItem"
+  btn.position = { - 19.8, 1, 49.9}
+  self.createButton(btn)
+
+  btn.click_function = "getCity"
+  btn.label = "Shuffle in\nCity Card"
+  btn.position = { - 29, 1, 49.9}
+  self.createButton(btn)
+
+  btn.click_function = "getRoad"
+  btn.label = "Shuffle in\nRoad Card"
+  btn.position = { - 33.5, 1, 49.9}
+  self.createButton(btn)
+
+end
+
+function counter() end
+function counterRoad() end
+function counterCity() end
+function counterItem() end
+
+function add() addsub(1, "counter") end
+function sub() addsub(-1, "counter") end
+function addItem() addsub(1, "counterItem") end
+function subItem() addsub(-1, "counterItem") end
+function addRoad() addsub(1, "counterRoad") end
+function subRoad() addsub(-1, "counterRoad") end
+function addCity() addsub(1, "counterCity") end
+function subCity() addsub(-1, "counterCity") end
+
+function getItem() getCardFromDeck("counterItem", Global.getTable("bags").itemDeck) end
+function getCity() getCardFromDeck("counterCity", Global.getTable("bags").citySupplies, Global.getTable("bags").cityDeck) end
+function getRoad() getCardFromDeck("counterRoad", Global.getTable("bags").roadSupplies, Global.getTable("bags").roadDeck) end
+
+function getRandom()
+  local deck = getObjectFromGUID(Global.getTable("bags").randomDeck)
+  local card
+  if deck ~= nil then
+    card = deck.takeObject({
+      position = {deck.getPosition().x + 5.25, 2, deck.getPosition().z},
+      flip = true,
+      index = math.random(0, #deck.getObjects()-1)
+    })
+  else
+    local hitList = Physics.cast({
+      origin = {47.25, 1.13, 31.16}, direction = {0, 1, 0}, type = 2,
+      size = {1, 1, 1}, max_distance = 0, debug = false
+    })
+    for _, entry in ipairs(hitList) do
+      if entry.hit_object.tag == "Card" then
+        card = entry.hit_object
+        card.setPositionSmooth({card.getPosition().x + 5.25, 2, card.getPosition().z}, false, false)
+        card.setRotationSmooth({0,180,0}, false, false)
+      end
+    end
+  end
+
+  for _,v in pairs(self.getInputs()) do
+    if v.input_function == "counterItem" then
+      v.value = tonumber(card.getDescription())
+      self.editInput(v)
+      getItem()
+    end
+  end
+end
+
+function addsub(x, func)
+  for _,v in pairs(self.getInputs()) do
+    if v.input_function == func then
+      v.value = tonumber(v.value) + x
+      self.editInput(v)
+    end
+  end
+end
+
+function getTreasure()
+  local treasure = 0
+  for _,v in pairs(self.getInputs()) do
+    if v.input_function == "counter" then
+      treasure = v.value
+    end
+  end
+
+  if tonumber(treasure) > 0 then
+    local deck = getObjectFromGUID(Global.getTable("bags").treasureDeck)
+    for i, v in pairs(deck.getObjects()) do
+      if v.nickname == treasure then
+        deck.takeObject({
+          position = {deck.getPosition().x, 2, deck.getPosition().z - 3.8},
+          rotation = {0, 180, 0},
+          index = v.index
+        })
+      end
+    end
+  end
+end
+
+function getCardFromDeck(inputFunction, deckGUID, secondDeck)
+  local Item = 0
+  local id = "description"
+  if secondDeck then id = "nickname" end
+  for _,v in pairs(self.getInputs()) do
+    if v.input_function == inputFunction then
+      Item = v.value
+    end
+  end
+
+  if tonumber(Item) > 0 then
+    local deck = getObjectFromGUID(deckGUID)
+    for i, v in pairs(deck.getObjects()) do
+      if v[id] == Item then
+        Item = deck.takeObject({
+          position = {deck.getPosition().x + 5.25, 2, deck.getPosition().z},
+          rotation = {0, 180, 0},
+          index = v.index
+        })
+        if secondDeck then
+          getObjectFromGUID(secondDeck).putObject(Item)
+          getObjectFromGUID(secondDeck).shuffle()
+        end
+        return
+      end
+    end
+  end
+end

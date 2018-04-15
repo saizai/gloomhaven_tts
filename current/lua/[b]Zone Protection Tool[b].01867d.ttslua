@@ -24,6 +24,7 @@ protectionZoneList = {
     ["Red"] = {"bfbe8e"},
     ["Green"] = {"17f75c"},
     ["Blue"] = {"15ef7c"},
+    ["Admin"] = {"78fa6a"}
 }
 
 --Permission override for anyone who is host or promoted. true (on) or false (off)

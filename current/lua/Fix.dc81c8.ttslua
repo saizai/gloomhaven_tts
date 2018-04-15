@@ -1,0 +1,113 @@
+packUpList = {}
+
+function onLoad()
+    makeButtons()
+end
+
+function f_reLoadOBJs()
+    makeButtons('packUp')
+    local prams = {}
+          --prams.position={x=self.getPosition().x, y=self.getPosition().y+5, z=self.getPosition().z}
+          prams.position={x=0, y=-40, z=0}
+          --prams.guid = nil
+    local pos = {x=-80, y=6, z=80}
+    --print('X : '..copySize.x)
+    local bag = getObjectFromGUID('6f2bdd')
+    for _, obj in pairs(bag.getObjects()) do
+        --print(obj)
+        c = bag.takeObject(prams)
+        c.setPosition(pos)
+        c.setLock(true)
+        table.insert(packUpList, c)
+        pos = setPositionOffset(pos)
+    end
+end
+
+function setPositionOffset(pos)
+    local copySize = getObjectFromGUID('97a85c').getVar('templateSize')
+    pos.x = pos.x + copySize.x + 1
+    if pos.x > 80 then pos.x = -80
+        pos.z = pos.z - copySize.z -1
+        if pos.z < -50 then pos.z = 80
+            pos.y = pos.y + copySize.y +1
+        end
+    end
+    return pos
+end
+
+function f_PackUp()
+    --local list = packUpList
+    function wait(time)
+        local start = os.time()
+        repeat coroutine.yield(0) until os.time() > start + time
+    end
+    function f_PackUp_CORE()
+        local bag = getObjectFromGUID('6f2bdd')
+        for _, obj in ipairs(reverseTable(packUpList)) do
+            if obj ~= nil then
+                obj.setLock(false)
+                wait(0.0001)
+                bag.putObject(obj)
+            end
+            --obj.destruct()
+        end
+    self.removeButton(bIndex('f_PackUp'))
+    return 1
+    end
+    startLuaCoroutine(self, 'f_PackUp_CORE')
+end
+
+function bIndex(label)
+    local aButtons = self.getButtons()
+    for _, B in pairs(aButtons) do
+        --print(tostring(but.click_function))
+        if B.click_function == label then
+            return B.index
+        end
+    end
+end
+
+function reverseTable(t)
+    local reversedTable = {}
+    local itemCount = #t
+    for k, v in ipairs(t) do
+        reversedTable[itemCount + 1 - k] = v
+    end
+    return reversedTable
+end
+
+function makeButtons(set)
+    local buttons = {}
+
+ -- DEFAULT START BUTTONS
+    if set == nil then
+        local button = {
+                click_function = 'f_reLoadOBJs',
+                function_owner = self,
+                label = 'Fix GUIDs\nPress After Clone',
+                position = {-6.5, 2, 0},
+                rotation = {0, 180, 0},
+                width = 1300,
+                height = 500,
+                font_size = 150,
+                scale={3,3,3}}
+        table.insert(buttons, button)
+    elseif set == 'packUp' then
+        local button = {
+                click_function = 'f_PackUp',
+                function_owner = self,
+                label = 'Pack Everything Back Up',
+                position = {0, 2, -70},
+                rotation = {0, 180, 0},
+                width = 2000,
+                height = 300,
+                font_size = 150,
+                scale={10,10,10}}
+        table.insert(buttons, button)
+    end -- END IF STATMENT
+
+ -- Create Buttons
+    for _, button in ipairs(buttons) do
+        self.createButton(button)
+    end
+end

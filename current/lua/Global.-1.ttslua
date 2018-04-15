@@ -8,7 +8,11 @@ function onLoad()
 end
 
 function megaFreeze()
-    local megaFreezeIT = {'bafa19','f7805a','8bf5e2','dff000','42d2b6','a1ae9dd','59d54d','cf0917','6c1b20','75ab50','2f9ec3','d68151','c44dd8','9118a6','ef095e','17f87d','507d38','9dc275','75f651','20210d','8db51c','f3ffb7','b53fb2','41393b','a75fcd'}
+    local megaFreezeIT = {'bafa19','f7805a','8bf5e2',
+'dff000','42d2b6','a1ae9dd','59d54d','cf0917','6c1b20','75ab50',
+'2f9ec3','d68151','c44dd8','9118a6','ef095e','17f87d','507d38',
+'9dc275','75f651','20210d','8db51c','f3ffb7','b53fb2','41393b',
+'a75fcd','31ba4d'}
 
 	--megaFreeze ACTIVATE!
 	for i=1, #megaFreezeIT, 1 do

@@ -47,7 +47,9 @@ containedObjectValues = { }
 checkFrequency = 1 -- In seconds, wait this long before checking the value again.
 isActive = false -- This just checks that the coroutine has been started.  Mostly just for debugging
 isRunning = false --it's a redundant declaration but here is our routine isRunning var.  Far more useful than isActive
-
+isCounting = false
+isLockedBeforeCounting = false
+isLockedUntil = false
 
 function updateSave()
   local data_to_save = {["containedObjectValues"] = containedObjectValues}
@@ -87,6 +89,10 @@ function updateBag()
   isRunning = true
   while isRunning do
     countItems()
+    if isLockedUntil ~= false and os.time() > isLockedUntil then
+      self.setLock(isLockedBeforeCounting)
+      isLockedBeforeCounting = false
+    end
     wait(checkFrequency)
   end
   coroutine.yield(1)
@@ -148,6 +154,11 @@ end
 
  -- Counts total value of items in bag
 function countItems()
+    if isCounting == true then return end
+    isCounting = true
+    if isLockedUntil == false then
+      isLockedBeforeCounting = self.getLock()
+    end
     local itemsInBag = self.getObjects()
     local seenGUIDs = {}
     --Returns a Table with the keys “name”, “guid”, and “index”, not actual objects
@@ -157,6 +168,8 @@ function countItems()
 
       -- realobj = getObjectFromGUID(obj.guid) -- can't get this because it's not in the world yet
       if containedObjectValues[obj.guid] == nil or seenGUIDs[obj.guid] == true then
+        self.setLock(true)
+        isLockedUntil = os.time() + 2
         self.takeObject({
           ['guid'] = obj.guid,  -- there might be multiple, and it won't re-GUID unless there's a conflict on the table, so just spit out the conflict
           -- ['index'] = index - 1,
@@ -172,6 +185,7 @@ function countItems()
       end
     end
     updateValue()
+    isCounting = false
 end
 
  -- Coroutine delay, in seconds

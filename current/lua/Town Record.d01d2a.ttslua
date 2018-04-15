@@ -1,0 +1,81 @@
+tRecords = {}
+
+function onload()
+  gettRecords()
+  setupButtons()
+end
+
+function setupButtons()
+  local k = 0
+  for i = 4, 23, 2 do
+    self.setVar("ScenarioClick_" .. i, function () setScenario(tostring(i)) end)
+    self.createButton({function_owner = self, click_function = "ScenarioClick_" .. i, label = i .. " - " .. i+1, position = { - 3.1 + (i - 4) * 0.8 - k*0.8*10, 0.6, 5.5 + k}, height = 200, width = 500, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}, font_size = 200})
+    if i > 11 then
+      k = 1
+    end
+
+  end
+  self.setVar("ScenarioClick_Prolog", function () setScenario("Prolog") end)
+  self.setVar("ScenarioClick_Records", function () setScenario("Records") end)
+  self.createButton({function_owner = self, click_function = "ScenarioClick_Prolog", label = "Prolog", position = { - 5, 0.6, - 7}, height = 400, width = 1000, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+  self.createButton({function_owner = self, click_function = "ScenarioClick_Records", label = "Records", position = { 5, 0.6, - 7}, height = 400, width = 2000, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+  self.createButton({function_owner = self, click_function = "cleanPages", label = "Close Book", position = { 0, 0.6, - 7}, height = 400, width = 1600, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+end
+
+function dud()
+end
+
+function setScenario(scenario)
+  cleanPages()
+  Timer.create({
+    identifier = "setPage",
+    function_name = "setPage",
+    parameters = {scenario, "Scenario"},
+    function_owner = self,
+    delay = 0.5,
+  })
+end
+
+function cleanPages()
+  local bag = getObjectFromGUID(Global.getTable("bags").townRecord)
+  local objectsInZone = getObjectFromGUID(Global.getTable("zones").townRecord).getObjects()
+  for _, obj in pairs(objectsInZone) do
+    if string.find(obj.getName(), "Town Record ") then
+      bag.putObject(obj)
+    end
+  end
+
+end
+
+function setPage(scenario)
+  local bag = getObjectFromGUID(Global.getTable("bags").townRecord)
+  local campaign = tRecords
+  local page = ""
+  if scenario[1] ~= "" then
+    if #campaign[scenario[1]] > 1 then
+      for p, guid in pairs(campaign[scenario[1]]) do
+        page = bag.takeObject({guid = guid, position = {-65.47 - (#campaign[scenario[1]] - p) * 12.66, 1.79, 42.23}, rotation = {0, 180, 0}})
+        page.setLock(true)
+      end
+    else
+      guid = campaign[scenario[1]]
+      page = bag.takeObject({guid = guid[1], position = {-65.47, 1.79, 42.23}, rotation = {0, 180, 0}})
+      page.setLock(true)
+    end
+  end
+end
+
+function gettRecords()
+  tRecords["Prolog"] = {"558ef3"}
+  tRecords["Records"] = {"a30c94"}
+  tRecords["4"] = {"3f20ae", "b8ef9c"}
+  tRecords["6"] = {"2f38da", "43391b"}
+  tRecords["8"] = {"37f153", "f8181d"}
+  tRecords["10"] = {"c9698a", "e40984"}
+  tRecords["12"] = {"7512ee", "391c58"}
+  tRecords["14"] = {"7e2006", "054966"}
+  tRecords["16"] = {"6f0425", "325376"}
+  tRecords["18"] = {"3222c9", "c08893"}
+  tRecords["20"] = {"ff639a", "ce23e6"}
+  tRecords["22"] = {"c3d617", "bf31f1"}
+end

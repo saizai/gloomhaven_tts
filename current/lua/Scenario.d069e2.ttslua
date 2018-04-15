@@ -1,0 +1,389 @@
+sBook = {}
+kS = {}
+sS = {}
+
+
+function onload()
+  getSBook()
+  setupButtons()
+end
+
+function setupButtons()
+  local j = 0
+  local k = 0
+  for i = 1, 95 do
+    self.setVar("ScenarioClick_" .. i, function () setScenario({tostring(i)}) end)
+    self.createButton({function_owner = self, click_function = "ScenarioClick_" .. i, label = i, position = { - 6.18 + k + (i - 1) * 0.4 - j * 32 * 0.4, 0.6, 6.5 + j * 0.4}, height = 100, width = 200, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 100}})
+    if i%32 == 0 then j = j + 1 end
+    if j == 2 then k = 0.2 end
+  end
+  self.setVar("ScenarioClick_Prolog", function () setScenario({"Prolog"}) end)
+  self.setVar("ScenarioClick_Treasure", function () setScenario({"TreasureIndex"}) end)
+  self.createButton({function_owner = self, click_function = "ScenarioClick_Prolog", label = "Prolog", position = { - 5, 0.6, - 7}, height = 400, width = 1000, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+  self.createButton({function_owner = self, click_function = "ScenarioClick_Treasure", label = "Treasure Index", position = { 5, 0.6, - 7}, height = 400, width = 2000, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+  self.createButton({function_owner = self, click_function = "cleanPages", label = "Close Book", position = { 0, 0.6, - 7}, height = 400, width = 1600, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+
+  self.createButton({function_owner = self, click_function = "dud", label = "Kickstarter Campaign", position = { - 18, 0.6, 6.6}, height = 0, width = 0, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+  for i = 1, 10 do
+    self.setVar("kickstarterClick_" .. i, function () setKS(tostring(i)) end)
+    self.createButton({function_owner = self, click_function = "kickstarterClick_" .. i, label = i, position = { - 23.5 + i, 0.6, 7.2}, height = 100, width = 200, font_size = 200, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+  end
+
+  self.setVar("SoloClicked", function () setSolo("Deck") end)
+  self.createButton({function_owner = self, click_function = "SoloClicked", label = "Solo Scenario", position = { - 18, 0.6, - 7}, height = 400, width = 1000, font_size = 300, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 255}})
+
+  self.createButton({click_function = "changeHide", function_owner = self, label = "Hiding: ".. tostring(1 == getObjectFromGUID(Global.getTable("setups").hiding).getValue()), position = {0, 0.6, 8.1}, width = 600, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 100}})
+  self.createButton({click_function = "changeAutosetup", function_owner = self, label = "Autosetup Terrain: ".. tostring(1 == getObjectFromGUID(Global.getTable("setups").autoSetup).getValue()), position = {3, 0.6, 8.1}, width = 1000, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 100}})
+  self.createButton({click_function = "changeAutosetupMonster", function_owner = self, label = "Autosetup Monster: ".. tostring(1 == getObjectFromGUID(Global.getTable("setups").autoSetupMonster).getValue()), position = { - 3, 0.6, 8.1}, width = 1000, color = {0, 0, 0, 0}, font_color = {0, 0, 0, 100}})
+
+end
+
+function dud() end
+
+function changeHide()
+  local as = getObjectFromGUID(Global.getTable("setups").hiding)
+  as.setRotation({as.getRotation().x, as.getRotation().y, as.getRotation().z + 180})
+  for i, v in pairs(self.getButtons()) do
+    if v.click_function == "changeHide" then
+      v.label = "Hiding: ".. tostring(1 == as.getValue())
+      self.editButton(v)
+      return
+    end
+  end
+end
+
+function changeAutosetup()
+  local as = getObjectFromGUID(Global.getTable("setups").autoSetup)
+  as.setRotation({as.getRotation().x, as.getRotation().y, as.getRotation().z + 180})
+  for i, v in pairs(self.getButtons()) do
+    if v.click_function == "changeAutosetup" then
+      v.label = "Autosetup Terrain:" .. tostring(1 == as.getValue())
+      if 1 == getObjectFromGUID(Global.getTable("setups").autoSetupMonster).getValue() then
+        asm = getObjectFromGUID(Global.getTable("setups").autoSetupMonster)
+        asm.setRotation({asm.getRotation().x, asm.getRotation().y, asm.getRotation().z + 180})
+        for j, w in pairs(self.getButtons()) do
+          if w.click_function == "changeAutosetupMonster" then
+            w.label = "Autosetup Monster: ".. tostring(1 == asm.getValue())
+            self.editButton(w)
+          end
+        end
+      end
+      self.editButton(v)
+      return
+    end
+  end
+end
+
+function changeAutosetupMonster()
+  if getObjectFromGUID(Global.getTable("setups").autoSetup).getValue() == 2 then
+    broadcastToAll("Autosetup for Terrain is disabled.", {1,1,1})
+    return
+  end
+  local as = getObjectFromGUID(Global.getTable("setups").autoSetupMonster)
+  as.setRotation({as.getRotation().x, as.getRotation().y, as.getRotation().z + 180})
+  for i, v in pairs(self.getButtons()) do
+    if v.click_function == "changeAutosetupMonster" then
+      v.label = "Autosetup Monster:" .. tostring(1 == as.getValue())
+      self.editButton(v)
+      return
+    end
+  end
+end
+
+function setScenario(scenario)
+  cleanPages()
+  Timer.create({
+    identifier = "setPage",
+    function_name = "setPage",
+    parameters = {scenario[1], "Scenario"},
+    function_owner = self,
+    delay = 0.5,
+  })
+end
+
+function setKS(scenario)
+  cleanPages()
+  Timer.create({
+    identifier = "setPage",
+    function_name = "setPage",
+    parameters = {scenario, "Kickstarter"},
+    function_owner = self,
+    delay = 0.5,
+  })
+end
+
+function setSolo(scenario)
+  cleanPages()
+  Timer.create({
+    identifier = "setPage",
+    function_name = "setPage",
+    parameters = {scenario, "Solo"},
+    function_owner = self,
+    delay = 0.5,
+  })
+end
+
+function cleanPages()
+  local bag = getObjectFromGUID(Global.getTable("bags").scenarioBook)
+  local bagKS = getObjectFromGUID(Global.getTable("bags").kickstarter)
+  local bagSS = getObjectFromGUID(Global.getTable("bags").soloScenario)
+  local objectsInZone = getObjectFromGUID(Global.getTable("zones").scenario).getObjects()
+  for _, obj in pairs(objectsInZone) do
+    if string.find(obj.getName(), "Scenario Book ") then
+      bag.putObject(obj)
+    elseif string.find(obj.getName(), "Kickstarter ") then
+      bagKS.putObject(obj)
+    elseif string.find(obj.getName(), "Solo Scenarios ") then
+      bagSS.putObject(obj)
+    end
+  end
+
+end
+
+function setPage(scenario)
+  local bag = getObjectFromGUID(Global.getTable("bags").scenarioBook)
+  local campaign = sBook
+  if scenario[2] == "Kickstarter" then
+    bag = getObjectFromGUID(Global.getTable("bags").kickstarter)
+    campaign = kS
+  elseif scenario[2] == "Solo" then
+    bag = getObjectFromGUID(Global.getTable("bags").soloScenario)
+    campaign = sS
+  end
+  local page = ""
+  if scenario[1] ~= "" then
+    if #campaign[scenario[1]] > 1 then
+      for p, guid in pairs(campaign[scenario[1]]) do
+        page = bag.takeObject({guid = guid, position = {79.14, 1.3, 29.95 + (#campaign[scenario[1]] - p) * 22.25}, rotation = {0, 270, 0}})
+        page.setLock(true)
+      end
+    else
+      guid = campaign[scenario[1]]
+      page = bag.takeObject({guid = guid[1], position = {79.14, 1.3, 29.95}, rotation = {0, 270, 0}})
+      page.setLock(true)
+    end
+  end
+end
+
+function cleanup()
+  local bag = getObjectFromGUID(Global.getTable("bags").mapTiles)
+  local tiles = Global.getTable("mapTiles")
+  for _, tile in pairs(tiles) do
+    obj = getObjectFromGUID(tile)
+    if obj ~= nil then
+      bag.putObject(obj)
+    end
+  end
+  Timer.create({
+    identifier = "highlighTiles",
+    function_name = "highlighTiles",
+    function_owner = self,
+    delay = 0.5,
+  })
+end
+
+function highlighTiles()
+  local tiles = getObjectFromGUID(Global.getTable("zones").playArea).getObjects()
+  for _, tile in pairs(tiles) do
+    tile.highlightOn({1, 0, 0})
+  end
+  broadcastToAll("All highlighted tiles are in the play area and will be deleted!", {1, 0, 0})
+  broadcastToAll("Move Tiles that should not be deleted away from the play area!", {1, 0, 0})
+  broadcastToAll("Then press Delete!", {1, 0, 0})
+
+  self.createButton({function_owner = self, click_function = "delete", label = "Delete all Highlighted", position = self.positionToLocal({0, 2, 60}), height = 1100, width = 7500, font_size = 1000})
+end
+
+function delete()
+  local tiles = getObjectFromGUID(Global.getTable("zones").playArea).getObjects()
+  for _, tile in pairs(tiles) do
+    tile.destruct()
+  end
+  buttons = self.getButtons()
+  self.removeButton(#buttons - 1)
+end
+
+function setupMonster(monster)
+  local mbags = getObjectFromGUID(Global.getTable("bags").monster)
+  local x = -34.12
+  local y = 1
+  local z = 0
+  local dz = 6.06
+  local dx = 2.62
+  local loopZ = z - math.floor(#monster / 2) * dz
+  for j, guid in pairs(monster) do
+    if guid.boss == nil then
+      local mbag = mbags.takeObject({position = { - 40, 2 + j, 20}, guid = guid.infibag})
+      local monsterb = mbag.takeObject({position = {x, y, loopZ}})
+      if guid.normalBag ~= "" then monsterb.takeObject({position = {x + 2 * dx, y, loopZ}, guid = guid.normalBag, rotation = {0, 270, 0}}) end
+      if guid.statSheet ~= "" then monsterb.takeObject({position = {x + 4 * dx, y, loopZ}, guid = guid.statSheet, rotation = {0, 270, 0}}) end
+      local i = 0
+      for _, value in pairs(monsterb.getObjects()) do
+        monsterb.takeObject({position = {x + (6 + i) * dx, y, loopZ}, guid = value.guid, rotation = {0, 180, 180}})
+        i = i + 1
+      end
+      getAbilityCards(monsterb.getName(), { - 14.73, y, loopZ})
+      Timer.create({
+        identifier     = mbag.getName(),
+        function_name  = "putBack",
+        function_owner = self,
+        parameters     = {mbags, mbag},
+        delay          = 1
+      })
+      -- mbags.putObject(mbag)
+      monsterb.destruct()
+    else
+      local bbag = getObjectFromGUID(Global.getTable("bags").boss)
+      local boss = bbag.takeObject({position = { - 40, 2, 20}, guid = guid.boss})
+      boss.clone({position = {x + dx, y, loopZ}})
+      getAbilityCards(boss.getName(), { - 14.73, y, loopZ})
+      bbag.putObject(boss)
+    end
+    loopZ = loopZ + dz
+    if j == 1 then
+      getObjectFromGUID(Global.getTable("bags").modifierDeck).takeObject({position = { - 11, y, 0}, rotation = {0, 180, 180}})
+    end
+  end
+end
+
+function putBack(bags)
+  bags[1].putObject(bags[2])
+end
+
+function getAbilityCards(name, pos)
+  getObjectFromGUID(Global.getTable("bags").ability).takeObject({position = pos, rotation = {0, 180, 180}}).setName(name)
+end
+
+function getSBook()
+  -- sBook["Cover"] = {"d886db", "968a28"}
+  sBook["Prolog"] = {"daf2e9"}
+  sBook["1"] = {"467a03"}
+  sBook["2"] = {"cb88ba", "67c9bf"}
+  sBook["3"] = {"67c9bf", "6e6de1"}
+  sBook["4"] = {"a5c785"}
+  sBook["5"] = {"d1df48"}
+  sBook["6"] = {"1fb95f", "9e95aa"}
+  sBook["7"] = {"9e95aa", "4c2e05"}
+  sBook["8"] = {"a45626"}
+  sBook["9"] = {"8801e7"}
+  sBook["10"] = {"453b4f"}
+  sBook["11"] = {"a2caa2", "b696e2"}
+  sBook["12"] = {"b696e2", "0118c7"}
+  sBook["13"] = {"edddf2"}
+  sBook["14"] = {"7bc139", "3ff508"}
+  sBook["15"] = {"3ff508", "503c83"}
+  sBook["16"] = {"f7302c"}
+  sBook["17"] = {"ff8cde"}
+  sBook["18"] = {"3c8529"}
+  sBook["19"] = {"520259", "bd43a4"}
+  sBook["20"] = {"bd43a4", "3535b8"}
+  sBook["21"] = {"3dff2e", "82cdd4"}
+  sBook["22"] = {"82cdd4", "0b68ee"}
+  sBook["23"] = {"6e981b", "c08016"}
+  sBook["24"] = {"c08016", "83c704"}
+  sBook["25"] = {"12bf48", "a3087b"}
+  sBook["26"] = {"a3087b", "20a0c8"}
+  sBook["27"] = {"b8febd"}
+  sBook["28"] = {"1af969"}
+  sBook["29"] = {"f7f532"}
+  sBook["30"] = {"c0f3f9", "c02c1a"}
+  sBook["31"] = {"c02c1a", "5c2f74"}
+  sBook["32"] = {"967422"}
+  sBook["33"] = {"68dced"}
+  sBook["34"] = {"dd2fad"}
+  sBook["35"] = {"d064f2", "684635"}
+  sBook["36"] = {"684635", "f44a21"}
+  sBook["37"] = {"a2af8a"}
+  sBook["38"] = {"15df04", "7887fe"}
+  sBook["39"] = {"7887fe", "ce9f5c"}
+  sBook["40"] = {"eadb6c", "5c25dc"}
+  sBook["41"] = {"5c25dc", "e07113"}
+  sBook["42"] = {"fe9fb0"}
+  sBook["43"] = {"61ca6c", "fa5ff1"}
+  sBook["44"] = {"fa5ff1", "5d62d8"}
+  sBook["45"] = {"796a73"}
+  sBook["46"] = {"b92d96"}
+  sBook["47"] = {"743a3d"}
+  sBook["48"] = {"90652b"}
+  sBook["49"] = {"b192ed"}
+  sBook["50"] = {"61aa53", "29ed4e"}
+  sBook["51"] = {"29ed4e", "ca731c"}
+  sBook["52"] = {"c162ff", "2bc21e"}
+  sBook["53"] = {"2bc21e", "ca4d0b"}
+  sBook["54"] = {"0c3565"}
+  sBook["55"] = {"1fc6a6"}
+  sBook["56"] = {"70f43d"}
+  sBook["57"] = {"38bcd9"}
+  sBook["58"] = {"b7684d"}
+  sBook["59"] = {"549200"}
+  sBook["60"] = {"4e2c28", "71f57a"}
+  sBook["61"] = {"71f57a", "edfe33"}
+  sBook["62"] = {"54f2c4"}
+  sBook["63"] = {"edfd54"}
+  sBook["64"] = {"112ef3"}
+  sBook["65"] = {"341501", "82962c"}
+  sBook["66"] = {"82962c", "9c1c3d"}
+  sBook["67"] = {"64a8a2"}
+  sBook["68"] = {"fa557b"}
+  sBook["69"] = {"10a529"}
+  sBook["70"] = {"6a2953", "5fc710"}
+  sBook["71"] = {"5fc710", "972d3c"}
+  sBook["72"] = {"3c098a"}
+  sBook["73"] = {"963e3d"}
+  sBook["74"] = {"d16c61"}
+  sBook["75"] = {"94f3bb"}
+  sBook["76"] = {"b002ef", "f8058f"}
+  sBook["77"] = {"f8058f", "7e38d3"}
+  sBook["78"] = {"8d2ff1"}
+  sBook["79"] = {"47ff83", "f268d2"}
+  sBook["80"] = {"f268d2", "1500a3"}
+  sBook["81"] = {"7c456e"}
+  sBook["82"] = {"8080ac"}
+  sBook["83"] = {"f19130"}
+  sBook["84"] = {"40810d"}
+  sBook["85"] = {"c1cf99", "5e774f"}
+  sBook["86"] = {"5e774f", "1c6cfb"}
+  sBook["87"] = {"e5dd2d"}
+  sBook["88"] = {"34856c"}
+  sBook["89"] = {"5491bf"}
+  sBook["90"] = {"f4df80"}
+  sBook["91"] = {"7cc188"}
+  sBook["92"] = {"2c4848"}
+  sBook["93"] = {"e6c4cc"}
+  sBook["94"] = {"9f1135"}
+  sBook["95"] = {"e76db1", "024d90"}
+  sBook["TreasureIndex"] = {"024d90", "1ed63d", "5fcff2"}
+
+  kS["1"] = {"a33735", "b80af5"}
+  kS["2"] = {"5d5d52", "199fad", "151e40"}
+  kS["3"] = {"7756e8", "0bfc42", "233099"}
+  kS["4"] = {"bab8a4", "3db135", "7b07b5"}
+  kS["5"] = {"294c5b", "3411a6", "d677b2"}
+  kS["6"] = {"cf7b0b", "4f81cc", "4d475f"}
+  kS["7"] = {"74b175", "34cfbb", "b44bb7"}
+  kS["8"] = {"16d0a7", "99b822", "cdcdfa"}
+  kS["9"] = {"692d49", "4ec242", "b09c05"}
+  kS["10"] = {"8c64f4", "3a0057", "0cad41"}
+  kS["Notes"] = {"5bea43"}
+  kS["Deck"] = {"f6d408"}
+
+  sS["1"] = {"486222", "4cd72e"}
+  sS["2"] = {"486222", "e4088b"}
+  sS["3"] = {"486222", "f53865"}
+  sS["4"] = {"486222", "453069"}
+  sS["5"] = {"486222", "81a42e"}
+  sS["6"] = {"486222", "0a86e1"}
+  sS["7"] = {"486222", "4fe967", "e8612d"}
+  sS["8"] = {"486222", "a4a045"}
+  sS["9"] = {"486222", "704195"}
+  sS["10"] = {"486222", "092cfb"}
+  sS["11"] = {"486222", "c01bf6"}
+  sS["12"] = {"486222", "6711a3", "ef6551"}
+  sS["13"] = {"486222", "f088f4", "1c7e0d"}
+  sS["14"] = {"486222", "1c7e0d", "041e8c"}
+  sS["15"] = {"486222", "c84e1b"}
+  sS["16"] = {"486222", "7184d9"}
+  sS["17"] = {"486222", "5e5d6e", "7b4e09"}
+  sS["Deck"] = {"486222", "c0b274"}
+
+end

@@ -1,0 +1,617 @@
+--[[
+   avatar spawner
+   created by Rodney
+]]
+
+avatarSpawnerVersion = "2016091700"
+
+-- constants --
+playerColorTable = {}
+for i, v in ipairs({"White", "Brown", "Red", "Orange", "Yellow", "Green", "Teal", "Blue", "Purple", "Pink"}) do
+   playerColorTable[string.lower(v)] = v
+end
+
+-- customizable options in spawner's description part.
+optionDescriptor = {
+   -- target seat color.
+   -- if nil, don't work.
+   target = {
+      type = "select",
+      values = playerColorTable,
+      default = nil
+   },
+   
+   -- delete all spanwed objects after seat changed.
+   reset = {
+      type = "boolean",
+      default = true
+   },
+
+   -- spawn objects type. tile/figurine are supported.
+   type = {
+      type = "select",
+      values = {tile = "Custom_Tile", figurine = "Figurine_Custom"},
+      default = "Custom_Tile"
+   },
+
+   -- tile type.
+   tiletype = {
+      type = "select",
+      values = {box = 0, hex = 1, round = 2, mat = 3},
+      default = 0
+   },
+
+   -- insert player steam name into object's name part.
+   named = {
+      type = "boolean",
+      default = true
+   },
+   
+   -- tile's thickness
+   thickness = {
+      type = "number",
+      default = 0.2
+   },
+
+   -- tile's stackable flag.
+   stackable = {
+      type = "boolean",
+      default = false
+   },
+
+   -- spawning quantity.
+   -- only avaiable for tile type.
+   quantity = {
+      type = "number",
+      default = 1
+   },
+
+   -- colorTint.
+   --  type = figurine ... base color
+   --  type = tile ... side color
+   -- "target" or "#rrggbb" are supported.
+   color = {
+      type = "custom",
+      -- require target entry
+      decoder = function(value, optionChunk)
+         local result
+
+         if string.lower(value) == "target" and optionChunk.target then
+            local rgb = stringColorToRGB(optionChunk.target)
+            result = {rgb.r, rgb.g, rgb.b}
+         else
+            result = hexColorStringToRGB(value) or {1, 1, 1}
+         end
+
+         return result
+      end
+   },
+
+   -- flag of using avatar image for tile's reverse side.
+   reversible = {
+      type = "boolean",
+      default = true
+   },
+
+   -- tile's reverse side color.
+   -- "target" or "#rrggbb" are supported.
+   backcolor = {
+      type = "custom",
+      -- require target entry
+      decoder = function(value, optionChunk)
+         local result
+
+         if string.lower(value) == "target" and optionChunk.target then
+            local rgb = stringColorToRGB(optionChunk.target)
+            result = string.format("%02x%02x%02x", rgb.r * 255, rgb.b * 255, rgb.b * 255)
+         else
+            local r, g, b = splitHexColorString(value)
+            if r then
+               result = r .. g .. b
+            else
+               result = "ffffff"
+            end
+         end
+
+         return result
+      end,
+      default = ""
+   },
+
+   -- scale for spawning object.
+   scale = {
+      type = "number",
+      default = 1
+   },
+
+   -- dye self target color.
+   -- this works at loading and pickuped time.
+   selfcolored = {
+      type = "boolean",
+      default = true
+   },
+
+   -- destroy self after spawn avatar object.
+   oneshot = {
+      type = "boolean",
+      default = false
+   },
+
+   -- lock spawning object.
+   lock = {
+      type = "boolean",
+      default = false
+   },
+
+   -- position offset.
+   offsetpos = {
+      type = "custom",
+      decoder = function(value, optionChunk)
+         local result = split(value, ",")
+
+         result[1] = tonumber(result[1]) or 0
+         result[2] = tonumber(result[2]) or 0.5
+         result[3] = tonumber(result[3]) or 0
+
+         return result
+      end,
+      default = {0, 0.5, 0}
+   },
+
+   offsetrot = {
+      type = "custom",
+      decoder = function(value, optionChunk)
+         local result = split(value, ",")
+         
+         result[1] = tonumber(result[1]) or 0
+         result[2] = tonumber(result[2]) or 0
+         result[3] = tonumber(result[3]) or 0
+
+         return result
+      end,
+      default = {0, 0, 0}
+   },
+
+   -- using moving marker
+   marker = {
+      type = "boolean",
+      default = false
+   },
+}
+
+-- marker variable for spawned objects.
+-- this is used for destroy objects.
+markerVariableName = "__belonging__"
+
+-- events --
+function onLoad()
+   local options = decodeOptionText(self.getDescription(), optionDescriptor)
+   
+   if options.target and options.selfcolored then
+      self.setColorTint(stringColorToRGB(options.target))
+   end
+
+   if options.reset then
+      resetItems()
+   end
+         
+   if options.target and Player[options.target].seated then
+      newItems(options)
+   end
+end
+
+function onPickedUp(color)
+   local options = decodeOptionText(self.getDescription(), optionDescriptor)
+
+   if options.target and options.selfcolored then
+      self.setColorTint(stringColorToRGB(options.target))
+   end
+end
+
+function onPlayerChangedColor(color)
+   local options = decodeOptionText(self.getDescription(), optionDescriptor)
+   
+   if color == options.target then
+      newItems(options)
+   elseif options.reset and options.target and not Player[options.target].seated then
+      resetItems()
+   end
+end
+
+
+-- functions --
+
+-- spawn new items items
+function newItems(options)
+
+   local quantity = 1
+   local dy = 0
+
+   if options.type == optionDescriptor.type.values.tile then
+      quantity = options.quantity
+      dy = options.scale * options.thickness + 0.1
+   end
+
+   for i = 0, quantity - 1 do
+      local objParam = {
+         type = options.type,
+         position = {options.offsetpos[1], options.offsetpos[2] + i * dy, options.offsetpos[3]},
+         rotation = {options.offsetrot[1], options.offsetrot[2], options.offsetrot[3]}
+      }
+      
+      -- spawn new custom object
+      local item = spawnRelativePosition(self, objParam)
+      
+      -- mark spawned object for destroy
+      local script = string.format([[%s = "%s"]], markerVariableName, self.guid)
+
+      -- use marker script?
+      if options.marker then
+         script = script .. "\n\n" .. markerScript
+      end
+
+      item.setLuaScript(script)
+
+      -- initialize it!
+
+      -- custom object parameters
+      local customParam = {
+         image = generateAvatarImageUrl(Player[options.target].steam_id)
+      }
+
+      -- tile types
+      if options.type == optionDescriptor.type.values.tile then
+         customParam.type = options.tiletype
+         customParam.thickness = options.thickness
+         customParam.stackable = options.stackable
+
+         if not options.reversible then
+            customParam.image_bottom = generateBackImageUrl(options.backcolor)
+         end
+      end
+
+      item.setCustomObject(customParam)
+      
+      -- named?
+      if options.named then
+         item.setName(Player[options.target].steam_name)
+      end
+
+      -- colored?
+      if options.color then
+         item.setColorTint(options.color)
+      end
+
+      -- scaling?
+      if options.scale then
+         local scale = options.scale
+         item.setScale({scale, scale, scale})
+      end
+
+      -- lock?
+      if options.lock then
+         item.lock()
+      end
+   end
+
+   if options.oneshot then
+      self.destruct()
+   end
+end
+
+-- remove marked objects.
+function resetItems()
+   for i, v in ipairs(getAllObjects()) do
+      if v.getVar(markerVariableName) == self.guid then
+         destroyObject(v)
+      end
+   end
+end
+
+-- spawn object at relative position of baseObj
+--  baseObj : origin object
+--  objParam : object parameter. position and rotation is relative.
+--  => object
+function spawnRelativePosition(baseObj, objParam)
+   local basePosition = baseObj.getPosition()
+   local baseRotation = baseObj.getRotation()
+
+   -- calc absolute rotation
+   objParam.rotation[1] = objParam.rotation[1] + baseRotation.x
+   objParam.rotation[2] = objParam.rotation[2] + baseRotation.y
+   objParam.rotation[3] = objParam.rotation[3] + baseRotation.z
+   
+   -- calc absolute position
+   -- y rotation only
+   local cosX = math.cos(math.rad(baseRotation.x))
+   local sinX = math.sin(math.rad(baseRotation.x))
+   local cosY = math.cos(math.rad(baseRotation.y))
+   local sinY = math.sin(math.rad(baseRotation.y))
+   local cosZ = math.cos(math.rad(baseRotation.z))
+   local sinZ = math.sin(math.rad(baseRotation.z))
+   local x, y, z = objParam.position[1], objParam.position[2], objParam.position[3]
+
+   -- TTS rotation order: Z-X-Y (same as Unity)
+
+   -- rotate Z axis
+   local x1 = x * cosZ - y * sinZ
+   local y1 = x * sinZ + y * cosZ
+   local z1 = z
+
+   -- rotate X axis
+   local x2 = x1
+   local y2 = y1 * cosX - z1 * sinX
+   local z2 = y1 * sinX + z1 * cosX
+
+   -- rotate Y axis
+   local x3 = x2 * cosY + z2 * sinY
+   local y3 = y2
+   local z3 = -x2 * sinY + z2 * cosY
+   
+   objParam.position[1] = x3 + basePosition.x
+   objParam.position[2] = y3 + basePosition.y
+   objParam.position[3] = z3 + basePosition.z
+   
+   return spawnObject(objParam)
+end
+
+-- generate steam avatar image url
+function generateAvatarImageUrl(steamId)
+   return string.format("http://steam-tts.bclass.info/avatar/?i=%s&s=l", steamId)
+end
+
+-- generate tile back image url
+function generateBackImageUrl(hexStr)
+   return string.format("https://placehold.jp/%s/%s/10x10.png?text=%%20", hexStr, hexStr)
+end
+
+---- utility functions
+
+-- convert key=value list to table
+--  optionText : string of key(delim)value list delimited by newline
+--  descriptor : option entry descriptor
+-- => table of key/value
+function decodeOptionText(optionText, descriptor)
+   local booleanTable = {["true"] = true, ["false"] = false}
+   local result = {}
+
+   for i, line in ipairs(split(optionText, "\n")) do
+      local key, value = string.match(line, "^%s*([^%s=]+)%s*=%s*(.-)%s*$")
+      if key ~= nil then
+         key = string.lower(key)
+         
+         descEntry = descriptor[key]
+
+         if descEntry then
+            if descEntry.type == "select" and descEntry.values then
+               value = descEntry.values[string.lower(value)]
+            elseif descEntry.type == "boolean" then
+               value = booleanTable[string.lower(value)]
+            elseif descEntry.type == "number" then
+               value = tonumber(value)
+            elseif descEntry.type == "custom" and descEntry.decoder then
+               value = descEntry.decoder(value, result)
+            end
+         end
+
+         result[key] = value
+      end
+   end
+
+   -- recover default value
+   for key, descEntry in pairs(descriptor) do
+      if result[key] == nil then
+         result[key] = descEntry.default
+      end
+   end
+
+   return result
+end
+
+
+-- split str by delim
+--  str : string
+--  delim : string
+-- => table of string
+function split(str, delim)
+   local wordStart = 1
+   local result = {}
+
+   repeat
+      local delimStart, delimEnd = string.find(str, delim, wordStart, 1)
+      
+      if delimStart ~= nil then
+	 result[#result+1] = string.sub(str, wordStart, delimStart - 1)
+	 wordStart = delimEnd + 1
+      end
+   until delimStart == nil
+
+   result[#result+1] = string.sub(str, wordStart)
+   return result
+end
+
+-- split "#rrggbb" style color string to "rr", "gg", "bb"
+--  hexStr : string
+--  => "rr", "gg", "bb"
+function splitHexColorString(hexStr)
+   if hexStr == nil then
+      return nil
+   end
+
+   return string.match(hexStr,
+                       "^#([%da-fA-F][%da-fA-F])" ..
+                          "([%da-fA-F][%da-fA-F])" ..
+                          "([%da-fA-F][%da-fA-F])$")
+end
+
+-- convert "#rrggbb" style color string to {r, g, b}
+--  each element takes between 0 and 1 value.
+--  hexStr : string
+--  => {r, g, b}
+function hexColorStringToRGB(hexStr)
+   local result = nil
+
+   local r, g, b = splitHexColorString(hexStr)
+   if r then
+      result = {tonumber(r, 16) / 255, tonumber(g, 16) / 255, tonumber(b, 16) / 255}
+   end
+   return result
+end
+
+-- marker script
+markerScript = [==[
+--[[
+   moving marker
+   created by Rodney
+]]
+
+-- customize variables
+markerScale = 1
+markerColor = {1, 1, 1}
+markerRemainingTime = 1
+
+frameInterval = 0.01
+rotationDegreePerFrame = 1
+
+-- global variables
+markerObject = nil
+rotationTimerId = nil
+fadeOutTimerId = nil
+
+lastBottomLevel = 1.5
+
+movingMarkerVersion = "2016092000"
+
+-- constants
+hidePosition = {0, -300, 0}
+hideScale = {0.1, 0.1, 0.1}
+
+-- events
+function onLoad()
+   initializeTimer()
+   createObjects()
+end
+
+function onDestroy()
+   removeTimers()
+   deleteObjects()
+end
+
+function onCollisionEnter(info)
+   updateBottomLevel(info.contact_points)
+end
+
+function onPickedUp(color)
+   removeTimers()
+   setMarker()
+end
+
+function onDropped()
+   fadeOutMarker()
+end
+
+-- internal functions
+
+function createObjects()
+   markerObject = spawnObject({
+         type = "Custom_Model",
+         position = hidePosition,
+         rotation = {0, 0, 0},
+         scale = hideScale
+   })
+
+   markerObject.setCustomObject({
+         type = "Generic",
+         mesh = "http://pastebin.com/raw/RBUFj0HE",
+         collider = "http://pastebin.com/raw/bUwzJeWz"
+   })
+   
+   markerObject.setColorTint(markerColor)
+   markerObject.interactable = false
+   markerObject.lock()
+end
+
+function deleteObjects()
+   markerObject.destruct()
+end
+
+function updateBottomLevel(points)
+   local updated = false
+   local currentBottomLevel = self.getPosition().y
+
+   for i, v in ipairs(points) do
+      if v[2] < currentBottomLevel then
+         updated = true
+         currentBottomLevel = v[2]
+      end
+   end
+
+   if updated then
+      lastBottomLevel = currentBottomLevel
+   end
+end   
+
+function setMarker()
+   local pos = self.getPosition()
+   local scale = self.getScale()
+
+   markerObject.setPosition({pos.x, lastBottomLevel + 0.2, pos.z})
+   markerObject.setScale({scale.x * markerScale, 10, scale.z * markerScale})
+   
+   if frameInterval <= 0 then
+      frameInterval = 0.1
+   end
+
+   Timer.create({
+         identifier = rotationTimerId,
+         function_name = "rotateMarker",
+         function_owner = self,
+         parameters = {
+            degree = rotationDegreePerFrame
+         },
+         delay = frameInterval,
+         repetitions = 0
+   })
+end
+
+function rotateMarker(param)
+   markerObject.setRotation({0, markerObject.getRotation().y + param.degree, 0})
+end
+
+function fadeOutMarker()
+   if markerRemainingTime <= 0 then
+      markerRemainingTime = 0.1
+   end
+
+   Timer.create({
+         identifier = fadeOutTimerId,
+         function_name = "hideMarker",
+         function_owner = self,
+         delay = markerRemainingTime,
+   })
+end
+
+function hideMarker()
+   Timer.destroy(rotationTimerId)
+   markerObject.setPosition(hidePosition)
+   markerObject.setScale(hideScale)
+end
+
+function initializeTimer()
+   -- workaround for guid/copy&paste bug.
+   -- join random id to guid.
+   rotationTimerId = self.guid .. "_" .. getUniqueID() ..  "__fadeOut__"
+   fadeOutTimerId = self.guid .. "_" .. getUniqueID() ..  "__rotation__"
+
+   removeTimers()
+end   
+
+function getUniqueID()
+   return string.format("%s-%s", os.date("%Y%m%d%H%M%S"), math.random(100))
+end
+
+function removeTimers()
+   Timer.destroy(rotationTimerId)
+   Timer.destroy(fadeOutTimerId)
+end
+]==]

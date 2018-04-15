@@ -1,0 +1,161 @@
+packupZone = '15ef7c' -- change this to the GUID of your own script packupZone
+additive = true -- This will disable the save system, allowing you to setup a bag, and then next time you pack up it will only pick up what it already has saved before.
+
+--These are the "ignore lists" put in here anything you do not want to be packed up.
+--You can leave these blank... if you do just make the '= {}'
+
+-- Use general utem Tags here.
+ignoreTAG  = {"Board"}
+
+-- Put in "EXACT" names in here. This code will not work with BBcode formatting (I can add that if people need I guess latter)
+ignoreNAME = {}
+
+-- Put in "EXACT" names in here. This code will not work with BBcode formatting (I can add that if people need I guess latter)
+ignoreDESC = {}
+
+-- Ignore by GUID
+ignoreGUID = {self.guid}
+
+-- Some Objects you may want to force to be included in apack up, even if outside the script zone.. just place the GUID here.
+forceGUID = {}
+
+--Runs whenever game is saved/autosaved
+function onSave()
+ --Begin State Managment of Saving Object Data.
+ --Create GUID list fomr Object List
+    if tableSize(memoryData) == 0 then saved_data = "" return saved_data
+    else
+        local data_to_save = { md=memoryData }
+        saved_data = JSON.encode(data_to_save)
+        --saved_data = "" --Remove -- at start + save to clear save data
+       return saved_data end
+
+end
+
+function onload(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        --Set up information off of loaded_data
+        memoryData = loaded_data.md
+    else
+        --Set up information for if there is no saved saved data
+        memoryData = {}
+    end
+
+    makeButtons()
+    --if additive == 'true' then makeButtons(additive) end
+end
+
+function createSaveData(obj)
+    local objData = {position = tableCullNumericIndexes(obj.getPosition()),
+                     rotation = tableCullNumericIndexes(obj.getRotation()),
+                     guid = obj.getGUID(),
+                     lock = obj.getLock(),
+                     interactable = tostring(obj.interactable),
+                     tooltip = tostring(obj.tooltip)}
+
+    memoryData[objData.guid] = objData
+end
+
+function placeStuff()
+    local prams = {}
+    for key, entry in pairs(memoryData) do
+        prams.guid = key
+        prams.position = {entry.position.x, entry.position.y, entry.position.z}
+        prams.rotation = {entry.rotation.x, entry.rotation.y, entry.rotation.z}
+        local item = self.takeObject(prams)
+
+        if entry.lock == true then
+        item.setPositionSmooth({entry.position.x, entry.position.y, entry.position.z}, false, true)
+        item.setRotationSmooth({entry.rotation.x, entry.rotation.y, entry.rotation.z}, false, true)
+        item.setLock(entry.lock) end
+
+        if entry.tooltip == 'false' then item.tooltip = false end
+        if entry.interactable == 'false' then item.interactable = false end
+
+    end
+    if additive == true then memoryData = {} end
+end
+
+
+function pickupStuff()
+
+    if additive == true then
+         -- Grab FORCED objects
+        for _, obj in ipairs(forceGUID) do
+            createSaveData(getObjectFromGUID(obj))
+            self.putObject(getObjectFromGUID(obj)) end
+         -- Grab All Objects in Zone
+        for _, obj in ipairs(getObjectFromGUID(packupZone).getObjects()) do
+            local add = true
+            for _, list in ipairs(ignoreTAG) do if obj.tag == list then add = false end end
+            for _, list in ipairs(ignoreNAME) do if obj.getName() == list then add = false end end
+            for _, list in ipairs(ignoreDESC) do if obj.getDescription() == list then add = false end end
+            for _, list in ipairs(ignoreGUID) do if obj.getGUID() == list then add = false end end
+            if add == true then
+                createSaveData(obj)
+                self.putObject(obj)
+            end
+            add = true
+        end
+    end
+
+    if additive == false then
+        for key, entry in pairs(memoryData) do
+            self.putObject(getObjectFromGUID(key))
+        end
+    end
+
+end
+
+function tableSize(t)
+    local count = 0
+    for key,value in pairs(t) do count = count + 1 end
+    return count
+end
+
+function tableCullNumericIndexes(t)
+    for i in pairs(t) do
+        if type(i) == "number" then
+            table.remove(t, i)
+            return tableCullNumericIndexes(t)
+        end
+    end
+    return t
+end
+
+function makeButtons(set)
+    local buttons = {}
+
+ -- DEFAULT START BUTTONS
+    if set == nil then
+        button_Place = {
+                click_function = 'placeStuff',
+                function_owner = self,
+                label = 'Place',
+                position = {0, 0.5, -2},
+                rotation = {0, 180, 0},
+                width = 900,
+                height = 350,
+                font_size = 250,
+                color={0,0,0},
+                font_color={1,1,1}}
+        table.insert(buttons, button_Place)
+
+        button_PickUp = {
+            click_function = 'pickupStuff',
+            function_owner = self,
+            label = 'Pack Up',
+            position = {-2, 0.5, 0},
+            rotation = {0, -90, 0},
+            width = 1100,
+            height = 350,
+            font_size = 250,
+            color={0,0,0},
+            font_color={1,1,1}}
+        table.insert(buttons, button_PickUp) end
+ -- Create Buttons
+    for _, button in ipairs(buttons) do
+        self.createButton(button)
+    end
+end

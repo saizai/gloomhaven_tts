@@ -1,0 +1,109 @@
+toggleSymbol = "\u{2717}"
+hideButtonBack = true
+
+thick = 0.06
+
+function initCustomButtons()
+	setupButton('Ancient', "toggleA", -2.41, -0.77)
+	setupButton('Drake', "toggleA", -2.41, -0.55)
+	setupButton('DonationFull', "toggleA", -2.41, -0.21)
+	setupButton('Donation1', "toggleA", -2.19, -0.02)
+	setupButton('Donation2', "toggleA", -1.8, -0.02)
+	setupButton('Donation3', "toggleA", -1.41, -0.02)
+	setupButton('Donation4', "toggleA", -1.02, -0.02)
+	setupButton('Donation5', "toggleA", -0.63, -0.02)
+	setupButton('Donation6', "toggleA", -0.245, -0.02)
+	setupButton('Donation7', "toggleA", 0.14, -0.02)
+	setupButton('Donation8', "toggleA", 0.53, -0.02)
+	setupButton('Donation9', "toggleA", 0.92, -0.02)
+	setupButton('Donation10', "toggleA", 1.31, -0.02)
+	setupButton('Rep10', "toggleA", -2.41, 0.38)
+	setupButton('Rep20', "toggleA", -2.41, 0.59)
+	setupButton('RepN10', "toggleA", -2.41, 0.80)
+	setupButton('RepN20', "toggleA", -2.41, 1)
+	setupButton('Retire', "toggleA", -2.41, 1.2)
+end
+
+function initButtonsTable()
+	buttons = {}
+	inputs = {}
+	buttons.count = 0
+
+	buttons.toggleA = {
+		width = 300, height = 300, font = 450
+	}
+end
+
+function forceSave()
+	local data_to_save = {buttons = {}}
+	for i, v in pairs(buttons) do
+		if i ~= "count" then
+			if v.label == "\u{2717}" then
+				data_to_save.buttons[i] = "u{2717}"
+			else
+				data_to_save.buttons[i] = v.label
+			end
+		end
+	end
+	saved_data = JSON.encode_pretty(data_to_save)
+	-- saved_data = ""
+	self.script_state = saved_data
+	return saved_data
+end
+
+function onload(saved_data)
+	initButtonsTable()
+	loaded_data = JSON.decode(saved_data)
+	if loaded_data ~= nil then
+		for i,v in pairs(loaded_data.buttons) do
+			buttons[i] = {label = v}
+		end
+	end
+	initCustomButtons()
+end
+
+
+function dud()
+end
+
+function clickedToggle(index)
+  if buttons[index].label == "" then
+    buttons[index].label = "\u{2717}"
+  else
+    buttons[index].label = ""
+  end
+  self.editButton(buttons[index])
+	forceSave()
+end
+
+function setupButton(name, type, x, z)
+  local button_parameters = {}
+  button_parameters.index = buttons.count
+	button_parameters.height = buttons[type].height
+	button_parameters.width = buttons[type].width
+	button_parameters.font_size = buttons[type].font
+	self.setVar("toggleClick_" .. name, function () clickedToggle(name) end)
+	button_parameters.click_function = "toggleClick_" .. name
+	button_parameters.label = ""
+
+	if hideButtonBack then
+		button_parameters.color = {1, 1, 1, 0}
+		button_parameters.font_color = {0, 0, 0, 100}
+	end
+	button_parameters.scale = {0.2, 0.2, 0.2}
+  button_parameters.position = {x, thick, z}
+	button_parameters.function_owner = self
+
+	if buttons[name] ~= nil then
+		if buttons[name].label == "u{2717}" then
+			button_parameters.label = "\u{2717}"
+		else
+			button_parameters.label = buttons[name].label
+		end
+
+	end
+
+  self.createButton(button_parameters)
+  buttons[name] = button_parameters
+  buttons.count = buttons.count + 1
+end

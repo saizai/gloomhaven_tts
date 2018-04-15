@@ -1,0 +1,31 @@
+function onload()
+    makeButtons()
+end
+
+function openBook()
+    self.setState(2)
+end
+
+function makeButtons(set)
+    local buttons = {}
+
+ -- DEFAULT START BUTTONS
+    if set == nil then
+        button_open = {
+                click_function = 'openBook',
+                function_owner = self,
+                --label = string.char(129154), 25B6
+                label = 'Open',
+                position = {0, 0.2, 5.4},
+                rotation = {0, 0, 0},
+                width = 650,
+                height = 250,
+                font_size = 200}
+        table.insert(buttons, button_open)
+    end
+
+ -- Create Buttons
+    for _, button in ipairs(buttons) do
+        self.createButton(button)
+    end
+end

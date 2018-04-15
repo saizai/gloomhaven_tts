@@ -1,0 +1,14 @@
+function onCollisionEnter(info)
+    if info['collision_object'].getName() == 'Player Mat'  then
+      party = getObjectFromGUID(Global.getTable("boards").party)
+      if party.call("getPlayer") == 4 then
+        party.call("add", {"playerfourlvl", -1})
+        getObjectFromGUID(Global.getTable("boards").playAreaF).setState(2)
+      elseif party.call("getPlayer") == 3 then
+          party.call("add", {"playerthreelvl", -1})
+          getObjectFromGUID(Global.getTable("boards").playAreaT).setState(1)
+      end
+      info['collision_object'].destruct()
+      self.destruct()
+    end
+end

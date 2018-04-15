@@ -1,0 +1,487 @@
+sky_guid = "8430cf"
+
+
+-- NOTICE! This code belongs to "Tumba". You may freely use it and modify it in your non-profit projects. Just mention "Tumba's Best Button" and where to get them from in your project.
+-- Profit seeking projects may also use "Tumba's Best Button", with askin my permission first. There will probably be no fee or other requirements than mentioning "Tumba's Best Button",
+-- unless project owner is , or is traceable to, one of the following: Microsoft.
+objectType = "Tumba's Best Button"
+objectVersion = 1.7
+
+-- Tumba's Best Button:
+-- TBB is an attempt to make a button that has all the stuff a button niids already coded. Just add your code and you are ready to go.
+-- TBB continues my philosphy of binding objects. Some might find it strange, but give it a chance. You just might like it.
+-- This code can be attached to any assetbundle, the only code requirements for the assetbundle is two trigger effects:
+--   TriggerEffect 1: Button is pressed
+--   TriggerEffect 2: Button is bound
+-- If you use this code in your own assetbudle. See Notice above.
+
+-- Memory:
+-- Set reset memory to false, if you want the button to remember bound objects in savegames.
+-- Remeber to set reset to true if you change the boundObjects table. Otherwise objects that do not fulfill criterias might still be remebered
+-- If you set reset =true after it being false, YOU SHOULD SAVE THE GAME AT LEAST ONCE to really make sure the memory is reset. Otherwise the old saved memories may be returned.
+-- Using memory can be tricky. Make sure you fully understand it before setting this value to false.
+resetMemory = true
+
+-- buttonMemory:
+-- Put here variables you want to store in save games. Remeber to set resetMemory to false to enambe resetMemory
+-- Do not remove ["BoundObjectIds"] if you intend to use bound objects.
+
+-- Sample buttonMemory
+-- buttonMemory = {
+--    ["BoundObjectIds"] = { nil, nil }
+-- }
+buttonMemory = {
+  BoundObjectIds = { sky_guid }
+}
+
+-- Binding in general:
+-- Binding is the act of connecting one or more objects to the button
+-- buttonMemory.BoundObjectIds are used to store the id's of boundObjects. boundObjects will be populated in onLoad of the button with objects based on these ids
+-- There must be as many values of BoundObjectIds in buttonMemory values as there are bound object values in boundObjects.
+-- buttonMemory.BoundObjectIds values should be either nil if unknown, or a valid object guid if presetting a bound object.
+
+-- PreBinding:
+-- Used to determine object bindings automatically
+-- Just add valid object ids to buttonMemory.BoundObjectIds and make sure boundObjects has enough "containers" (rows) for them
+-- You can mix prebound and bound object ids. Just set the bindable ogbject ids to nil.
+-- If you only use prebound and do not want to automatically bind anything, you should set allowBinding = false.
+-- If you mix prebound and bindable and want some to be bindamble and others fixed. You shoud set the fixed bound object rows to Locked.
+-- Prebound objects may be bindable if needed. Just leave boundObject Locked to false and allowBinding to true.
+-- Prebinding does not require anything from the bound object other than id. Anything can be PreBound. Although isLoading variable is recognized also in a prebound object.
+
+-- Binding:
+-- Unlike PreBound objects,  the bindable object itself MUST have the objectType and objectVersion variables to let  the button recognize it as bindable.
+-- It is also recomendable (optional) to have a isLoading=true varaible and onload functon setting isLoading=false when the object is ready
+-- The point of isLoading is that if the object needs to initialize onLoad and does it with code that that takes some time to finish.
+-- The button will only start to use the object when it is ready (isLoading=false).
+-- Sample minimum lua for a bound object:
+-- objectType = "MyObject"
+-- objectVersion = 0
+-- isLoading = true --This is optional
+-- function onload()
+--     isLoading = false --This is optional
+-- end
+--
+-- Binding criterias
+-- The button will bind an object to the fist boundObjects criteria that matches
+-- It will overwrite an existing bound object if the criteria matches even if there is empty rows matching later in the boundObjects table.
+-- If you need to bind several similar objects, use Version number to distinguish between them
+-- Name = "" : only used for descriptive purposes. You may enter anything here.
+-- TagCriteria = "" : Tag of object to bind to; "Dice", "Tile", etc , "" = No tag check
+-- bindsToObjectType = "" objectType variable value of object to bind to; MyObject, MyCard, etc , "" = No tag check
+-- bindsToObjectMinVersion = 0 or other numeric value  -- the minimum objectVersion variable to bind to. Will bind to
+
+-- Mandatory = true/false. If set to true, the button will require this object to be bound before working.
+-- IsLocked = true/false. If set to true, the row cannot be bound to in onCollision. Any preset id's in buttonMemory will still bind to it in onLoad.
+-- MissingError = "My Message". If Mandatory is set to true, and there is no object bound on this row (Object==nil), this message will be displayed .
+-- BindMessage = Message that displays when a object is bound to the button. Overrides default message. ["BindMessage"] = nil shows default message. To disable bind message see: showBindMessage below
+-- Object = nil or object reference -- the bound object. Once binding is done the bound object is referred to here.
+-- Sample boundObjects:
+-- boundObjects = {
+--         {["Name"] = "", ["TagCriteria"] = "Tile", ["ObjectTypeCriteria"] = "MyObject", ["MinVersionCriteria"] = 0, ["Mandatory"] = false , ["IsLocked"] = false , ["MissingError"] = "A Object needs to be bound.",["BindMessage"] = nil, ["Object"] = nil},
+--        {["Name"] = "", ["TagCriteria"] = "Card", ["ObjectTypeCriteria"] = "MyCard", ["MinVersionCriteria"] = 0, ["Mandatory"] = false , ["IsLocked"] = false, ["MissingError"] = "A Card needs to be bound.",["BindMessage"] = nil,["Object"] = nil}
+-- }
+-- If you do not need to bind anything just clear the bound objects AND BoundObjectIds = {}, Sample: buttonMemory = {BoundObjectIds = {}} boundObjects = {}
+boundObjects = {
+ {["Name"] = "", ["TagCriteria"] = "", ["ObjectTypeCriteria"] = "", ["MinVersionCriteria"] = 0, ["Mandatory"] = true, ["IsLocked"] = true, ["MissingError"] = "Sky controller button couldn't find sky GUID.", ["BindMessage"] = nil, ["Object"] = nil}
+}
+ignoreBindingCriteria = true --Set to false if you want to ignore all the binding criterias completely. Any object is bound to. However, there will be only one bound object at a time (only boundObjects[1], there will be no boundObjects[2] or greater)
+allowBinding = false  -- Set to false if you want to set specific Ids in the buttonMemory. Button will bind to those automatically but will ignore any new collisions. Same as having isLocked set to each boundObject, but more efficient.
+allowChangeDescription = true -- Set to false if you dont want button to update it's Description when binding to new object
+exactVersion = false -- Set to true if you want only specific version to be accepted by MinVersionCriteria (objectVersion == MinVersionCriteria). False will accept anything with the MinVersionCriteria or above (objectVersion >= MinVersionCriteria).
+showCollisionInfo = false --Shows what the button collided with. Mostly for debugging/dev purposes.
+showBindMessage = true --Shows a message when binding. Either the default or a custom message defined in the boundObject value "BindMessage".
+
+
+-- Button general settings
+buttonSize = 1100  -- Button base size increase/decrease to make the button area bigger/smaller
+scaleModifier = 0 -- object scale modifier. Do not touch.
+
+--Waiting
+waitForRestMax = 1000 -- Maximum time to wait for button to be resting afte it is dropped.
+isLoading = true -- Loading detector. Do not touch.
+loadDelay = 50 -- Loading delay. Controls the amount of time the button is considered to be in Loading and unresponsive.
+Wait = false -- State of button during Action code execute. Button woo lall button postActions after waiting for waitMax -time or Wait is set to false. Do not touch.
+waitMax = 1000 -- Maximun time amount button will wait for Action code execute before calling PostAction. Can be adjusted in Action code. Ex waitMax=100. Calling stopWait() or setting Wait=false will also stop the wait
+ActionTimer = os.clock() --Used to check code execution time. Timer will reset automatically when Action is called. Use  ShowElapsedTime("MyTag") to see elapsed time.
+
+-- DoubleClick
+-- Using doubleclick makes single click slower as there is the doubleClickDelay to wait to determine a second click
+-- It's possible to have both doubleclick and single click at the same time. Just use the isDoubleClick variable in your actioncode to determine wich one it was.
+enableDoubleClick = false -- Enables double click
+doubleClickDelay = 0.3 -- Time to wait for second click
+isDoubleClick = false --Use this to determine if the click was a doubleclick in your action code
+clicks=0 -- Used to determine if double-clicking. Do not touch.
+
+--Whodunit?
+clickingPlayerName = nil -- name of the clicking player
+clickingPlayerColor = nil-- color of the clicking player
+clickingTime = nil -- time of click
+
+-- Collision
+-- Temporare store of collsion information. Do not touch these. No use in custom coding.
+collisionInfo = nil
+collisionIndex = 0
+
+-------------------------------------------------------------------------------------------------------
+-- Custom Global Variables Here...
+
+
+
+-------------------------------------------------------------------------------------------------------
+-- Code Here...
+-- TheActions this button should do
+-- It's a good idea to always end your Actions code with a stopWait(). This prompts the button to immediately proceed to postActions.
+-- Othewise the button will wait for a waitMax value amount of time before proceeding.
+-- if calling some other object with callback, you can remove stopWait from Actions and use the callback stopWait() to stop the wait.
+
+function Actions()
+  local sky = boundObjects[1].Object
+  local sky_state = sky.AssetBundle.getLoopingEffectIndex()
+  -- local state_count = 0
+  -- print("Looping effects:"..sky.getLoopingEffects())
+  -- print("sky_state"..sky_state)
+  -- print("Sky effects: ")
+  -- for index, name in ipairs(sky.AssetBundle.getLoopingEffects()) do
+  --   state_count = state_count + 1
+  --   print("index")
+  --   print(index)
+  --   print("name")
+  --   print(name)
+  -- end
+  -- print("End")
+  
+  if sky_state == 0 then
+    sky.AssetBundle.playLoopingEffect(1)
+    print("Shooting stars turned off")
+  else
+    sky.AssetBundle.playLoopingEffect(0)
+    print("Shooting stars turned on")
+  end
+  stopWait()
+end
+
+----------------------------------------
+-- PostActions
+----------------------------------------
+-- Triggeras after the Actions are done and "Wait" is stopped
+-- Wait time is either waitMax value or immediately when stopWait() is called. It's good idea to aleays end your Actions code with a stopWait().
+function postActions()
+end
+
+----------------------------------------
+-- PostBinding
+----------------------------------------
+-- Triggers after the a Binding is done
+-- boundObjectIndex = the row index in boundObjects the object is bound to
+-- boundObject = the bound object. Same as boundObjects[boundObjectIndex].Object
+function postBinding(boundObjectIndex,boundObject)
+end
+
+----------------------------------------
+-- PostOnLoad
+----------------------------------------
+-- Triggers on button onLoad
+function postOnLoad()
+end
+
+----------------------------------------
+-- Custom supportFunctions
+----------------------------------------
+-- If you need to include your own functions. This would be the place.
+function playObjectLoopingEffect(targetBoundObject)
+  print(leffectCounter)
+  if targetBoundObject.call("playLoopingEffectByIndex",{leffectCounter,true})==0 then
+    leffectCounter=targetBoundObject.call("playLoopingEffectByIndex",{1,true})
+  end
+  leffectCounter=leffectCounter+1
+end
+
+function playObjectTriggerEffect(targetBoundObject)
+    print(teffectCounter)
+    if targetBoundObject.call("playTriggerEffectByIndex",{teffectCounter,true})==0 then
+        teffectCounter=targetBoundObject.call("playTriggerEffectByIndex",{1,true})
+    end
+    teffectCounter=teffectCounter+1
+end
+---------------------------------------------------------------------------------------------------------
+-- Do not change below this line!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- Here there be dragons!!!!!!!!!!!!
+----------------------------------------------------------------------------------------------------------
+function onload(saved_button)
+    if resetMemory then
+         saved_button = ""
+    end
+    if saved_button ~= nil and saved_button ~= "" then
+      buttonMemory = JSON.decode(saved_button)
+    end
+
+    pReBindObjects()
+    scaleModifier = self.getScale()
+    size = buttonSize * scaleModifier['x']
+    self.createButton({
+        label="", click_function="buttonClick", function_owner=self,
+        position={0,0.5,0}, height=size, width=size, color={0,0,0,0}
+    })
+    postOnLoad()
+    waitForAllLoaded()
+end
+
+function onSave()
+    if resetMemory then
+         saved_button = ""
+     else
+         saved_button = JSON.encode(buttonMemory)
+    end
+   return saved_button
+end
+
+function doBindAction()
+        playTriggerEffect(1)
+        boundObjects[collisionIndex].Object = collisionInfo.collision_object
+        buttonMemory.BoundObjectIds[collisionIndex] = collisionInfo.collision_object.getGUID()
+        local ci = collisionIndex
+        local bo = boundObjects[collisionIndex].Object
+
+        if allowChangeDescription then
+            local description = "Bound to:\n"
+            local name = ""
+            for index, boundObject in ipairs(boundObjects) do
+                if boundObject.Object ~= nil then
+                    name =  boundObject.Object.getName() or ""
+                    if name == "" then
+                            name =  boundObject.Object.getGUID()
+                    end
+                    description = description .. name .. " "
+                end
+            end
+            self.setDescription(description)
+        end
+
+        if showBindMessage then
+            if boundObjects[collisionIndex].BindMessage  ~= nil then
+                broadcastToAll(boundObjects[collisionIndex].BindMessage, {1,1,1,1})
+            else
+                local name =  bo.getGUID()
+                local tag = ""
+                if bo.getName() ~= nil and  bo.getName() ~= "" then  name = bo.getName() end
+                if bo.tag ~= nil then tag = bo.tag end
+                broadcastToAll(RGBToBracketedHex(stringColorToRGB("White")).."Button is now bound to: " ..
+                RGBToBracketedHex(stringColorToRGB("Yellow")).. tostring(tag) ..": " .. tostring(name or "Table") .. RGBToBracketedHex(stringColorToRGB("White")).."."  , {1,1,1,1})
+
+            end
+        end
+
+        collisionInfo = nil
+        collisionIndex = 0
+        postBinding(ci, bo)
+end
+
+function buttonClick(objButton, playerColor)
+    clickingPlayerName  = Player[playerColor].steam_name
+    clickingPlayerColor = playerColor
+    clickingTime = os.date("%H:%M:%S")
+    isDoubleClick= false
+    clicks = clicks + 1
+    if clicks == 1 then
+        Timer.create({
+            identifier="doubleClickWait",
+            function_name="doPreAction",
+            delay=doubleClickDelay
+        })
+    end
+    if clicks == 2  or not enableDoubleClick then
+        Timer.destroy("doubleClickWait")
+        doPreAction()
+    end
+end
+
+function doPreAction()
+    if isLoading then
+        broadcastToAll("Button is still Loading...", {1,1,1,1})
+    else
+        -- Check for errors
+        local noErrors = true
+        for index, boundObject in ipairs(boundObjects) do
+            --Mandatory bound object missing
+            if boundObject.Mandatory and boundObject.Object == nil then
+                local nilMessage = "Missing binding at boundObject index: " .. index
+                broadcastToAll(RGBToBracketedHex(stringColorToRGB("Red")) .. boundObject.MissingError or nilMessage, {1,1,1,1})
+                noErrors = false
+            end
+            -- Bound object is still loading
+            if boundObject.Object ~= nil then
+                if boundObject.Object.getVar("isLoading") or false then
+                    broadcastToAll(RGBToBracketedHex(stringColorToRGB("Red")) .. "Bound Object " .. (boundObject.Object.getName() or "") .. " is still Loading...", {1,1,1,1})
+                    noErrors = false
+                end
+            end
+        end
+
+        if noErrors then
+            if clicks == 2 then
+                isDoubleClick= true
+            end
+            clicks=0
+            ActionTimer = os.clock()
+            playTriggerEffect(0)
+            waitForResult()
+            Actions()
+        end
+    end
+end
+
+function playTriggerEffect(indexEffext)
+    local triggerEffects = self.AssetBundle.getTriggerEffects()
+    if (#triggerEffects>=indexEffext) then
+        self.AssetBundle.playTriggerEffect(indexEffext)
+    end
+end
+
+function onCollisionEnter(collision_info)
+    if showCollisionInfo then
+        ShowCollisionInfo(collision_info)
+    end
+
+    if not allowBinding then return end
+
+    if ignoreBindingCriteria then
+        setBoundObject(boundObjects[1],collision_info, 1)
+        return
+    end
+
+    if  collision_info.collision_object.getVar("objectType") ~= nil
+    and collision_info.collision_object.getVar("objectVersion") ~= nil
+    then
+        --binding using objectType and objectVersion and Tag
+        for index, boundObject in ipairs(boundObjects) do
+            if  (boundObject.ObjectTypeCriteria == collision_info.collision_object.getVar("objectType") or boundObject.ObjectTypeCriteria == "")
+            and (boundObject.TagCriteria == collision_info.collision_object.tag or boundObject.TagCriteria == "")
+            and not boundObject.IsLocked
+            then
+                if (boundObject.MinVersionCriteria == collision_info.collision_object.getVar("objectVersion") and exactVersion)
+                or (boundObject.MinVersionCriteria <= collision_info.collision_object.getVar("objectVersion") and not exactVersion)
+                then
+                    if setBoundObject(boundObject,collision_info, index) then break end
+                end
+            end
+        end
+    else
+    --binding using just Tag
+        for index, boundObject in ipairs(boundObjects) do
+            if  boundObject.ObjectTypeCriteria == nil
+            and boundObject.MinVersionCriteria == nil
+            and boundObject.TagCriteria ~= nil
+            and boundObject.TagCriteria == collision_info.collision_object.tag
+            and not boundObject.IsLocked
+            then
+                if setBoundObject(boundObject,collision_info, index) then break end
+            end
+        end
+    end
+end
+
+
+function setBoundObject(boundObject, collision_info, index)
+    if (boundObject.Object ~= nil) then
+        if (boundObject.Object.getGUID() == collision_info.collision_object.getGUID()) then
+            return false
+        end
+    end
+    if (boundObject.Object == nil)
+      or (boundObject.Object.getGUID() ~= collision_info.collision_object.getGUID()) then
+      collisionInfo = collision_info
+      collisionIndex = index
+      return true
+    end
+    return false
+end
+
+function onCollisionExit(collision_info)
+end
+
+function onDropped(player_color)
+    waitForRest()
+end
+
+function waitForRest()
+    function coroutine_waitForRest()
+        local counter = 0
+        repeat
+            counter=counter + 1
+            coroutine.yield(0)
+            if self == nil then return 1 end
+        until self.resting == true or counter == waitForRestMax
+
+        if collisionIndex > 0 and allowBinding then doBindAction() end
+        return 1
+    end
+    if self.resting==false then
+        startLuaCoroutine(self, "coroutine_waitForRest")
+    end
+end
+
+function waitForAllLoaded()
+    function coroutine_waitForAllLoaded()
+        for i=0, loadDelay, 1 do
+            coroutine.yield(0)
+            if self == nil then return 1 end
+        end
+        isLoading=false
+        return 1
+    end
+    if isLoading then
+        startLuaCoroutine(self, "coroutine_waitForAllLoaded")
+    end
+end
+
+function waitForResult()
+    function coroutine_waitForResult()
+
+        local counter = 0
+        Wait = true
+        repeat
+            counter=counter + 1
+            if counter == waitMax then stopWait() end
+            coroutine.yield(0)
+            if self == nil then return 1 end
+        until not Wait
+        postActions()
+        return 1
+    end
+    if not Wait then
+        startLuaCoroutine(self, "coroutine_waitForResult")
+    end
+end
+
+function stopWait()
+    Wait = false
+end
+
+function RGBToBracketedHex(rgb)
+    if rgb ~= nil then
+        return "[" .. string.format("%02x%02x%02x", rgb.r*255,rgb.g*255,rgb.b*255) .. "]"
+    else
+        return ""
+    end
+end
+
+function ShowElapsedTime(myTag)
+    print(string.format(myTag .. ": Elapsed time: %.2f\n", os.clock() - ActionTimer))
+end
+
+function pReBindObjects()
+    for index, id in ipairs(buttonMemory.BoundObjectIds) do
+      if id ~= nil then
+        boundObjects[index]["Object"] = getObjectFromGUID(id)
+      end
+    end
+end
+
+function ShowCollisionInfo(collision_info)
+    print("CollisionInfo:" ..
+        " objectType = " .. tostring(collision_info.collision_object.getVar("objectType"))..
+        ", objectVersion = " .. tostring(collision_info.collision_object.getVar("objectVersion"))..
+        ", tag = " .. tostring(collision_info.collision_object.tag)
+    )
+end
