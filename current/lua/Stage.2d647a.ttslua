@@ -33,7 +33,7 @@ function benDare()
         if g.getName() == "_OW_vBase" then v = v..g.guid end
         if g.getVar("tT_iM") == "IgNor_mE" then v = v..g.guid end
         n = n+1  g = aoj[n]
-    end  Global.setVar("tT_iM", v)
+    end  Global.setVar("i_M", v)
 end
 
 function imCopy()
