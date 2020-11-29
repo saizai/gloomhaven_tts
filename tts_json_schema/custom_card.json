@@ -1,0 +1,15 @@
+"Name": "Card",
+"CardID": 5923,
+"SidewaysCard": false,
+"CustomDeck": {
+  "59": {
+    "FaceURL": "http://cloud-3.steamusercontent.com/ugc/878629355912353338/C99C19C103E99FFBDD87AB5FAEACF1018E4EF690/",
+    "BackURL": "http://cloud-3.steamusercontent.com/ugc/878629355912355240/40DA5394E65097637C6E60BB91279C4E8CEE96C1/",
+    "NumWidth": 10,
+    "NumHeight": 7,
+    "BackIsHidden": true,
+    "UniqueBack": false
+  }
+}
+
+"dependencies": {"CardID": ["CustomDeck"]}

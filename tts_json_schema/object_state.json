@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-08/schema#",
+  "$id": "ObjectState",
+  "type": "object",
+  "title": "ObjectState",
+  "additionalProperties": false,
+  "properties": {
+    "Name":  {
+      "type": "string",
+      "examples": [
+        "backgammon_board", "backgammon_piece_brown", "backgammon_piece_white",
+        "Bag", "BlockRectangle", "BlockSquare", "BlockTriangle", "Card Facade",
+        "Card", "CardBot_Board", "CheckerFacade", "CheckerStack",
+        "Checker_black", "Checker_Board", "Checker_red", "Checker_white",
+        "Chess_Bishop", "Chess_Board", "Chess_King", "Chess_Knight",
+        "Chess_Pawn", "Chess_Queen", "Chess_Rook", "Chinese_Checkers_Board",
+        "Chinese_Checkers_Piece", "ChipFacade", "ChipStack", "Chip_10",
+        "Chip_100", "Chip_1000", "Chip_50", "Chip_500", "Cup", "Custom_Board",
+        "Custom_Model", "Deck", "DeckCustom", "Deck_CardBot_Head",
+        "Deck_CardBot_Main", "Die_10", "Die_12", "Die_20", "Die_4", "Die_6",
+        "Die_6_Rounded", "Die_8", "Die_Piecepack", "Digital_Clock", "Domino",
+        "Figurine_Card_Bot", "Figurine_Custom", "Figurine_Kimi_Kat",
+        "Figurine_Knil", "Figurine_Mara", "Figurine_Sir_Loin", "Figurine_Zeke",
+        "Figurine_Zomblor", "FogOfWarTrigger", "Go_Board", "go_game_bowl_black",
+        "go_game_bowl_white", "go_game_piece_black", "go_game_piece_white",
+        "LineObject", "Mahjong_Coin", "Mahjong_Stick", "Mahjong_Tile",
+        "MarqueeTrigger", "Metal Ball", "Pachisi_board", "PiecePack_Arms",
+        "PiecePack_Crowns", "PiecePack_Moons", "PiecePack_Suns", "PlayerPawn",
+        "Quarter", "reversi_board", "reversi_chip", "rpg_BEAR", "rpg_CHIMERA",
+        "rpg_CYCLOP", "rpg_DRAGONIDE", "rpg_EVIL_WATCHER", "rpg_GHOUL",
+        "rpg_GIANT_VIPER", "rpg_GOBLIN", "rpg_GOLEM", "rpg_GRIFFON",
+        "rpg_HYDRA", "rpg_KOBOLD", "rpg_LIZARD_WARRIOR", "rpg_MANTICORA",
+        "rpg_MUMMY", "rpg_OGRE", "rpg_ORC", "rpg_RAT", "rpg_SKELETON_KNIGHT",
+        "rpg_TREE_ENT", "rpg_TROLL", "rpg_VAMPIRE", "rpg_WEREWOLF", "rpg_WOLF",
+        "rpg_WYVERN", "SearchSpaceHolder", "SearchTriggerObject", "Sky_Field",
+        "Sky_Forest", "Sky_Museum", "Sky_Tunnel", "Table_Circular", "Table_Custom",
+        "Table_Glass", "Table_Hexagon", "Table_Octagon", "Table_Poker",
+        "Table_RPG", "Table_Square", "Tileset_Barrel", "Tileset_Chair",
+        "Tileset_Chest", "Tileset_Corner", "Tileset_Floor", "Tileset_Rock",
+        "Tileset_Table", "Tileset_Tree", "Tileset_Wall",
+        "Infinite_Bag"
+      ]
+    },
+    "Transform": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "posX": -41.6,
+        "posY": 4.37300444,
+        "posZ": 28.8000088,
+        "rotX": -2.26568346e-7,
+        "rotY": -0.00374562759,
+        "rotZ": -0.00000296075154,
+        "scaleX": 1,
+        "scaleY": 1,
+        "scaleZ": 1
+      },
+      "required": [
+        
+      ]
+    },
+    "Nickname": {
+      "type": "string",
+      "description": "Object name from user's perspective"
+    },
+    "Description": {
+      "type": "string",
+    },
+    "ColorDiffuse": {
+      "r": 0.19199422,
+      "g": 0.701,
+      "b": 0.1679942
+    },
+    "Locked": {
+      "type": "boolean",
+    },
+    "Grid": {
+      "type": "boolean",
+    },
+    "Snap": {
+      "type": "boolean",
+    },
+    "Autoraise": {
+      "type": "boolean",
+    },
+    "Sticky": {
+      "type": "boolean",
+    },
+    "Tooltip": {
+      "type": "boolean",
+    },
+    "GridProjection": {
+      "type": "boolean",
+    },
+    "Hands": {
+      "type": "boolean",
+    },
+    "MaterialIndex": -1,
+    "MeshIndex": -1,
+    "CustomImage": {
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/872996098193937624/89722B1535A5713C6E127A157B0B4CBAE13E44E7/",
+      "ImageSecondaryURL": "",
+      "WidthScale": 0,
+      "CustomToken": {
+        "Thickness": 0.495000452,
+        "MergeDistancePixels": 15,
+        "Stackable": false
+      }
+    },
+    "LuaScript": {
+      "type": "string",
+    },
+    "LuaScriptState": {
+      "type": "string",
+    },
+    "ContainedObjects": {
+      "type": "array",
+      "items": {"$ref": "ObjectState"}
+    },
+    "GUID": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{6}$"
+    },
+    "States": {
+      "type": "object",
+      "patternProperties": {
+          "^[0-9]+$": {"$ref": "ObjectState"}
+      }
+    }
+  },
+  "required": [
+    
+  ]
+}

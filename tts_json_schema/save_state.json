@@ -1,0 +1,161 @@
+{
+  "type": "object",
+  "title": "SaveState",
+  "description": "Holds a state of the game",
+  "additionalProperties": false,
+  "properties": {
+    "SaveName": {
+      "type": "string"
+    },
+    "GameMode": {
+      "type": "string"
+    },
+    "Gravity": {
+      "type": "float"
+    },
+    "Date": {
+      "description": "format: m/dd/yyyy h:mm:ss PM",
+      "type": "string"
+    },
+    "Table": {
+      "type": "string"
+    },
+    "TableURL": {
+      "description": "For custom large table",
+      "type": "string",
+      "format": "uri"
+    },
+    "Sky": {
+      "type": "string"
+    },
+    "SkyURL": {
+      "description": "For custom sky",
+      "type": "string",
+      "format": "uri"
+    },
+    "Note": {
+      "type": "string"
+    },
+    "Rules": {
+      "type": "string"
+    },
+    "LuaScript": {
+      "type": "string"
+    },
+    "LuaScriptState": {
+      "type": "string"
+    },
+    "PlayerTurn": {
+      "type": "string"
+    },
+    "Grid": {
+      "additionalItems": false,
+      "type": "GridState"
+    },
+    "DrawImage": {
+      "additionalProperties": false,
+      "contentEncoding": "base64",
+      "contentMediaType": "image/png",
+      "type": "string",
+      "description": "PNG converted to bytes",
+      "examples": [
+        "iVBORw0KGgoAAAANSUhEUgAAAWAAAADQCAYAAAA53LuNAAAFFElEQVR4Ae3QgQAAAADDoPlTH+SFUGHAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgy8DQx5DAABHyNK3wAAAABJRU5ErkJggg=="
+      ]
+    },
+    "ObjectStates": {
+      "additionalItems": false,
+      "type": "array",
+      "items": {
+        "$ref": "ObjectState"
+      },
+      "description": "Object on the table"
+    },
+    "Lighting": {
+      "$ref": "Lighting"
+    },
+    "Hands": {
+      "$ref": "Hands"
+    },
+    "Turns": {
+      "$ref": "Turns"
+    },
+    "VectorLines": {
+      "type": "array"
+    },
+    "SnapPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Position": {
+            "type": "Position"
+          },
+          "Rotation": {
+            "type": "Rotation"
+          }
+        }
+      }
+    },
+    "DecalPallet": {
+      "type": "array",
+      "items": {
+        "$ref": "decal"
+      }
+    },
+    "TabStates": {
+      "type": "array",
+      "items": {
+        "$ref": "TabState"
+      }
+    },
+    "CameraStates": {
+      "type": "array",
+      "items": {
+        "$ref": "CameraState"
+      },
+      "minItems": 10,
+      "maxItems": 10,
+      "default": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "VersionNumber": {
+      "type": "string",
+      "examples": [
+        "v10.4"
+      ]
+    }
+  },
+  "required": [
+    "SaveName",
+    "GameMode",
+    "Date",
+    "Table",
+    "Sky",
+    "Note",
+    "Rules",
+    "PlayerTurn",
+    "Grid",
+    "DrawImage",
+    "ObjectStates",
+    "Lighting",
+    "Hands",
+    "Turns",
+    "VectorLines",
+    "SnapPoints",
+    "DecalPallet",
+    "TabStates",
+    "CameraStates",
+    "VersionNumber"
+  ]
+}

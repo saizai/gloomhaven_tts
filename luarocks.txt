@@ -1,0 +1,55 @@
+# in macports and not luarocks
+
+# lua-lua-gd # Error: Failed to checksum lua-lua-gd: lua-gd-2.0.33r2.tar.gz does not exist in /opt/local/var/macports/distfiles/lua-lua-gd
+# lua-glut # Error: Failed to build lua-glut: command execution failed
+lua-luahpdf
+luajit
+luash
+lutok
+lua-MessagePack
+# prosody # depends on lua-luaexpat lua-luasec
+
+
+# in luarocks and also in macports
+
+cgilua # lua-cgilua
+copas # lua-copas
+coxpcall # lua-coxpcall
+lgi # lua-lgi; https://github.com/pavouk/lgi/issues/197
+lpeg # lua-lpeg
+# luabitop # lua-luabitop; bit.c:83:2: error: "Unknown number type, check LUA_NUMBER_* in luaconf.h"
+luaexpat # lua-luaexpat
+luafilesystem # lua-luafilesystem
+luajson # lua-luajson; https://github.com/harningt/luajson/issues/43
+luasec # lua-luasec
+luazip # lua-luazip
+lunit # lua-lunit
+md5 # lua-md5
+# mpack # lua-mpack; Error: Error fetching file: Failed downloading https://github.com/libmpack/libmpack-lua/releases/download/1.0.7/libmpack-lua-1.0.7.tar.gz - libmpack-lua-1.0.7.tar.gz
+numlua # lua-numlua; https://github.com/carvalho/numlua/issues/6
+rings # lua-rings
+wsapi # lua-wsapi
+
+
+# in luarocks and not macports
+
+copas-async
+copas-ev
+copastimer
+f-strings
+# fi-luajit # https://github.com/nyfair/fi-luajit/issues/1
+lgdbm
+lpeg_patterns
+lpeglabel
+lua-codegen-lpeg
+lua-messagepack
+luafilesystem-ffi
+# luajit-gumbo # https://github.com/pguillory/luajit-gumbo/issues/1
+# lulpeg # https://github.com/pygy/LuLPeg/issues/16
+lunitx
+percent-f-strings
+stringdistance
+tango-copas
+wsapi-fcgi
+wsapi-openresty
+wsapi-xavante

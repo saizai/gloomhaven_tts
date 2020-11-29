@@ -159,6 +159,8 @@ Assets:
 
 # Content
 
+* Scenario board layout zone labels (e.g. title, goal, flavor text, rules, content, maps, etc)
+* Tutorial for new players to run through setup & main scenario 1
 * Cloudify assets from pigneedle, mapmaking, etc, and re-import
 * Componentize FAQ, put bits where they belong, remove from FAQ object
 * Fix map tiles that are reversed
@@ -184,6 +186,7 @@ Assets:
 
 ## Basic
 
+* Horizontal & vertical grid-setter tokens - just set grid to that state when put on board, put the right state in the scenario bag
 * Slider for board darkness
 * Button to replace spawn point & type-per-level tokens with monster of correct type
 * Element board: end-of-round button to increment counter and decrement elements

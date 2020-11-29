@@ -1,0 +1,12 @@
+Basic – The basic methods. Includes assert, collectgarbage, error, print, select, type, tonumber, and tostring.
+Bit32 – The bit32 package.
+Coroutine – The coroutine package.
+Dynamic – The dynamic package (introduced by MoonSharp).
+ErrorHandling – The error handling methods: pcall and xpcall.
+GlobalConsts – The global constants: _G, _VERSION, and _MOONSHARP.
+Math – The math package.
+Metatables – The metatable methods : setmetatable, getmetatable, rawset, rawget, rawequal, and rawlen.
+OS_Time – The time methods of the os package: clock, difftime, date, and time.
+String – The string package.
+Table – The table package.
+TableIterators – The table iterators: next, ipairs, and pairs.

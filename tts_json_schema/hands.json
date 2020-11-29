@@ -1,0 +1,63 @@
+"Hands": {
+  "Enable": true,
+  "DisableUnused": false,
+  "Hiding": 0,
+  "HandTransforms": [
+    {
+      "Color": "White",
+      "Transform": {
+        "posX": 15.0000019,
+        "posY": 7.89000034,
+        "posZ": -10,
+        "rotX": 0,
+        "rotY": 0,
+        "rotZ": 0,
+        "scaleX": 12.9818754,
+        "scaleY": 7.002465,
+        "scaleZ": 4.12009525
+      }
+    },
+    {
+      "Color": "Blue",
+      "Transform": {
+        "posX": 45,
+        "posY": 7.88999748,
+        "posZ": -10,
+        "rotX": 0.44998166,
+        "rotY": -2.83357976e-10,
+        "rotZ": 0.00404769275,
+        "scaleX": 12.9818621,
+        "scaleY": 7.01762772,
+        "scaleZ": 4.123917
+      }
+    },
+    {
+      "Color": "Red",
+      "Transform": {
+        "posX": -15.0000019,
+        "posY": 7.89044,
+        "posZ": -10,
+        "rotX": 2.08440834e-10,
+        "rotY": 0,
+        "rotZ": 0,
+        "scaleX": 12.9818754,
+        "scaleY": 7.00245476,
+        "scaleZ": 4.12011051
+      }
+    },
+    {
+      "Color": "Green",
+      "Transform": {
+        "posX": -45,
+        "posY": 7.89000034,
+        "posZ": -10,
+        "rotX": 0,
+        "rotY": 0,
+        "rotZ": 0,
+        "scaleX": 12.9806528,
+        "scaleY": 7,
+        "scaleZ": 4.11559963
+      }
+    }
+  ]
+}

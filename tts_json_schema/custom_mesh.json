@@ -1,0 +1,10 @@
+"CustomMesh": {
+  "MeshURL": "http://cloud-3.steamusercontent.com/ugc/872995837445448056/80636D48F94D92B04EC84DA37BE56E2F27D661DE/",
+  "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/872996098198092281/17AF332279298B1FFC132298BD7F98A965CDF7FF/",
+  "NormalURL": "",
+  "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/872995837445448056/80636D48F94D92B04EC84DA37BE56E2F27D661DE/",
+  "Convex": true,
+  "MaterialIndex": 1,
+  "TypeIndex": 0,
+  "CastShadows": true
+}

@@ -1,0 +1,11 @@
+"CustomImage": {
+  "ImageURL": "http://cloud-3.steamusercontent.com/ugc/878629355914764048/A445EDE980A9E2E495F87CB0890CB739D6DFB7DA/",
+  "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/878629355914791946/DBD28AB9EDE18CE493EC138EB735B5876ADF5887/",
+  "WidthScale": 0,
+  "CustomTile": {
+    "Type": 0,
+    "Thickness": 0.1,
+    "Stackable": false,
+    "Stretch": true
+  }
+}

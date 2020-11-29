@@ -1,0 +1,53 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -65.8713,
+    "posY": 10.1785536,
+    "posZ": 30.0436058,
+    "rotX": 0.03116474,
+    "rotY": 180.022156,
+    "rotZ": 0.8227142,
+    "scaleX": 1.1523807,
+    "scaleY": 1,
+    "scaleZ": 1.1523807
+  },
+  "Nickname": "Quatryl Tinkerer Basic Abilities",
+  "Description": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    5918,
+    5915,
+    5917,
+    5914,
+    5924,
+    5916,
+    5921,
+    5920,
+    5919,
+    5925,
+    5922,
+    5923
+  ],
+  "CustomDeck": {
+    "59": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/878629355912353338/C99C19C103E99FFBDD87AB5FAEACF1018E4EF690/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/878629355912355240/40DA5394E65097637C6E60BB91279C4E8CEE96C1/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": false
+    }
+  },

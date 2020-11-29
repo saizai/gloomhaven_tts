@@ -1,0 +1,21 @@
+"Grid": {
+  "Type": 0,
+  "Lines": false,
+  "Color": {
+    "r": 0,
+    "g": 0,
+    "b": 0
+  },
+  "Opacity": 0.75,
+  "ThickLines": false,
+  "Snapping": false,
+  "Offset": false,
+  "BothSnapping": true,
+  "xSize": 0.5,
+  "ySize": 0.5,
+  "PosOffset": {
+    "x": 0,
+    "y": 1,
+    "z": 0
+  }
+},
